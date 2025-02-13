@@ -12,6 +12,14 @@ on:
   pull_request:
     branches: [ "master" ]
 
+env:
+  URL: ${{secrets.URL}}
+  LOGIN: ${{secrets.LOGIN}}
+  PASSWORD: ${{secrets.PASSWORD}}
+  DBLOGIN: ${{secrets.DBLOGIN}}
+  DBPASS: ${{secrets.DBPASS}}
+  DBURL: ${{secrets.DBURL}}
+
 jobs:
   build:
 
@@ -31,4 +39,4 @@ jobs:
           browser: chrome
           version: latest
       - name: Run SmokeTest
-        run: mvn clean -DsuiteXmlFile='src/test/resources/SmokeTest.xml' test
+        run: mvn clean -DsuiteXmlFile='src/test/resources/SmokeTest.xml' test -Durl=$URL -Dlogin=$LOGIN -Dpassword=$PASSWORD -DdbLogin=$DBLOGIN -DdbPass=$DBPASS -DdbUrl=$DBURL
