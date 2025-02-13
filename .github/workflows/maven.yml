@@ -13,12 +13,12 @@ on:
     branches: [ "master" ]
 
 env:
-  URL: ${{secrets.URL}}
-  LOGIN: ${{secrets.LOGIN}}
-  PASSWORD: ${{secrets.PASSWORD}}
-  DBLOGIN: ${{secrets.DBLOGIN}}
-  DBPASS: ${{secrets.DBPASS}}
-  DBURL: ${{secrets.DBURL}}
+  URL1: ${{secrets.URL}}
+  LOGIN1: ${{secrets.LOGIN}}
+  PASSWORD1: ${{secrets.PASSWORD}}
+  DBLOGIN1: ${{secrets.DBLOGIN}}
+  DBPASS1: ${{secrets.DBPASS}}
+  DBURL1: ${{secrets.DBURL}}
 
 jobs:
   build:
@@ -39,4 +39,4 @@ jobs:
           browser: chrome
           version: latest
       - name: Run SmokeTest
-        run: mvn clean -DsuiteXmlFile='src/test/resources/SmokeTest.xml' test -Durl=$URL -Dlogin=$LOGIN -Dpassword=$PASSWORD -DdbLogin=$DBLOGIN -DdbPass=$DBPASS -DdbUrl=$DBURL
+        run: mvn clean test -Durl=$URL1 -Dlogin=$LOGIN1 -Dpassword=$PASSWORD1 -DdbLogin=$DBLOGIN1 -DdbPass=$DBPASS1 -DdbUrl=$DBURL1
