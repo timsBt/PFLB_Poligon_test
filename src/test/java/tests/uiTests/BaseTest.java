@@ -20,7 +20,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() {
-        Configuration.headless = true;
+        Configuration.headless = false;
         Configuration.timeout = 10000;
         open(System.getProperty("url", getProperty("url")));
         getWebDriver().manage().window().maximize();
