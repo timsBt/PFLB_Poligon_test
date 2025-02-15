@@ -5,6 +5,7 @@ import com.codeborne.selenide.Selenide;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.AllDeletePage;
+import pages.CreateCar;
 import pages.CreateUser;
 import pages.MainPage;
 
@@ -17,6 +18,7 @@ public class BaseTest {
     MainPage mainPage;
     CreateUser createUser;
     AllDeletePage allDeletePage;
+    CreateCar createCar;
 
     @BeforeMethod
     public void setUp() {
@@ -27,6 +29,7 @@ public class BaseTest {
         mainPage = new MainPage();
         createUser = new CreateUser();
         allDeletePage = new AllDeletePage();
+        createCar = new CreateCar();
     }
 
     @AfterMethod(alwaysRun = true)
