@@ -19,6 +19,7 @@ public class CreateUser {
     public SelenideElement moneySend = $(id("money_send"));
     public SelenideElement pushToApi = $x("//button[@class = 'tableButton btn btn-primary']");
     public SelenideElement usersId = $x("//button[@class='newId btn btn-secondary']");
+    public SelenideElement createStatus = $x("//button[@class='status btn btn-secondary']");
 
     String sexSend = "//input[@value = '%s']";
 
@@ -27,7 +28,9 @@ public class CreateUser {
         firstNameSend.setValue(firstName);
         lastNameSend.setValue(lastName);
         ageSend.setValue(age);
-        $x(String.format(sexSend, sex)).click();
+        if (!sex.isEmpty()) {
+            $x(String.format(sexSend, sex)).click();
+        }
         moneySend.setValue(money);
         pushToApi.click();
         Selenide.sleep(1000);

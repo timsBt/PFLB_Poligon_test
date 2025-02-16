@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import pages.AllDeletePage;
 import pages.CreateUser;
 import pages.MainPage;
+import pages.ReadAll;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -17,6 +18,7 @@ public class BaseTest {
     MainPage mainPage;
     CreateUser createUser;
     AllDeletePage allDeletePage;
+    ReadAll readAll;
 
     @BeforeMethod
     public void setUp() {
@@ -27,6 +29,7 @@ public class BaseTest {
         mainPage = new MainPage();
         createUser = new CreateUser();
         allDeletePage = new AllDeletePage();
+        readAll = new ReadAll();
     }
 
     @AfterMethod(alwaysRun = true)
