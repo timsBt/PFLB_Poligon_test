@@ -17,6 +17,7 @@ public class BaseTest {
     MainPage mainPage;
     CreateUser createUser;
     AllDeletePage allDeletePage;
+    PlusMoneyTest plusMoneyTest;
 
     @BeforeMethod
     public void setUp() {
@@ -27,6 +28,7 @@ public class BaseTest {
         mainPage = new MainPage();
         createUser = new CreateUser();
         allDeletePage = new AllDeletePage();
+        plusMoneyTest = new PlusMoneyTest();
     }
 
     @AfterMethod(alwaysRun = true)
