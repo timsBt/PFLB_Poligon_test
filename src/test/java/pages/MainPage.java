@@ -5,12 +5,8 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
-import static utils.PropertyReader.getProperty;
 
 public class MainPage {
-
-    String login = System.getProperty("login", getProperty("login"));
-    String password = System.getProperty("password", getProperty("password"));
 
     String toggleNavigation = "//a[text() = '%s']";
     String dropDownMenu = "//div[@class = 'dropdown-menu show']//a[text() = '%s']";
@@ -30,7 +26,7 @@ public class MainPage {
         $x(String.format(dropDownMenu, item)).click();
     }
 
-    public MainPage authorization() {
+    public MainPage authorization(String login, String password) {
         emailField.setValue(login);
         passwordField.setValue(password);
         goButton.click();

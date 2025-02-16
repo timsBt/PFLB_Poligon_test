@@ -18,11 +18,15 @@ public class BaseTest {
     CreateUser createUser;
     AllDeletePage allDeletePage;
 
+    String url = System.getProperty("url", getProperty("url"));
+    String login = System.getProperty("login", getProperty("login"));
+    String password = System.getProperty("password", getProperty("password"));
+
     @BeforeMethod
     public void setUp() {
         Configuration.headless = false;
         Configuration.timeout = 10000;
-        open(System.getProperty("url", getProperty("url")));
+        open(url);
         getWebDriver().manage().window().maximize();
         mainPage = new MainPage();
         createUser = new CreateUser();

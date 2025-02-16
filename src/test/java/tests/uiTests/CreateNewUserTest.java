@@ -13,7 +13,7 @@ public class CreateNewUserTest extends BaseTest {
 
     @BeforeMethod
     public void createUser() {
-        mainPage.authorization()
+        mainPage.authorization(login, password)
                 .toggleNavigationClick("Users")
                 .selectDropDownMenu("Create new");
         userId = createUser.createNewUser(getProperty("firstName"), getProperty("lastName"), getProperty("age"),
