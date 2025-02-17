@@ -21,18 +21,14 @@ public class CreateCar {
     public SelenideElement carId = $x("//button[@class='newId btn btn-secondary']");
     public SelenideElement carStatus = $x("//button[@class='status btn btn-secondary']");
 
-    @Step("Создание нового Автомобиля")
-    public void createNewCar(String engineType, String mark, String model, String price) {
+    @Step("Создание нового Автомобиля и получение его ID")
+    public String createNewCar(String engineType, String mark, String model, String price) {
         carEngineTypeSend.setValue(engineType);
         carMarkSend.setValue(mark);
         carModelSend.setValue(model);
         carPriceSend.setValue(price);
         pushToApi.click();
         Selenide.sleep(1000);
-    }
-
-    @Step("Получение ID автомобиля")
-    public String carIdGet() {
         return carId.shouldBe(visible, Duration.ofSeconds(10)).text().replace("New car ID: ", "");
     }
 

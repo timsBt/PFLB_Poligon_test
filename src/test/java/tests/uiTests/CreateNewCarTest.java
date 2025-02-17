@@ -30,14 +30,13 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void createNewCarWithValidData() {
-        createCar.createNewCar("Gasoline",
+        carId = createCar.createNewCar("Gasoline",
                 "VedroS",
                 "Gaykamy",
                 "1000");
         softAssert.assertEquals(createCar.carCreateStatus(),
                 "Status: Successfully pushed, code: 201",
                 "Возникла ошибка при создании автомобиля");
-        carId = createCar.carIdGet();
     }
 
     @Test(priority = 1, testName = "Тест удаления созданного автомобиля", retryAnalyzer = RetryUtils.class)
@@ -45,11 +44,10 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void deleteNewCarWithValidData() {
-        createCar.createNewCar("Gasoline",
+        carId = createCar.createNewCar("Gasoline",
                 "VedroS",
                 "Gaykamy",
                 "1000");
-        carId = createCar.carIdGet();
         allDeletePage.deleteCarId(carId);
         softAssert.assertEquals(createCar.carCreateStatus(),
                 "Status: 204",
@@ -61,7 +59,7 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void createNewCarWithEmptyEngineTypeField() {
-        createCar.createNewCar("",
+        carId = createCar.createNewCar("",
                 "VedroS",
                 "Gaykamy",
                 "1000");
@@ -75,7 +73,7 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void createNewCarWithNotValidEngineTypeField() {
-        createCar.createNewCar("sdgwegwge",
+        carId = createCar.createNewCar("sdgwegwge",
                 "VedroS",
                 "Gaykamy",
                 "1000");
@@ -89,7 +87,7 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void createNewCarWithEmptyMarkField() {
-        createCar.createNewCar("Electric",
+        carId = createCar.createNewCar("Electric",
                 "",
                 "Gaykamy",
                 "1000");
@@ -103,7 +101,7 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void createNewCarWithEmptyModelField() {
-        createCar.createNewCar("Diesel",
+        carId = createCar.createNewCar("Diesel",
                 "VedroS",
                 "",
                 "1000");
@@ -117,7 +115,7 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void createNewCarWithEmptyPriceField() {
-        createCar.createNewCar("CNG",
+        carId = createCar.createNewCar("CNG",
                 "VedroS",
                 "Gaykamy",
                 "");
