@@ -4,6 +4,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.text;
 import static utils.PropertyReader.getProperty;
 
@@ -22,6 +23,7 @@ public class CreateNewUserTest extends BaseTest {
 
     @Test
     public void showUserID() {
+        createUser.createStatus.shouldHave(exactText("Status: Successfully pushed, code: 201"));
         System.out.println(userId);
     }
 
