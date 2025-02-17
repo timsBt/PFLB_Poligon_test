@@ -31,6 +31,7 @@ public class MainPage {
         $x(String.format(dropDownMenu, item)).click();
     }
 
+    @Step("Авторизация")
     public MainPage authorization() {
         emailField.setValue(login);
         passwordField.setValue(password);

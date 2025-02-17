@@ -11,4 +11,9 @@
             <class name="tests.uiTests.CheckInCheckOutTest"/>
         </classes>
     </test>
+    <test name="Thread#2">
+        <classes>
+            <class name="tests.uiTests.CreateNewCarTest"/>
+        </classes>
+    </test>
 </suite>
