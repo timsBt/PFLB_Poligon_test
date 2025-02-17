@@ -8,6 +8,7 @@ import pages.AllDeletePage;
 import pages.CreateCar;
 import pages.CreateUser;
 import pages.MainPage;
+import pages.ReadAll;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
@@ -19,6 +20,7 @@ public class BaseTest {
     CreateUser createUser;
     AllDeletePage allDeletePage;
     CreateCar createCar;
+    ReadAll readAll;
 
     @BeforeMethod
     public void setUp() {
@@ -30,6 +32,7 @@ public class BaseTest {
         createUser = new CreateUser();
         allDeletePage = new AllDeletePage();
         createCar = new CreateCar();
+        readAll = new ReadAll();
     }
 
     @AfterMethod(alwaysRun = true)
