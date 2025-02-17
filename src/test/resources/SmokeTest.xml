@@ -9,4 +9,9 @@
             <class name="tests.uiTests.CreateNewUserTest"/>
         </classes>
     </test>
+    <test name="Thread#2">
+        <classes>
+            <class name="tests.uiTests.CreateNewCarTest"/>
+        </classes>
+    </test>
 </suite>
