@@ -19,28 +19,32 @@ public class CheckInCheckOutPage {
 
 
    @Step("Войти с главное страницы на странизу заселение и выселения")
-    public void goToLink(){
+   public CheckInCheckOutPage goToLink() {
         dropDownUser.click();
         checkInCheckOutLink.click();
+       return this;
    }
    @Step("Авторизация под пользователем с достаточным количеством прав")
-   public void auth(){
+   public CheckInCheckOutPage auth() {
        mainPage.authAndValidate(mainPage.login, mainPage.password,"Successful authorization");
+       return this;
    }
 
     @Step("Заселение пользователя в дом")
-    public void addUserToHouse(String user, String house){
+    public CheckInCheckOutPage addUserToHouse(String user, String house) {
        userField.sendKeys(user);
        houseField.sendKeys(house);
        settleCheckBox.click();
        pushToApi.click();
+        return this;
     }
 
     @Step("Выселение пользователя из дома")
-    public void evictUserFromHouse(String user, String house){
+    public CheckInCheckOutPage evictUserFromHouse(String user, String house) {
         userField.sendKeys(user);
         houseField.sendKeys(house);
         evictCheckBox.click();
         pushToApi.click();
+        return this;
     }
 }

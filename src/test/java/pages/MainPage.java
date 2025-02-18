@@ -54,11 +54,12 @@ public class MainPage {
     }
 
     @Step("Авторизация с валидацией")
-    public void authAndValidate(String login, String password, String expect) {
+    public MainPage authAndValidate(String login, String password, String expect) {
         emailField.setValue(login);
         passwordField.setValue(password);
         goButton.click();
         checkText(expect, Selenide.switchTo().alert().getText());
         Selenide.switchTo().alert().accept();
+        return this;
     }
 }
