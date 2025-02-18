@@ -1,29 +1,41 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
+import static org.openqa.selenium.By.id;
 
 public class PlusMoneyPage {
-    SelenideElement button = $x("button[class='tableButton btn btn-primary']");
-    SelenideElement inputUserId = $("input[id = 'id_send']");
-    SelenideElement inputAmount = $("input[id='money_send']");
-    SelenideElement massage = $("button.status.btn.btn-secondary");
-    public void enterUserId(String userId) {
+    SelenideElement button = $("button[class='tableButton btn btn-primary']");
+    SelenideElement inputUserId = $(id("id_send"));
+    SelenideElement inputAmount = $(id("money_send"));
+    SelenideElement massage = $("button[class='status btn btn-secondary']");
+
+    @Step("Ввод пользователя")
+    public PlusMoneyPage enterUserId(String userId) {
         inputUserId.setValue(userId);
+        return this;
     }
 
-    public void enterAmount(String amount) {
+    @Step("Ввод суммы")
+    public PlusMoneyPage enterAmount(String amount) {
         inputAmount.setValue(amount);
+        return this;
     }
 
-    public void submit() {
+    @Step("Нажатие кнопки отправки")
+    public PlusMoneyPage submit() {
         button.click();
+        return this;
     }
 
-    public void verifySuccessMessage() {
-        massage.shouldHave(text("Status: Successfully pushed, code: 200"));
+    @Step("Вывод сообщения")
+    public PlusMoneyPage verifySuccessMessage(String expectedMessage) {
+        massage.shouldHave(text(expectedMessage));
+        return this;
     }
+
 }
