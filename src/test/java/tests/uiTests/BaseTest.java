@@ -6,8 +6,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.AllDeletePage;
 import pages.CheckInCheckOutPage;
+import pages.CreateCar;
 import pages.CreateUser;
 import pages.MainPage;
+import pages.ReadAll;
 
 import java.time.Duration;
 
@@ -22,6 +24,10 @@ public class BaseTest {
     AllDeletePage allDeletePage;
     CheckInCheckOutPage checkInCheckOutPage;
 
+    CreateCar createCar;
+    ReadAll readAll;
+
+
     @BeforeMethod
     public void setUp() {
         Configuration.headless = false;
@@ -33,6 +39,8 @@ public class BaseTest {
         createUser = new CreateUser();
         allDeletePage = new AllDeletePage();
         checkInCheckOutPage = new CheckInCheckOutPage();
+        createCar = new CreateCar();
+        readAll = new ReadAll();
     }
 
     @AfterMethod(alwaysRun = true)
