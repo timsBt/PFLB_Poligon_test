@@ -4,12 +4,9 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import pages.AllDeletePage;
-import pages.CheckInCheckOutPage;
-import pages.CreateCar;
-import pages.CreateUser;
-import pages.MainPage;
-import pages.ReadAll;
+import pages.*;
+
+import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
