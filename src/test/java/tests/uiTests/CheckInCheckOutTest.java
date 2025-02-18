@@ -1,11 +1,11 @@
 package tests.uiTests;
 
+import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import jdk.jfr.Description;
 import org.testng.annotations.Test;
-import java.util.concurrent.TimeUnit;
 import static com.codeborne.selenide.Condition.visible;
 import static pages.MainPage.checkText;
 
@@ -18,7 +18,7 @@ public class CheckInCheckOutTest extends BaseTest {
     @Story("Заселение пользователя")
     public void settleUser() throws InterruptedException {
         checkInCheckOutPage.auth().goToLink().addUserToHouse("1", "1");
-        TimeUnit.SECONDS.sleep(3);
+        Selenide.sleep(3000);
         checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(), "Status: Successfully pushed, code: 200");
     }
 
@@ -28,7 +28,7 @@ public class CheckInCheckOutTest extends BaseTest {
     @Story("Выселение пользователя")
     public void evictUser() throws InterruptedException {
         checkInCheckOutPage.auth().goToLink().evictUserFromHouse("1", "1");
-        TimeUnit.SECONDS.sleep(3);
+        Selenide.sleep(3000);
         checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(), "Status: Successfully pushed, code: 200");
 
     }
@@ -39,7 +39,7 @@ public class CheckInCheckOutTest extends BaseTest {
     @Feature("Заселение пользователя")
     public void incorrectSettleUserTest() throws InterruptedException {
         checkInCheckOutPage.auth().goToLink().addUserToHouse("", "1");
-        TimeUnit.SECONDS.sleep(3);
+        Selenide.sleep(3000);
         checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(), "Status: Incorrect input data");
     }
 
@@ -49,7 +49,7 @@ public class CheckInCheckOutTest extends BaseTest {
     @Feature("Заселение пользователя")
     public void incorrectSettleHouseTest() throws InterruptedException {
         checkInCheckOutPage.auth().goToLink().addUserToHouse("1", "");
-        TimeUnit.SECONDS.sleep(3);
+        Selenide.sleep(3000);
         checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(), "Status: Incorrect input data");
     }
 
@@ -59,7 +59,7 @@ public class CheckInCheckOutTest extends BaseTest {
     @Feature("Выселение пользователя")
     public void incorrectEvictUserTest() throws InterruptedException {
         checkInCheckOutPage.auth().goToLink().evictUserFromHouse("", "1");
-        TimeUnit.SECONDS.sleep(3);
+        Selenide.sleep(3000);
         checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(), "Status: Incorrect input data");
     }
 
@@ -69,7 +69,7 @@ public class CheckInCheckOutTest extends BaseTest {
     @Feature("Выселение пользователя")
     public void incorrectEvictHouseTest() throws InterruptedException {
         checkInCheckOutPage.auth().goToLink().evictUserFromHouse("1", "");
-        TimeUnit.SECONDS.sleep(3);
+        Selenide.sleep(3000);
         checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(), "Status: Incorrect input data");
     }
 }

@@ -4,12 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import pages.AllDeletePage;
-import pages.CheckInCheckOutPage;
-import pages.CreateCar;
-import pages.CreateUser;
-import pages.MainPage;
-import pages.ReadAll;
+import pages.*;
 
 import java.time.Duration;
 
@@ -34,7 +29,6 @@ public class BaseTest {
         Configuration.timeout = 10000;
         open(System.getProperty("url", getProperty("url")));
         getWebDriver().manage().window().maximize();
-        getWebDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         mainPage = new MainPage();
         createUser = new CreateUser();
         allDeletePage = new AllDeletePage();
