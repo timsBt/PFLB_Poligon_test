@@ -9,6 +9,8 @@ import pages.CheckInCheckOutPage;
 import pages.CreateUser;
 import pages.MainPage;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static utils.PropertyReader.getProperty;
@@ -26,6 +28,7 @@ public class BaseTest {
         Configuration.timeout = 10000;
         open(System.getProperty("url", getProperty("url")));
         getWebDriver().manage().window().maximize();
+        getWebDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         mainPage = new MainPage();
         createUser = new CreateUser();
         allDeletePage = new AllDeletePage();

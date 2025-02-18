@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+
 import static com.codeborne.selenide.Selenide.$x;
 public class CheckInCheckOutPage {
 
@@ -27,6 +28,7 @@ public class CheckInCheckOutPage {
        mainPage.authAndValidate(mainPage.login, mainPage.password,"Successful authorization");
    }
 
+    @Step("Заселение пользователя в дом")
     public void addUserToHouse(String user, String house){
        userField.sendKeys(user);
        houseField.sendKeys(house);
@@ -34,6 +36,7 @@ public class CheckInCheckOutPage {
        pushToApi.click();
     }
 
+    @Step("Выселение пользователя из дома")
     public void evictUserFromHouse(String user, String house){
         userField.sendKeys(user);
         houseField.sendKeys(house);

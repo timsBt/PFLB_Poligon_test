@@ -5,7 +5,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import jdk.jfr.Description;
 import org.testng.annotations.Test;
-
+import java.util.concurrent.TimeUnit;
 import static com.codeborne.selenide.Condition.visible;
 import static pages.MainPage.checkText;
 
@@ -16,64 +16,72 @@ public class CheckInCheckOutTest extends BaseTest {
     @Description("Заселение пользователя в дом")
     @Feature("Заселение и выселение пользователя")
     @Story("Заселение пользователя")
-    public void settleUser() {
-       checkInCheckOutPage.auth();
-       checkInCheckOutPage.goToLink();
-       checkInCheckOutPage.addUserToHouse("1", "1");
-       checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(),"Status: Successfully pushed, code: 200");
+    public void settleUser() throws InterruptedException {
+        checkInCheckOutPage.auth();
+        checkInCheckOutPage.goToLink();
+        checkInCheckOutPage.addUserToHouse("1", "1");
+        TimeUnit.SECONDS.sleep(3);
+        checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(), "Status: Successfully pushed, code: 200");
     }
 
     @Test(priority = 2, testName = "Выселение пользователя из дома")
     @Description("Выселение пользователя из дома")
     @Feature("Заселение и выселение пользователя")
     @Story("Выселение пользователя")
-    public void evictUser() {
+    public void evictUser() throws InterruptedException {
         checkInCheckOutPage.auth();
         checkInCheckOutPage.goToLink();
         checkInCheckOutPage.evictUserFromHouse("1", "1");
-        checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(),"Status: Successfully pushed, code: 200");
+        TimeUnit.SECONDS.sleep(3);
+        checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(), "Status: Successfully pushed, code: 200");
+
     }
 
     @Test(priority = 3, testName = "Заселение пользователя с пустым полем пользователь")
     @Description("Заселение пользователя с пустым полем пользователь")
     @Story("Заселение и выселение пользователя")
     @Feature("Заселение пользователя")
-    public void incorrectSettleUserTest(){
+    public void incorrectSettleUserTest() throws InterruptedException {
         checkInCheckOutPage.auth();
         checkInCheckOutPage.goToLink();
-        checkInCheckOutPage.addUserToHouse("","1");
-        checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(),"Status: Incorrect input data");
+        checkInCheckOutPage.addUserToHouse("", "1");
+        TimeUnit.SECONDS.sleep(3);
+        checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(), "Status: Incorrect input data");
     }
 
     @Test(priority = 4, testName = "Заселение пользователя с пустым полем дом")
     @Description("Заселение пользователя с пустым полем дом")
     @Story("Заселение и выселение пользователя")
     @Feature("Заселение пользователя")
-    public void incorrectSettleHouseTest() {
+    public void incorrectSettleHouseTest() throws InterruptedException {
         checkInCheckOutPage.auth();
         checkInCheckOutPage.goToLink();
         checkInCheckOutPage.addUserToHouse("1", "");
-        checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(),"Status: Incorrect input data");
+        TimeUnit.SECONDS.sleep(3);
+        checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(), "Status: Incorrect input data");
     }
+
     @Test(priority = 5, testName = "Выселение пользователя с пустым полем пользователь")
     @Description("Заселение пользователя с пустым полем пользователь")
     @Story("Заселение и выселение пользователя")
     @Feature("Выселение пользователя")
-    public void incorrectEvictUserTest(){
+    public void incorrectEvictUserTest() throws InterruptedException {
         checkInCheckOutPage.auth();
         checkInCheckOutPage.goToLink();
         checkInCheckOutPage.evictUserFromHouse("", "1");
-        checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(),"Status: Incorrect input data");
+        TimeUnit.SECONDS.sleep(3);
+        checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(), "Status: Incorrect input data");
     }
 
     @Test(priority = 6, testName = "Выселение пользователя с пустым полем дом")
     @Description("Заселение пользователя с пустым полем дом")
     @Story("Заселение и выселение пользователя")
     @Feature("Выселение пользователя")
-    public void incorrectEvictHouseTest() {
+    public void incorrectEvictHouseTest() throws InterruptedException {
         checkInCheckOutPage.auth();
         checkInCheckOutPage.goToLink();
         checkInCheckOutPage.evictUserFromHouse("1", "");
-        checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(),"Status: Incorrect input data");
+        TimeUnit.SECONDS.sleep(3);
+        checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(), "Status: Incorrect input data");
     }
 }
