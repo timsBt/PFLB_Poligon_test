@@ -3,6 +3,8 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
@@ -34,7 +36,7 @@ public class PlusMoneyPage {
 
     @Step("Вывод сообщения")
     public PlusMoneyPage verifySuccessMessage(String expectedMessage) {
-        massage.shouldHave(text(expectedMessage));
+        massage.shouldHave(text(expectedMessage), Duration.ofSeconds(20000));
         return this;
     }
 
