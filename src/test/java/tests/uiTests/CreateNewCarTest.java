@@ -29,11 +29,12 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void createNewCarWithValidData() {
-        carId = createCar.createNewCar("Gasoline",
+        carId = createCarPage.createNewCar(
+                "Gasoline",
                 "VedroS",
                 "Gaykamy",
                 "1000");
-        Assert.assertEquals(createCar.carCreateStatus(),
+        Assert.assertEquals(createCarPage.carCreateStatus(),
                 "Status: Successfully pushed, code: 201",
                 "Возникла ошибка при создании автомобиля");
     }
@@ -44,7 +45,7 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void deleteNewCarWithValidData() {
-        carId = createCar.createNewCar("Gasoline",
+        carId = createCarPage.createNewCar("Gasoline",
                 "VedroS",
                 "Gaykamy",
                 "1000");
@@ -69,11 +70,11 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void createNewCarWithEmptyEngineTypeField() {
-        carId = createCar.createNewCar("",
+        carId = createCarPage.createNewCar("",
                 "VedroS",
                 "Gaykamy",
                 "1000");
-        Assert.assertEquals(createCar.carCreateStatus(),
+        Assert.assertEquals(createCarPage.carCreateStatus(),
                 "Status: Invalid request data",
                 "Сообщение об ошибке отсутствует");
     }
@@ -84,11 +85,11 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void createNewCarWithNotValidEngineTypeField() {
-        carId = createCar.createNewCar("sdgwegwge",
+        carId = createCarPage.createNewCar("sdgwegwge",
                 "VedroS",
                 "Gaykamy",
                 "1000");
-        Assert.assertEquals(createCar.carCreateStatus(),
+        Assert.assertEquals(createCarPage.carCreateStatus(),
                 "Status: AxiosError: Request failed with status code 400",
                 "Сообщение об ошибке отсутствует");
     }
@@ -99,11 +100,11 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void createNewCarWithEmptyMarkField() {
-        carId = createCar.createNewCar("Electric",
+        carId = createCarPage.createNewCar("Electric",
                 "",
                 "Gaykamy",
                 "1000");
-        Assert.assertEquals(createCar.carCreateStatus(),
+        Assert.assertEquals(createCarPage.carCreateStatus(),
                 "Status: Invalid request data",
                 "Сообщение об ошибке отсутствует");
     }
@@ -114,11 +115,11 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void createNewCarWithEmptyModelField() {
-        carId = createCar.createNewCar("Diesel",
+        carId = createCarPage.createNewCar("Diesel",
                 "VedroS",
                 "",
                 "1000");
-        Assert.assertEquals(createCar.carCreateStatus(),
+        Assert.assertEquals(createCarPage.carCreateStatus(),
                 "Status: Invalid request data",
                 "Сообщение об ошибке отсутствует");
     }
@@ -129,11 +130,11 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void createNewCarWithEmptyPriceField() {
-        carId = createCar.createNewCar("CNG",
+        carId = createCarPage.createNewCar("CNG",
                 "VedroS",
                 "Gaykamy",
                 "");
-        Assert.assertEquals(createCar.carCreateStatus(),
+        Assert.assertEquals(createCarPage.carCreateStatus(),
                 "Status: Invalid request data",
                 "Сообщение об ошибке отсутствует");
     }

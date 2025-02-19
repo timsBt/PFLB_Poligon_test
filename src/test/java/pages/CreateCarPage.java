@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import static org.openqa.selenium.By.id;
 
-public class CreateCar {
+public class CreateCarPage {
 
     public SelenideElement carEngineTypeSend = $(id("car_engine_type_send"));
     public SelenideElement carMarkSend = $(id("car_mark_send"));
