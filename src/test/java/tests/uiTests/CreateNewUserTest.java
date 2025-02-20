@@ -86,9 +86,9 @@ public class CreateNewUserTest extends BaseTest {
     @Feature("Взаимодействие с пользователем")
     @Story("Проверка на удаление пользователя")
     public void deleteNonExistUserTest() {
-        userId = "9999";
+        userId = getProperty("notExistentID");
         allDeletePage.deleteUserId(userId);
-        allDeletePage.deleteUserStatus.shouldHave(exactText("Status: not pushed"));
+        allDeletePage.notDeleteUserStatus.shouldHave(exactText("Status: not pushed"));
     }
 
     @Test(testName = "Проверка отсутствия создания пользователя с Некорректными данными",
@@ -99,7 +99,7 @@ public class CreateNewUserTest extends BaseTest {
     @Story("Проверка на отсутствие результата создания пользователя")
     public void checkNotCreatedUserTest(String firstName, String lastName, String age, String sex, String money, String actualResults) {
         userId = createUser.createNewUser(firstName, lastName, age, sex, money);
-        createUser.createStatus.shouldHave(exactText(actualResults));
+        createUser.notCreateStatus.shouldHave(exactText(actualResults));
     }
 
     @DataProvider(name = "CreateUserFalseData")
@@ -128,7 +128,7 @@ public class CreateNewUserTest extends BaseTest {
 
     @AfterMethod
     public void deleteUser() {
-        if (!userId.isEmpty() && !userId.equals("9999")) {
+        if (!userId.isEmpty() && !userId.equals(getProperty("notExistentID"))) {
             allDeletePage.deleteUserId(userId);
             allDeletePage.deleteUserStatus.shouldHave(text("204"));
         }

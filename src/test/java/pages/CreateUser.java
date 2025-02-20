@@ -19,7 +19,8 @@ public class CreateUser {
     public SelenideElement moneySend = $(id("money_send"));
     public SelenideElement pushToApi = $x("//button[@class = 'tableButton btn btn-primary']");
     public SelenideElement usersId = $x("//button[@class='newId btn btn-secondary']");
-    public SelenideElement createStatus = $x("//button[@class='status btn btn-secondary']");
+    public SelenideElement notCreateStatus = $x("//button[@class='status btn btn-secondary']");
+    public SelenideElement createStatus = $x("//button[text()='Status: Successfully pushed, code: 201']");
 
     String sexSend = "//input[@value = '%s']";
 
