@@ -99,7 +99,7 @@ public class CreateNewUserTest extends BaseTest {
     @Story("Проверка на отсутствие результата создания пользователя")
     public void checkNotCreatedUserTest(String firstName, String lastName, String age, String sex, String money, String actualResults) {
         userId = createUser.createNewUser(firstName, lastName, age, sex, money);
-        createUser.notCreateStatus.shouldHave(exactText(actualResults));
+        createUser.createStatus.shouldHave(exactText(actualResults));
     }
 
     @DataProvider(name = "CreateUserFalseData")

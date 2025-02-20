@@ -33,7 +33,9 @@ jobs:
           DB_PASS: ${{ secrets.DB_PASS }}
           DB_URL: ${{ secrets.DB_URL }}
           URL_API: ${{ secrets.URL_API }}
-        run: mvn clean -DsuiteXmlFile='src/test/resources/SmokeTest.xml' test -Durl=$URL -Dlogin=$LOGIN -Dpassword=$PASSWORD -DdbLogin=$DB_LOGIN -DdbPass=$DB_PASS -DdbUrl=$DB_URL -DurlApi=$URL_API
+          HOST_TOKEN: ${{ secrets.HOST_TOKEN }}
+        run: mvn clean -DsuiteXmlFile='src/test/resources/SmokeTest.xml' test -Durl=$URL -Dlogin=$LOGIN -Dpassword=$PASSWORD
+          -DdbLogin=$DB_LOGIN -DdbPass=$DB_PASS -DdbUrl=$DB_URL -DurlApi=$URL_API -DhostToken=$HOST_TOKEN
 
       - name: Load test report history
         uses: actions/checkout@v3
