@@ -1,14 +1,17 @@
 package adapters;
 
+import io.qameta.allure.Epic;
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 
 import static io.restassured.RestAssured.given;
 import static utils.PropertyReader.getProperty;
 
+@Epic("Авторизация")
 public class AuthAdapter {
 
-    //метод для получения токена номер 1
+    @Step("Получение токена первым способом")
     public static String getToken(String login, String password) {
         RestAssured.baseURI = System.getProperty("url", getProperty("urlSwagger"));
         String requestBody = "{"
@@ -29,7 +32,7 @@ public class AuthAdapter {
         return response.jsonPath().getString("access_token");
     }
 
-    //метод для получения токена номер 2
+    @Step("Получение токена вторым способом")
     public static String getToken2(String login, String password) {
         RestAssured.baseURI = System.getProperty("url", getProperty("urlSwagger"));
 
@@ -48,6 +51,7 @@ public class AuthAdapter {
         return response2.jsonPath().getString("access_token");
     }
 
+    @Step("Валидация JWT токена")
     public static boolean isValidJwt(String token) {
         // Регулярное выражение для проверки формата JWT
         String jwtPattern = "^[A-Za-z0-9_-]+.[A-Za-z0-9_-]+.[A-Za-z0-9_-]+$";

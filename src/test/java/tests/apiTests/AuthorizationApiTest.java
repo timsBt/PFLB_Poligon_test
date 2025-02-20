@@ -11,17 +11,17 @@ import org.testng.annotations.Test;
 import static utils.PropertyReader.getProperty;
 
 @Epic("AuthorizationApiTest")
-public class AuthorizationApiTest extends AuthAdapter {
+public class AuthorizationApiTest {
 
     @Test(testName = "Получение токена авторизации первым способом")
     @Description("Получение токена авторизации первым способом")
     @Story("Авторизация")
     @Feature("Авторизация")
     public void getAccessToken() {
-        String token = getToken(
+        String token = AuthAdapter.getToken(
                 System.getProperty("login", getProperty("login")),
                 System.getProperty("password", getProperty("password")));
-        Assert.assertTrue(isValidJwt(token));
+        Assert.assertTrue(AuthAdapter.isValidJwt(token));
     }
 
     @Test(testName = "Получение токена авторизации вторым способом")
@@ -29,10 +29,10 @@ public class AuthorizationApiTest extends AuthAdapter {
     @Story("Авторизация")
     @Feature("Авторизация")
     public void getAccessToken2() {
-        String token = getToken2(
+        String token = AuthAdapter.getToken2(
                 System.getProperty("login", getProperty("login")),
                 System.getProperty("password", getProperty("password")));
 
-        Assert.assertTrue(isValidJwt(token));
+        Assert.assertTrue(AuthAdapter.isValidJwt(token));
     }
 }
