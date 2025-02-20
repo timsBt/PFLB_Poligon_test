@@ -1,26 +1,29 @@
 package tests.uiTests;
 
 import com.codeborne.selenide.Selenide;
+import io.qameta.allure.Epic;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.MainPage;
 import pages.PlusMoneyPage;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.open;
-
+import static utils.PropertyReader.getProperty;
+@Epic("UI tests")
 public class СreditTest extends BaseTest {
 
-    private PlusMoneyPage plusMoneyPage;
-    private MainPage mainPage;
+    String userId = "";
 
     @BeforeMethod
-    public void setUp() {
-        mainPage = new MainPage();
-        plusMoneyPage = new PlusMoneyPage();
-        open("http://82.142.167.37:4881/");
+    public void openCredit() {
         mainPage.authorization()
                 .toggleNavigationClick("Users")
+                .selectDropDownMenu("Create new");
+        userId = createUser.createNewUser(getProperty("firstName"), getProperty("lastName"), getProperty("age"),
+                getProperty("sex"), getProperty("money"));
+        mainPage.toggleNavigationClick("Users")
                 .selectDropDownMenu("Issue a loan");
     }
 
@@ -44,9 +47,9 @@ public class СreditTest extends BaseTest {
         plusMoneyPage.enterUserId("2180").enterAmount("-1000").submit()
                 .verifySuccessMessage("Status: Incorrect input data");
     }
-
     @AfterMethod
-    public void tearDown() {
-        Selenide.closeWebDriver();
+    public void deleteUser() {
+        allDeletePage.deleteUserId(userId);
+        allDeletePage.deleteUserStatus.shouldHave(text("Status: 204"));
     }
 }
