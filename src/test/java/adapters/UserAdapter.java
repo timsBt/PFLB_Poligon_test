@@ -8,9 +8,10 @@ import static io.restassured.RestAssured.given;
 import static utils.PropertyReader.getProperty;
 
 public class UserAdapter {
+
     @Step("Создание пользователя")
     public static String createUser(String name, String lastName, String age, String sex, String money) {
-        RestAssured.baseURI = System.getProperty("url", getProperty("urlSwagger"));
+        RestAssured.baseURI = System.getProperty("urlApi", getProperty("urlApi"));
         String token = AuthAdapter.getToken(
                 System.getProperty("login", getProperty("login")),
                 System.getProperty("password", getProperty("password")));
@@ -37,7 +38,7 @@ public class UserAdapter {
 
     @Step("Чтение пользователя")
     public static String readUser(String id) {
-        RestAssured.baseURI = System.getProperty("url", getProperty("urlSwagger"));
+        RestAssured.baseURI = System.getProperty("urlApi", getProperty("urlApi"));
         String token = AuthAdapter.getToken(
                 System.getProperty("login", getProperty("login")),
                 System.getProperty("password", getProperty("password")));
@@ -56,7 +57,7 @@ public class UserAdapter {
 
     @Step("Редактирование пользователя")
     public static void updateUser(String id, String name, String lastName, String age, String sex, String money) {
-        RestAssured.baseURI = System.getProperty("url", getProperty("urlSwagger"));
+        RestAssured.baseURI = System.getProperty("urlApi", getProperty("urlApi"));
         String token = AuthAdapter.getToken(
                 System.getProperty("login", getProperty("login")),
                 System.getProperty("password", getProperty("password")));
@@ -85,7 +86,7 @@ public class UserAdapter {
 
     @Step("Удаление пользователя")
     public static void deleteUser(String id) {
-        RestAssured.baseURI = System.getProperty("url", getProperty("urlSwagger"));
+        RestAssured.baseURI = System.getProperty("urlApi", getProperty("urlApi"));
         String token = AuthAdapter.getToken(
                 System.getProperty("login", getProperty("login")),
                 System.getProperty("password", getProperty("password")));
@@ -103,7 +104,7 @@ public class UserAdapter {
 
     @Step("Проверка, что пользователя не существует")
     public static void verifyEntityNotExists(String id) {
-        RestAssured.baseURI = System.getProperty("url", getProperty("urlSwagger"));
+        RestAssured.baseURI = System.getProperty("urlApi", getProperty("urlApi"));
         String token = AuthAdapter.getToken(
                 System.getProperty("login", getProperty("login")),
                 System.getProperty("password", getProperty("password")));

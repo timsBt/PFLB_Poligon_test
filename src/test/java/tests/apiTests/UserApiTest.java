@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 import static adapters.UserAdapter.*;
 
-@Epic("Создание, чтение, изменение, удаление пользователя")
+@Epic("Api tests")
 public class UserApiTest {
 
     @Test(testName = "CRUD юзера")

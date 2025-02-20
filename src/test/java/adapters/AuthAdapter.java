@@ -1,6 +1,5 @@
 package adapters;
 
-import io.qameta.allure.Epic;
 import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
@@ -8,12 +7,11 @@ import io.restassured.response.Response;
 import static io.restassured.RestAssured.given;
 import static utils.PropertyReader.getProperty;
 
-@Epic("Авторизация")
 public class AuthAdapter {
 
     @Step("Получение токена первым способом")
     public static String getToken(String login, String password) {
-        RestAssured.baseURI = System.getProperty("url", getProperty("urlSwagger"));
+        RestAssured.baseURI = System.getProperty("urlApi", getProperty("urlApi"));
         String requestBody = "{"
                 + "\"username\": " + "\"" + login + "\","
                 + "\"password\": " + "\"" + password + "\""
@@ -34,7 +32,7 @@ public class AuthAdapter {
 
     @Step("Получение токена вторым способом")
     public static String getToken2(String login, String password) {
-        RestAssured.baseURI = System.getProperty("url", getProperty("urlSwagger"));
+        RestAssured.baseURI = System.getProperty("urlApi", getProperty("urlApi"));
 
         Response response2 = given()
                 .accept("application/json")

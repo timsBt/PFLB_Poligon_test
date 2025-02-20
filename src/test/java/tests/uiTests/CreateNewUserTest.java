@@ -21,7 +21,7 @@ public class CreateNewUserTest extends BaseTest {
 
     @BeforeMethod
     public void openCreateUserPage() {
-        mainPage.authorization()
+        mainPage.authorization(login, password)
                 .toggleNavigationClick("Users")
                 .selectDropDownMenu("Create new");
     }

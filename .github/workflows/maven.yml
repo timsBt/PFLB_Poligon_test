@@ -1,38 +1,22 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
 name: PFLB_Poligon_test
 
 on:
   push:
-    branches: [ "gitHubActionsAdd" ]
+    branches: ["master", "gitHubActionsAdd"]
   pull_request:
-    branches: [ "master" ]
-
-env:
-  URL: ${{secrets.URL}}
-  LOGIN: ${{secrets.LOGIN}}
-  PASSWORD: ${{secrets.PASSWORD}}
-  DBLOGIN: ${{secrets.DBLOGIN}}
-  DBPASS: ${{secrets.DBPASS}}
-  DBURL: ${{secrets.DBURL}}
+    branches: ["master"]
 
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
-      - name: Set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
           cache: maven
       - name: Setup browser Chrome
@@ -41,4 +25,12 @@ jobs:
           browser: chrome
           version: latest
       - name: Run SmokeTest
-        run: mvn clean -DsuiteXmlFile='src/test/resources/SmokeTest.xml' test -Durl=$URL -Dlogin=$LOGIN -Dpassword=$PASSWORD -DdbLogin=$DBLOGIN -DdbPass=$DBPASS -DdbUrl=$DBURL
+        env:
+          URL: ${{ secrets.URL }}
+          LOGIN: ${{ secrets.LOGIN }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          DB_LOGIN: ${{ secrets.DB_LOGIN }}
+          DB_PASS: ${{ secrets.DB_PASS }}
+          DB_URL: ${{ secrets.DB_URL }}
+          URL_API: ${{ secrets.URL_API }}
+        run: mvn clean test -Durl=$URL -Dlogin=$LOGIN -Dpassword=$PASSWORD -DdbLogin=$DB_LOGIN -DdbPass=$DB_PASS -DdbUrl=$DB_URL -DurlApi=$URL_API

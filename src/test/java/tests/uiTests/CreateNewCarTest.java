@@ -18,7 +18,7 @@ public class CreateNewCarTest extends BaseTest {
 
     @BeforeMethod
     public void createCarPreparation() {
-        mainPage.authorization()
+        mainPage.authorization(login, password)
                 .toggleNavigationClick("Cars")
                 .selectDropDownMenu("Create new");
     }

@@ -1,7 +1,6 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
-import models.SellingCar;
 
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -13,7 +12,7 @@ public class ReadUserWithCarsPage {
             "//table[@class='tableCars table table-striped table-bordered table-hover']//td"
     );
 
-    public SellingCar readUserWithCars() {
-        return new SellingCar(userId.getText(), carId.getText());
-    }
+//    public SellingCar readUserWithCars() {
+//        return new SellingCar(userId.getText(), carId.getText());
+//    }
 }

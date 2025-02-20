@@ -6,8 +6,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.*;
 
-import java.time.Duration;
-
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static utils.PropertyReader.getProperty;
@@ -22,10 +20,9 @@ public class BaseTest {
     SellAndBuyCarPage sellAndBuyCarPage;
     ReadUserWithCarsPage readUserWithCarsPage;
 
-
-    String url = System.getProperty("url", getProperty("url"));
-    String login = System.getProperty("login", getProperty("login"));
-    String password = System.getProperty("password", getProperty("password"));
+    public static String url = System.getProperty("url", getProperty("url"));
+    public static String login = System.getProperty("login", getProperty("login"));
+    public static String password = System.getProperty("password", getProperty("password"));
 
     @BeforeMethod
     public void setUp() {

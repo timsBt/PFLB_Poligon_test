@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import tests.uiTests.BaseTest;
 
 import static com.codeborne.selenide.Selenide.$x;
 public class CheckInCheckOutPage {
@@ -24,9 +25,10 @@ public class CheckInCheckOutPage {
         checkInCheckOutLink.click();
        return this;
    }
+
    @Step("Авторизация под пользователем с достаточным количеством прав")
    public CheckInCheckOutPage auth() {
-       mainPage.authAndValidate(mainPage.login, mainPage.password,"Successful authorization");
+       mainPage.authAndValidate(BaseTest.login, BaseTest.password, "Successful authorization");
        return this;
    }
 
