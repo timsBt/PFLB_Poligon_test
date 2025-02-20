@@ -28,7 +28,9 @@ public class CreateUser {
         firstNameSend.setValue(firstName);
         lastNameSend.setValue(lastName);
         ageSend.setValue(age);
-        $x(String.format(sexSend, sex)).click();
+        if (!sex.isEmpty()) {
+            $x(String.format(sexSend, sex)).click();
+        }
         moneySend.setValue(money);
         pushToApi.click();
         Selenide.sleep(1000);
