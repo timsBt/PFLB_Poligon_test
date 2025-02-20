@@ -7,13 +7,13 @@
     <test name="Thread#1">
         <classes>
             <class name="tests.uiTests.CreateNewUserTest"/>
-            <class name="tests.uiTests.LoginTest"/>
-            <class name="tests.uiTests.CheckInCheckOutTest"/>
+            <class name="tests.uiTests.CreateNewCarTest"/>
         </classes>
     </test>
     <test name="Thread#2">
         <classes>
-            <class name="tests.uiTests.CreateNewCarTest"/>
+            <class name="tests.uiTests.LoginTest"/>
+            <class name="tests.uiTests.CheckInCheckOutTest"/>
         </classes>
     </test>
     <test name="Thread#3">

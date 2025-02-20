@@ -4,7 +4,8 @@ import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import models.UserDto;
 
-import static Adapter.Auth.auth;
+import static adapters.AuthAdapter.auth;
+
 
 public class UserAdapter {
 
