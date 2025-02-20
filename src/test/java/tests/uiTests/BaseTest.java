@@ -31,6 +31,7 @@ public class BaseTest {
         open(url);
         getWebDriver().manage().window().maximize();
         mainPage = new MainPage();
+        createUser = new CreateUser();
         allDeletePage = new AllDeletePage();
         checkInCheckOutPage = new CheckInCheckOutPage();
         readAll = new ReadAll();
