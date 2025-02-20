@@ -6,6 +6,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.*;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static utils.PropertyReader.getProperty;
