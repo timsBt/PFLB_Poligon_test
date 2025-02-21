@@ -34,7 +34,7 @@ public class CreateUserPage {
         }
         moneySend.setValue(money);
         pushToApi.click();
-        Selenide.sleep(3000);
+        Selenide.sleep(1000);
         return usersId.shouldBe(visible, Duration.ofSeconds(10)).text().replace("New user ID: ", "");
     }
 }

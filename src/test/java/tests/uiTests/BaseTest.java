@@ -29,11 +29,11 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() {
-        Configuration.headless = true;
-        Configuration.timeout = 15000;
+        Configuration.headless = false;
+        Configuration.timeout = 10000;
         open(url);
         getWebDriver().manage().window().maximize();
-        getWebDriver().manage().timeouts().scriptTimeout(Duration.ofSeconds(15));
+        getWebDriver().manage().timeouts().scriptTimeout(Duration.ofSeconds(10));
         mainPage = new MainPage();
         createUserPage = new CreateUserPage();
         allDeletePage = new AllDeletePage();

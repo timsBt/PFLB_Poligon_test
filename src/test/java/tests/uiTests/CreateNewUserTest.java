@@ -1,5 +1,6 @@
 package tests.uiTests;
 
+import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -56,6 +57,7 @@ public class CreateNewUserTest extends BaseTest {
                 getProperty("money"));
         mainPage.toggleNavigationClick("Users")
                 .selectDropDownMenu("Read all");
+        readAll.sortButton.doubleClick();
         readAll.getFieldsUserOnTableList(userId).shouldHave(texts(
                 userId,
                 getProperty("firstName"),
@@ -78,7 +80,9 @@ public class CreateNewUserTest extends BaseTest {
                 getProperty("sex"),
                 getProperty("money"));
         allDeletePage.deleteUserId(userId);
+        Selenide.sleep(3000);
         allDeletePage.deleteUserStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: 204"));
+        userId = "";
     }
 
     @Test(testName = "Проверка удаления пользователя с Некорректным ID",
