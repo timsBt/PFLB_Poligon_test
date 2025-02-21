@@ -11,15 +11,15 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static utils.PropertyReader.getProperty;
 
 public class BaseTest {
-
     MainPage mainPage;
     CreateUser createUser;
     AllDeletePage allDeletePage;
     CheckInCheckOutPage checkInCheckOutPage;
-
-    CreateCar createCar;
+    CreateCarPage createCarPage;
     ReadAll readAll;
     CreateHousePage createHousePage;
+    SellAndBuyCarPage sellAndBuyCarPage;
+    ReadUserWithCarsPage readUserWithCarsPage;
 
 
     @BeforeMethod
@@ -29,12 +29,13 @@ public class BaseTest {
         open(System.getProperty("url", getProperty("url")));
         getWebDriver().manage().window().maximize();
         mainPage = new MainPage();
-        createUser = new CreateUser();
         allDeletePage = new AllDeletePage();
         checkInCheckOutPage = new CheckInCheckOutPage();
-        createCar = new CreateCar();
         readAll = new ReadAll();
         createHousePage = new CreateHousePage();
+        createCarPage = new CreateCarPage();
+        sellAndBuyCarPage = new SellAndBuyCarPage();
+        readUserWithCarsPage = new ReadUserWithCarsPage();
     }
 
     @AfterMethod(alwaysRun = true)
