@@ -1,6 +1,5 @@
 package tests.uiTests;
 
-import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -80,7 +79,6 @@ public class CreateNewUserTest extends BaseTest {
                 getProperty("sex"),
                 getProperty("money"));
         allDeletePage.deleteUserId(userId);
-        Selenide.sleep(3000);
         allDeletePage.deleteUserStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: 204"));
         userId = "";
     }
@@ -93,7 +91,7 @@ public class CreateNewUserTest extends BaseTest {
     public void deleteNonExistUserTest() {
         userId = getProperty("notExistentID");
         allDeletePage.deleteUserId(userId);
-        allDeletePage.notPushed.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: not pushed"));
+        allDeletePage.deleteUserStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: not pushed"));
     }
 
     @Test(testName = "Проверка отсутствия создания пользователя с Некорректными данными",

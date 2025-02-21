@@ -51,6 +51,7 @@ public class CreateNewCarTest extends BaseTest {
                 "1000");
         allDeletePage.deleteCarId(carId);
         allDeletePage.deleteCarStatus.shouldHave(text("204"));
+        carId = "";
     }
 
     @Test(priority = 1, testName = "Тест удаления не существующего автомобиля",

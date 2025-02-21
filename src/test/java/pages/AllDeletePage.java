@@ -3,15 +3,16 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.switchTo;
+import static java.time.Duration.ofSeconds;
 
 public class AllDeletePage {
 
     public SelenideElement deleteUserButton = $x("//button[@value = 'user']");
     public SelenideElement deleteUserField = $x("//button[@value = 'user']//..//input[@id = 'house_input']");
-    public SelenideElement notPushed = $x("//button[text()= 'Status: not pushed']");
-    public SelenideElement deleteUserStatus = $x("//button[text()= 'Status: 204']");
+    public SelenideElement deleteUserStatus = $x("//button[@value = 'user']//..//button[@class = 'status btn btn-secondary']");
     public SelenideElement deleteCarButton = $x("//button[@value = 'car']");
     public SelenideElement deleteCarField = $x("//button[@value = 'car']//..//input[@id = 'house_input']");
     public SelenideElement deleteCarStatus = $x("//button[@value = 'car']//..//button[@class = 'status btn btn-secondary']");
@@ -24,9 +25,9 @@ public class AllDeletePage {
         MainPage mainPage = new MainPage();
         mainPage.toggleNavigationClick("All DELETE");
         switchTo().window(1);
-        deleteUserField.click();
+        deleteUserField.shouldBe(visible, ofSeconds(10)).click();
         deleteUserField.setValue(userId);
-        deleteUserButton.click();
+        deleteUserButton.shouldBe(visible, ofSeconds(10)).click();
     }
 
     @Step("Удаление Car")
