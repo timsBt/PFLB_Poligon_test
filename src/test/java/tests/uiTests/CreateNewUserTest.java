@@ -91,7 +91,7 @@ public class CreateNewUserTest extends BaseTest {
     public void deleteNonExistUserTest() {
         userId = getProperty("notExistentID");
         allDeletePage.deleteUserId(userId);
-        allDeletePage.deleteUserStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: not pushed"));
+        allDeletePage.notPushed.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: not pushed"));
     }
 
     @Test(testName = "Проверка отсутствия создания пользователя с Некорректными данными",
