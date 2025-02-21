@@ -79,7 +79,7 @@ public class CreateNewUserTest extends BaseTest {
                 getProperty("sex"),
                 getProperty("money"));
         allDeletePage.deleteUserId(userId);
-        allDeletePage.deleteUserStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: 204"));
+        allDeletePage.deleteStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: 204"));
         userId = "";
     }
 
@@ -91,7 +91,7 @@ public class CreateNewUserTest extends BaseTest {
     public void deleteNonExistUserTest() {
         userId = getProperty("notExistentID");
         allDeletePage.deleteUserId(userId);
-        allDeletePage.notPushed.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: not pushed"));
+        allDeletePage.notPushedStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: not pushed"));
     }
 
     @Test(testName = "Проверка отсутствия создания пользователя с Некорректными данными",

@@ -12,8 +12,8 @@ public class AllDeletePage {
 
     public SelenideElement deleteUserButton = $x("//button[@value = 'user']");
     public SelenideElement deleteUserField = $x("//button[@value = 'user']//..//input[@id = 'house_input']");
-    public SelenideElement notPushed = $x("//button[text()= 'Status: not pushed']");
-    public SelenideElement deleteUserStatus = $x("//button[text()= 'Status: 204']");
+    public SelenideElement notPushedStatus = $x("//button[text()= 'Status: not pushed']");
+    public SelenideElement deleteStatus = $x("//button[text()= 'Status: 204']");
     public SelenideElement deleteCarButton = $x("//button[@value = 'car']");
     public SelenideElement deleteCarField = $x("//button[@value = 'car']//..//input[@id = 'house_input']");
     public SelenideElement deleteCarStatus = $x("//button[@value = 'car']//..//button[@class = 'status btn btn-secondary']");
@@ -36,9 +36,9 @@ public class AllDeletePage {
         MainPage mainPage = new MainPage();
         mainPage.toggleNavigationClick("All DELETE");
         switchTo().window(1);
-        deleteCarField.click();
+        deleteCarField.shouldBe(visible, ofSeconds(10)).click();
         deleteCarField.setValue(carId);
-        deleteCarButton.click();
+        deleteCarButton.shouldBe(visible, ofSeconds(10)).click();
     }
 
     @Step("Удаление House")
@@ -46,7 +46,7 @@ public class AllDeletePage {
         MainPage mainPage = new MainPage();
         mainPage.toggleNavigationClick("All DELETE");
         switchTo().window(1);
-        deleteHouseField.setValue(houseId);
-        deleteHouseButton.click();
+        deleteHouseField.shouldBe(visible, ofSeconds(10)).setValue(houseId);
+        deleteHouseButton.shouldBe(visible, ofSeconds(10)).click();
     }
 }

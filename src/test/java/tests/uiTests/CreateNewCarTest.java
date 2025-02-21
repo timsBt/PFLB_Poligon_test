@@ -50,7 +50,7 @@ public class CreateNewCarTest extends BaseTest {
                 "Gaykamy",
                 "1000");
         allDeletePage.deleteCarId(carId);
-        allDeletePage.deleteCarStatus.shouldHave(text("204"));
+        allDeletePage.deleteStatus.shouldHave(text("Status: 204"));
         carId = "";
     }
 
@@ -62,7 +62,7 @@ public class CreateNewCarTest extends BaseTest {
     public void deleteNewCarWithNotValidData() {
         carId = "9999";
         allDeletePage.deleteCarId(carId);
-        allDeletePage.deleteCarStatus.shouldHave(text("Status: not pushed"));
+        allDeletePage.notPushedStatus.shouldHave(text("Status: not pushed"));
     }
 
     @Test(priority = 2, testName = "Тест создания автомобиля с пустым полем Engine Type",
