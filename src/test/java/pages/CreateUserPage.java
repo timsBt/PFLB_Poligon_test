@@ -19,8 +19,8 @@ public class CreateUserPage {
     public SelenideElement moneySend = $(id("money_send"));
     public SelenideElement pushToApi = $x("//div//button[@class = 'tableButton btn btn-primary']");
     public SelenideElement usersId = $x("//div//button[@class='newId btn btn-secondary']");
-    public SelenideElement successStatus = $x("//div//button[text() = 'Status: Successfully pushed, code: 201']");
-    public SelenideElement invalidStatus = $x("//div//button[text() = 'Status: Invalid request data']");
+    public SelenideElement successStatus = $x("//button[text() = 'Status: Successfully pushed, code: 201']");
+    public SelenideElement invalidStatus = $x("//button[text() = 'Status: Invalid request data']");
 
     String sexSend = "//input[@value = '%s']";
 
@@ -34,7 +34,7 @@ public class CreateUserPage {
         }
         moneySend.setValue(money);
         pushToApi.click();
-        Selenide.sleep(1000);
+        Selenide.sleep(3000);
         return usersId.shouldBe(visible, Duration.ofSeconds(10)).text().replace("New user ID: ", "");
     }
 }
