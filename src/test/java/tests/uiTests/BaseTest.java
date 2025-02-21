@@ -17,6 +17,7 @@ public class BaseTest {
     CheckInCheckOutPage checkInCheckOutPage;
     CreateCarPage createCarPage;
     ReadAll readAll;
+    CreateHousePage createHousePage;
     SellAndBuyCarPage sellAndBuyCarPage;
     ReadUserWithCarsPage readUserWithCarsPage;
 
@@ -35,6 +36,7 @@ public class BaseTest {
         allDeletePage = new AllDeletePage();
         checkInCheckOutPage = new CheckInCheckOutPage();
         readAll = new ReadAll();
+        createHousePage = new CreateHousePage();
         createCarPage = new CreateCarPage();
         sellAndBuyCarPage = new SellAndBuyCarPage();
         readUserWithCarsPage = new ReadUserWithCarsPage();
