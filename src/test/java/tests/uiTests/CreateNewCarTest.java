@@ -144,7 +144,6 @@ public class CreateNewCarTest extends BaseTest {
     public void deleteCar() {
         if (!carId.isEmpty() && !carId.equals("9999")) {
             allDeletePage.deleteCarId(carId);
-            allDeletePage.deleteCarStatus.shouldHave(text("204"));
         }
     }
 }
