@@ -10,7 +10,7 @@ public class AllDeletePage {
 
     public SelenideElement deleteUserButton = $x("//button[@value = 'user']");
     public SelenideElement deleteUserField = $x("//button[@value = 'user']//..//input[@id = 'house_input']");
-    public SelenideElement notDeleteUserStatus = $x("//button[text()= 'Status: not pushed']");
+    public SelenideElement notPushed = $x("//button[text()= 'Status: not pushed']");
     public SelenideElement deleteUserStatus = $x("//button[text()= 'Status: 204']");
     public SelenideElement deleteCarButton = $x("//button[@value = 'car']");
     public SelenideElement deleteCarField = $x("//button[@value = 'car']//..//input[@id = 'house_input']");

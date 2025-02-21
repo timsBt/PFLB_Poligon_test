@@ -21,7 +21,7 @@ public class CreateNewHouseTest extends BaseTest{
 
     @BeforeMethod
     public void openPageCreateHouse() {
-        mainPage.authorization()
+        mainPage.authorization(login, password)
                 .toggleNavigationClick("Houses")
                 .selectDropDownMenu("Create new");
     }
