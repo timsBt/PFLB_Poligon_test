@@ -30,7 +30,7 @@ public class СreditTest extends BaseTest {
     @Test(priority = 1, testName = "Проверка на взятие кредита.",
             description = "Ввод корректного id и суммы.")
     public void testLoanFailure() {
-        plusMoneyPage.enterUserId("2180").enterAmount("100000").submit()
+        plusMoneyPage.enterUserId(userId).enterAmount("100000").submit()
                 .verifySuccessMessage("Status: AxiosError: Request failed with status code 408");
     }
 
@@ -44,7 +44,7 @@ public class СreditTest extends BaseTest {
     @Test(priority = 3, testName = "Проверка на кредит некорректной суммы.",
             description = "Ввод корректного id и отрицательной суммы.")
     public void testEnteringIncorrectAmount() {
-        plusMoneyPage.enterUserId("2180").enterAmount("-1000").submit()
+        plusMoneyPage.enterUserId(userId).enterAmount("-1000").submit()
                 .verifySuccessMessage("Status: Incorrect input data");
     }
     @AfterMethod
