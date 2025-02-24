@@ -16,6 +16,7 @@ public class BaseTest {
     MainPage mainPage;
     CreateUserPage createUserPage;
     AllDeletePage allDeletePage;
+    PlusMoneyPage plusMoneyPage;
     CheckInCheckOutPage checkInCheckOutPage;
     CreateCarPage createCarPage;
     ReadAll readAll;
@@ -37,6 +38,7 @@ public class BaseTest {
         mainPage = new MainPage();
         createUserPage = new CreateUserPage();
         allDeletePage = new AllDeletePage();
+        plusMoneyPage = new PlusMoneyPage();
         checkInCheckOutPage = new CheckInCheckOutPage();
         readAll = new ReadAll();
         createHousePage = new CreateHousePage();
