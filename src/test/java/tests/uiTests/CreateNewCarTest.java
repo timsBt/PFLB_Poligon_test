@@ -10,6 +10,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
+import static java.time.Duration.ofSeconds;
 
 @Epic("UI tests")
 public class CreateNewCarTest extends BaseTest {
@@ -50,7 +52,7 @@ public class CreateNewCarTest extends BaseTest {
                 "Gaykamy",
                 "1000");
         allDeletePage.deleteCarId(carId);
-        allDeletePage.deleteStatus.shouldHave(text("Status: 204"));
+        allDeletePage.deleteStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: 204"));
         carId = "";
     }
 
