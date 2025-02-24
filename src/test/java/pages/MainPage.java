@@ -50,6 +50,7 @@ public class MainPage {
         if (!expectText.equals($x(String.format(redText, expectText)).getText())) {
             throw new AssertionError("Expected: " + expectText + ", but got: " + $x(String.format(redText, expectText)).getText());
         }
+
         return this;
     }
 
