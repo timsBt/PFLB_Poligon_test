@@ -3,7 +3,7 @@ package tests.uiTests;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import models.SellingCar;
+import carsData.SellingCar;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
