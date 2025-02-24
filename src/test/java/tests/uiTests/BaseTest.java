@@ -5,7 +5,7 @@ import com.codeborne.selenide.Selenide;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import pages.*;
-
+import java.time.Duration;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static utils.PropertyReader.getProperty;
@@ -14,6 +14,7 @@ public class BaseTest {
     MainPage mainPage;
     CreateUser createUser;
     AllDeletePage allDeletePage;
+    PlusMoneyPage plusMoneyPage;
     CheckInCheckOutPage checkInCheckOutPage;
     CreateCarPage createCarPage;
     ReadAll readAll;
@@ -30,6 +31,7 @@ public class BaseTest {
         getWebDriver().manage().window().maximize();
         mainPage = new MainPage();
         allDeletePage = new AllDeletePage();
+        plusMoneyPage = new PlusMoneyPage();
         checkInCheckOutPage = new CheckInCheckOutPage();
         readAll = new ReadAll();
         createHousePage = new CreateHousePage();
