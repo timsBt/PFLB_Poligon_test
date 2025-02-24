@@ -5,6 +5,7 @@ import io.qameta.allure.Step;
 import tests.uiTests.BaseTest;
 
 import static com.codeborne.selenide.Selenide.$x;
+
 public class CheckInCheckOutPage {
 
     MainPage mainPage= new MainPage();
