@@ -6,19 +6,21 @@
     </listeners>
     <test name="Thread#1">
         <classes>
+            <class name="tests.uiTests.LoginTest"/>
+            <class name="tests.uiTests.CheckInCheckOutTest"/>
             <class name="tests.uiTests.CreateNewUserTest"/>
-            <class name="tests.uiTests.CreateNewCarTest"/>
         </classes>
     </test>
     <test name="Thread#2">
         <classes>
-            <class name="tests.uiTests.LoginTest"/>
-            <class name="tests.uiTests.CheckInCheckOutTest"/>
+            <class name="tests.uiTests.CreateNewCarTest"/>
             <class name="tests.uiTests.CreateNewHouseTest"/>
         </classes>
     </test>
     <test name="Thread#3">
         <classes>
+            <class name="tests.uiTests.PlusMoneyTest"/>
+            <class name="tests.uiTests.CreditTest"/>
             <class name="tests.apiTests.UserApiTest"/>
         </classes>
     </test>

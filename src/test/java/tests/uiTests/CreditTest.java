@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import static utils.PropertyReader.getProperty;
 
 @Epic("UI tests")
-public class СreditTest extends BaseTest {
+public class CreditTest extends BaseTest {
 
     String userId = "";
 
