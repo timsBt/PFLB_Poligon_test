@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 import static utils.PropertyReader.getProperty;
 
-@Epic("AuthorizationApiTest")
+@Epic("Api tests")
 public class AuthorizationApiTest {
 
     @Test(testName = "Получение токена авторизации первым способом")
@@ -32,7 +32,6 @@ public class AuthorizationApiTest {
         String token = AuthAdapter.getToken2(
                 System.getProperty("login", getProperty("login")),
                 System.getProperty("password", getProperty("password")));
-
         Assert.assertTrue(AuthAdapter.isValidJwt(token));
     }
 }

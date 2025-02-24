@@ -11,15 +11,16 @@ import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import static org.openqa.selenium.By.id;
 
-public class CreateUser {
+public class CreateUserPage {
 
     public SelenideElement firstNameSend = $(id("first_name_send"));
     public SelenideElement lastNameSend = $(id("last_name_send"));
     public SelenideElement ageSend = $(id("age_send"));
     public SelenideElement moneySend = $(id("money_send"));
-    public SelenideElement pushToApi = $x("//button[@class = 'tableButton btn btn-primary']");
-    public SelenideElement usersId = $x("//button[@class='newId btn btn-secondary']");
-    public SelenideElement createStatus = $x("//button[@class='status btn btn-secondary']");
+    public SelenideElement pushToApi = $x("//div//button[@class = 'tableButton btn btn-primary']");
+    public SelenideElement usersId = $x("//div//button[@class='newId btn btn-secondary']");
+    public SelenideElement successStatus = $x("//button[text() = 'Status: Successfully pushed, code: 201']");
+    public SelenideElement invalidStatus = $x("//button[text() = 'Status: Invalid request data']");
 
     String sexSend = "//input[@value = '%s']";
 
@@ -33,7 +34,7 @@ public class CreateUser {
         }
         moneySend.setValue(money);
         pushToApi.click();
-        Selenide.sleep(1000);
+        Selenide.sleep(3000);
         return usersId.shouldBe(visible, Duration.ofSeconds(10)).text().replace("New user ID: ", "");
     }
 }

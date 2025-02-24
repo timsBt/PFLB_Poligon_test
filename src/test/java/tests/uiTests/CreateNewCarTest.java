@@ -10,6 +10,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
+import static java.time.Duration.ofSeconds;
 
 @Epic("UI tests")
 public class CreateNewCarTest extends BaseTest {
@@ -18,7 +20,7 @@ public class CreateNewCarTest extends BaseTest {
 
     @BeforeMethod
     public void createCarPreparation() {
-        mainPage.authorization()
+        mainPage.authorization(login, password)
                 .toggleNavigationClick("Cars")
                 .selectDropDownMenu("Create new");
     }
@@ -50,7 +52,8 @@ public class CreateNewCarTest extends BaseTest {
                 "Gaykamy",
                 "1000");
         allDeletePage.deleteCarId(carId);
-        allDeletePage.deleteCarStatus.shouldHave(text("204"));
+        allDeletePage.deleteStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: 204"));
+        carId = "";
     }
 
     @Test(priority = 1, testName = "Тест удаления не существующего автомобиля",
@@ -61,7 +64,7 @@ public class CreateNewCarTest extends BaseTest {
     public void deleteNewCarWithNotValidData() {
         carId = "9999";
         allDeletePage.deleteCarId(carId);
-        allDeletePage.deleteCarStatus.shouldHave(text("Status: not pushed"));
+        allDeletePage.notPushedStatus.shouldHave(text("Status: not pushed"));
     }
 
     @Test(priority = 2, testName = "Тест создания автомобиля с пустым полем Engine Type",
@@ -143,7 +146,6 @@ public class CreateNewCarTest extends BaseTest {
     public void deleteCar() {
         if (!carId.isEmpty() && !carId.equals("9999")) {
             allDeletePage.deleteCarId(carId);
-            allDeletePage.deleteCarStatus.shouldHave(text("204"));
         }
     }
 }

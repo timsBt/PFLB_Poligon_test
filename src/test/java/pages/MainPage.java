@@ -5,12 +5,9 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
-import static utils.PropertyReader.getProperty;
 
 public class MainPage {
 
-    public String login = System.getProperty("login", getProperty("login"));
-    public String password = System.getProperty("password", getProperty("password"));
     public String redText = "//*[text() = '%s']";
     public SelenideElement emailField = $x("//input[@name = 'email']");
     public SelenideElement passwordField = $x("//input[@name = 'password']");
@@ -37,7 +34,7 @@ public class MainPage {
     }
 
     @Step("Авторизация")
-    public MainPage authorization() {
+    public MainPage authorization(String login, String password) {
         emailField.setValue(login);
         passwordField.setValue(password);
         goButton.click();

@@ -1,6 +1,7 @@
 package tests.uiTests;
 
 import com.codeborne.selenide.Selenide;
+import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Flaky;
 import io.qameta.allure.Story;
@@ -9,6 +10,7 @@ import org.testng.annotations.Test;
 
 import static pages.MainPage.checkText;
 
+@Epic("UI tests")
 public class LoginTest extends BaseTest {
 
     @Test(priority = 1, testName = "Тест авторизации с корректными данными")
@@ -17,7 +19,7 @@ public class LoginTest extends BaseTest {
     @Story("Предоставление прав для работы с проектом")
     @Flaky
     public void correctLogin() {
-        mainPage.authAndValidate(mainPage.login, mainPage.password, "Successful authorization");
+        mainPage.authAndValidate(login, password, "Successful authorization");
     }
 
     @Test(priority = 2, testName = "Тест авторизации с пустыми полями")
@@ -33,7 +35,7 @@ public class LoginTest extends BaseTest {
     @Feature("Авторизация")
     @Story("Предоставление прав для работы с проектом")
     public void fieldPasswordWrongLogin() {
-        mainPage.authAndValidate(mainPage.login, mainPage.password + mainPage.password, "Bad request");
+        mainPage.authAndValidate(login, password + password, "Bad request");
     }
 
     @Test(priority = 4, testName = "Тест авторизации с пустым паролем")
@@ -41,7 +43,7 @@ public class LoginTest extends BaseTest {
     @Feature("Авторизация")
     @Story("Предоставление прав для работы с проектом")
     public void fieldPasswordEmptyLogin() {
-        mainPage.authAndValidate(mainPage.login, "", "Incorrect input data");
+        mainPage.authAndValidate(login, "", "Incorrect input data");
     }
 
     @Test(priority = 5, testName = "Тест авторизации с email вне формата")
@@ -65,7 +67,7 @@ public class LoginTest extends BaseTest {
     @Feature("Авторизация")
     @Story("Предоставление прав для работы с проектом")
     public void incorrectPassword() {
-        mainPage.emailField.setValue(mainPage.login);
+        mainPage.emailField.setValue(login);
         mainPage.passwordField.setValue("u");
         mainPage.goButton.click();
         checkText("Incorrect input data", Selenide.switchTo().alert().getText());
@@ -81,8 +83,8 @@ public class LoginTest extends BaseTest {
     @Feature("Авторизация")
     @Story("Предоставление прав для работы с проектом")
     public void incorrectPasswordAndEmail() {
-        mainPage.emailField.setValue(mainPage.password);
-        mainPage.passwordField.setValue(mainPage.password + mainPage.password + mainPage.password);
+        mainPage.emailField.setValue(password);
+        mainPage.passwordField.setValue(password + password + password);
         mainPage.goButton.click();
         checkText("Incorrect input data", Selenide.switchTo().alert().getText());
         Selenide.switchTo().alert().accept();

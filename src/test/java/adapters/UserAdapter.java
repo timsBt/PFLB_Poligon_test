@@ -1,49 +1,37 @@
 package adapters;
 
 import io.qameta.allure.Step;
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import models.UserDto;
 
-import static io.restassured.RestAssured.given;
-import static utils.PropertyReader.getProperty;
+import static adapters.AuthAdapter.auth;
 
 public class UserAdapter {
+
     @Step("Создание пользователя")
-    public static String createUser(String name, String lastName, String age, String sex, String money) {
-        RestAssured.baseURI = System.getProperty("url", getProperty("urlSwagger"));
-        String token = AuthAdapter.getToken(
-                System.getProperty("login", getProperty("login")),
-                System.getProperty("password", getProperty("password")));
-        String requestBody = "{"
-                + "\"id\": 0,"
-                + "\"firstName\": \"" + name + "\","
-                + "\"secondName\": \"" + lastName + "\","
-                + "\"age\":" + age + ","
-                + "\"sex\": \"" + sex + "\","
-                + "\"money\":" + money + "}";
-        Response response = given()
-                .header("Content-Type", "application/json")
-                .header("host", "82.142.167.37")
-                .header("Authorization", "Bearer " + token)
-                .body(requestBody)
+    public static String createUser(String firstName, String secondName, String age, String sex, String money) {
+        UserDto userDto = UserDto.builder()
+                .firstName(firstName)
+                .secondName(secondName)
+                .age(Integer.parseInt(age))
+                .sex(sex)
+                .money(Double.parseDouble(money))
+                .build();
+        Response response = auth()
+                .body(userDto)
                 .when()
                 .post("/user")
                 .then()
+                .log().all()
                 .statusCode(201)
-                .extract()
-                .response();
-        return response.jsonPath().getString("id");
+                .extract().response();
+
+        return String.valueOf(response.jsonPath().getInt("id"));
     }
 
     @Step("Чтение пользователя")
     public static String readUser(String id) {
-        RestAssured.baseURI = System.getProperty("url", getProperty("urlSwagger"));
-        String token = AuthAdapter.getToken(
-                System.getProperty("login", getProperty("login")),
-                System.getProperty("password", getProperty("password")));
-        Response response = given()
-                .header("Content-Type", "application/json")
-                .header("host", "82.142.167.37")
+        Response response = auth()
                 .when()
                 .get("/user/" + id)
                 .then()
@@ -55,61 +43,42 @@ public class UserAdapter {
     }
 
     @Step("Редактирование пользователя")
-    public static void updateUser(String id, String name, String lastName, String age, String sex, String money) {
-        RestAssured.baseURI = System.getProperty("url", getProperty("urlSwagger"));
-        String token = AuthAdapter.getToken(
-                System.getProperty("login", getProperty("login")),
-                System.getProperty("password", getProperty("password")));
-        String requestBody = "{"
-                + "\"id\":" + id + ","
-                + "\"firstName\": \"" + name + "\","
-                + "\"secondName\": \"" + lastName + "\","
-                + "\"age\":" + age + ","
-                + "\"sex\": \"" + sex + "\","
-                + "\"money\":" + money + "}";
-        Response response = given()
-                .header("Content-Type", "application/json")
-                .header("host", "82.142.167.37")
-                .header("Authorization", "Bearer " + token)
-                .body(requestBody)
+    public static void updateUser(String id, String firstName, String secondName, String age, String sex, String money) {
+        UserDto userDto = UserDto.builder()
+                .id(Integer.parseInt(id))
+                .firstName(firstName)
+                .secondName(secondName)
+                .age(Integer.parseInt(age))
+                .sex(sex)
+                .money(Double.parseDouble(money))
+                .build();
+        Response response = auth()
+                .body(userDto)
                 // .log().all()
                 .when()
                 .put("/user/" + id)
                 .then()
                 .statusCode(202)
-                //.log().all()
+                .log().all()
                 .extract()
                 .response();
         response.jsonPath().getString("id");
     }
 
     @Step("Удаление пользователя")
-    public static void deleteUser(String id) {
-        RestAssured.baseURI = System.getProperty("url", getProperty("urlSwagger"));
-        String token = AuthAdapter.getToken(
-                System.getProperty("login", getProperty("login")),
-                System.getProperty("password", getProperty("password")));
-        Response response = given()
-                .header("accept", "*/*")
-                .header("Authorization", "Bearer " + token)
-                //.log().all()
+    public static void deleteUser(String userId) {
+        auth()
                 .when()
-                .delete("/user/" + id)
+                .delete("/user/" + userId)
                 .then()
+                .log().all()
                 .statusCode(204)
-                // .log().all()
                 .extract().response();
     }
 
     @Step("Проверка, что пользователя не существует")
     public static void verifyEntityNotExists(String id) {
-        RestAssured.baseURI = System.getProperty("url", getProperty("urlSwagger"));
-        String token = AuthAdapter.getToken(
-                System.getProperty("login", getProperty("login")),
-                System.getProperty("password", getProperty("password")));
-        Response response = given()
-                .header("Content-Type", "application/json")
-                .header("host", "82.142.167.37")
+        Response response = auth()
                 .when()
                 .get("/user/" + id)
                 .then()
