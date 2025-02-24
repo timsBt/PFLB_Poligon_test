@@ -6,7 +6,6 @@ import models.UserDto;
 
 import static adapters.AuthAdapter.auth;
 
-
 public class UserAdapter {
 
     @Step("Создание пользователя")
