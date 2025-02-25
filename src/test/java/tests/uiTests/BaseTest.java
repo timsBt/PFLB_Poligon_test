@@ -20,7 +20,7 @@ public class BaseTest {
     ReadAll readAll;
     CreateHousePage createHousePage;
     SellAndBuyCarPage sellAndBuyCarPage;
-    ReadUserWithCarsPage readUserWithCarsPage;
+    protected ReadUserWithCarsPage readUserWithCarsPage;
 
 
     @BeforeMethod

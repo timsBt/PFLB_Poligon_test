@@ -36,7 +36,7 @@ public class ReadUserWithCarsPage {
         readButton.click();
 
         return cars.stream().map(row -> {
-            ElementsCollection columns = row.findAll("td");
+            ElementsCollection columns = row.$$("td");
             return new Cars(
                     getColumnText(columns, 0),
                     getColumnText(columns, 1),

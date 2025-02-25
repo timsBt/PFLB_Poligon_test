@@ -1,10 +1,13 @@
 package tests.uiTests;
 
+import carsData.Cars;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class GetCarsListFromUserTest extends BaseTest{
 
@@ -21,7 +24,8 @@ public class GetCarsListFromUserTest extends BaseTest{
         @Story("Проверка списка машин по id юзера")
         public void getCarsList() {
             String userId = readUserWithCarsPage.readUserWithCars().getUserId();
-        readUserWithCarsPage.getCarsIdList(userId);
+            List<Cars> cars = readUserWithCarsPage.getCarsIdList(userId);
+            int h =3;
         }
 
 }
