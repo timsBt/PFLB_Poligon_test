@@ -54,7 +54,7 @@ public class UserApiTest {
     @Test(testName = "Проверка получения атрибутов по ID пользователя",
             description = "Проверка получения атрибутов по ID пользователя")
     @Description("Проверка получения атрибутов по ID пользователя")
-    @Feature("Проверка получения атрибутов")
+    @Feature("Проверка получения атрибутов пользователя")
     @Story("Получения атрибутов по ID пользователя")
     public void getUserTest() {
         UserDto userDto = readUser(userId);
@@ -65,5 +65,6 @@ public class UserApiTest {
         softAssert.assertEquals(userDto.getSex(), getProperty("sex"), "Значения sex не совпадают");
         softAssert.assertEquals(userDto.getMoney(), Double.parseDouble(getProperty("money")), "Значения money не совпадают");
         softAssert.assertAll();
+        deleteUser(userId);
     }
 }

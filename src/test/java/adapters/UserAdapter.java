@@ -3,6 +3,7 @@ package adapters;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import models.UserDto;
+import models.userInfoModels.UserInfoDto;
 
 import static adapters.AuthAdapter.auth;
 
@@ -81,5 +82,16 @@ public class UserAdapter {
                 .statusCode(204)
                 .extract()
                 .response();
+    }
+
+    @Step("Информация о пользователе")
+    public static UserInfoDto getUserInfo(String id) {
+        return auth()
+                .when()
+                .get("/user/" + id + "/info")
+                .then()
+                .statusCode(200)
+                .log().body()
+                .extract().as(UserInfoDto.class);
     }
 }
