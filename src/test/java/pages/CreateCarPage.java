@@ -28,7 +28,7 @@ public class CreateCarPage {
         carModelSend.setValue(model);
         carPriceSend.setValue(price);
         pushToApi.click();
-        Selenide.sleep(1000);
+        Selenide.sleep(3000);
         return carId.shouldBe(visible, Duration.ofSeconds(10)).text().replace("New car ID: ", "");
     }
 
