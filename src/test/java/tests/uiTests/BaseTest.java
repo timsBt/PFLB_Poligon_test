@@ -38,7 +38,7 @@ public class BaseTest {
         } else if (browser.equalsIgnoreCase("Edge")) {
             Configuration.browser = "Edge";
         }
-        Configuration.headless = false;
+        Configuration.headless = true;
         Configuration.timeout = 10000;
         open(url);
         getWebDriver().manage().window().maximize();
