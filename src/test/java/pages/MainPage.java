@@ -15,25 +15,25 @@ public class MainPage {
     String toggleNavigation = "//a[text() = '%s']";
     String dropDownMenu = "//div[@class = 'dropdown-menu show']//a[text() = '%s']";
 
-    @Step("Проверка ожидаемого и выведенного текста")
+    @Step("Проверка ожидаемого {expectedString} и выведенного текста {actualString}")
     public static void checkText(String actualString, String expectedString) {
         if (!actualString.equals(expectedString)) {
             throw new AssertionError("Expected: " + expectedString + ", but got: " + actualString);
         }
     }
 
-    @Step("Клик по элементу в навигационной панели'")
+    @Step("Клик по элементу {toggle} в навигационной панели'")
     public MainPage toggleNavigationClick(String toggle) {
         $x(String.format(toggleNavigation, toggle)).click();
         return this;
     }
 
-    @Step("Клик по элементу в выпадающем списке")
+    @Step("Клик по элементу {item} в выпадающем списке")
     public void selectDropDownMenu(String item) {
         $x(String.format(dropDownMenu, item)).click();
     }
 
-    @Step("Авторизация")
+    @Step("Авторизация с Логином: {login} и паролем: {password}")
     public MainPage authorization(String login, String password) {
         emailField.setValue(login);
         passwordField.setValue(password);
@@ -42,16 +42,15 @@ public class MainPage {
         return this;
     }
 
-    @Step("Проверка выводимого красного текста при ошибках в валидации")
+    @Step("Проверка выводимого красного текста {expectText} при ошибках в валидации")
     public MainPage checkRedText(String expectText) {
         if (!expectText.equals($x(String.format(redText, expectText)).getText())) {
             throw new AssertionError("Expected: " + expectText + ", but got: " + $x(String.format(redText, expectText)).getText());
         }
-
         return this;
     }
 
-    @Step("Авторизация с валидацией")
+    @Step("Авторизация с Логином: {login}, паролем: {password} и валидацией {expect}")
     public MainPage authAndValidate(String login, String password, String expect) {
         emailField.setValue(login);
         passwordField.setValue(password);

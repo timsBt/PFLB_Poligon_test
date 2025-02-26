@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import dto.PersonDto;
 import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
-import models.UserDto;
+import models.userModels.UserDto;
 import utils.PropertyReader;
 
 import static io.restassured.RestAssured.given;

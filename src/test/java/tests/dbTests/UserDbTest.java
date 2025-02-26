@@ -14,7 +14,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static adapters.UserAdapter.deleteUser;
-import static utils.DbConnect.executeSqlQuery;
+import static db.DbConnect.closeConnect;
+import static db.DbConnect.executeSqlQuery;
 import static utils.PropertyReader.getProperty;
 
 @Epic("DB tests")
@@ -53,7 +54,8 @@ public class UserDbTest {
     }
 
     @AfterMethod
-    public void deleteUserTearDown() {
+    public void deleteUserTearDown() throws SQLException {
         deleteUser(userId);
+        closeConnect();
     }
 }

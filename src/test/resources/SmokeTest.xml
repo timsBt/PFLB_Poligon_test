@@ -15,6 +15,7 @@
         <classes>
             <class name="tests.uiTests.CreateNewCarTest"/>
             <class name="tests.uiTests.CreateNewHouseTest"/>
+            <class name="tests.uiTests.SellAndBuyCarTest"/>
         </classes>
     </test>
     <test name="Thread#3">

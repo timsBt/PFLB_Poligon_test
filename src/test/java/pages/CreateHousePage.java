@@ -20,7 +20,7 @@ public class CreateHousePage {
     public SelenideElement createHouseStatus = $($x("//button[@class='status btn btn-secondary']"));
     public SelenideElement newHouseId = $($x("//button[@class='newId btn btn-secondary']"));
 
-    @Step("Создание нового дома")
+    @Step("Создание нового дома с полями: {floor}, {price}, {parkingFirst}, {parkingSecond}, {parkingThird}, {parkingFourth}")
     public String createNewHouse(String floor, String price, String parkingFirst,
                                  String parkingSecond, String parkingThird, String parkingFourth) {
         floorSend.setValue(floor);

@@ -1,10 +1,10 @@
 package tests.uiTests;
 
+import carsData.SellingCar;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import carsData.SellingCar;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -21,7 +21,7 @@ public class SellAndBuyCarTest extends BaseTest {
     }
 
     @Test(testName = "Проверка продажи машины",
-            description = "Проверка продажи машины", enabled = false)
+            description = "Проверка продажи машины")
     @Description("Проверка продажи машины")
     @Feature("Взаимодействие с пользователем")
     @Story("Проверка на продажу машины по userID и CarID")
@@ -35,7 +35,7 @@ public class SellAndBuyCarTest extends BaseTest {
     }
 
     @Test(testName = "Проверка покупки машины",
-            description = "Проверка покупки машины", enabled = false)
+            description = "Проверка покупки машины")
     @Description("Проверка покупки машины")
     @Feature("Взаимодействие с пользователем")
     @Story("Проверка на покупку машины по userID и CarID")

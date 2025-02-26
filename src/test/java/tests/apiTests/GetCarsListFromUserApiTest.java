@@ -4,7 +4,7 @@ import dto.PersonDto;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import models.UserDto;
+import models.userModels.UserDto;
 import org.testng.annotations.Test;
 import service.OperationWithCar;
 import service.RestService;

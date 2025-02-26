@@ -24,7 +24,7 @@ public class CreateUserPage {
 
     String sexSend = "//input[@value = '%s']";
 
-    @Step("Создание нового юзера")
+    @Step("Создание нового юзера c полями: {firstName}, {lastName}, {age}, {sex}, {money}")
     public String createNewUser(String firstName, String lastName, String age, String sex, String money) {
         firstNameSend.setValue(firstName);
         lastNameSend.setValue(lastName);

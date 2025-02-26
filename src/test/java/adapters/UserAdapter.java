@@ -2,8 +2,8 @@ package adapters;
 
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
-import models.UserDto;
-import models.userInfoModels.UserInfoDto;
+import models.userModels.UserDto;
+import models.userModels.UserInfoDto;
 
 import static adapters.AuthAdapter.auth;
 

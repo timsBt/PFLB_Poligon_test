@@ -1,9 +1,9 @@
 package pages;
 
 import carsData.Cars;
+import carsData.SellingCar;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import carsData.SellingCar;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,18 +15,22 @@ public class ReadUserWithCarsPage {
     final SelenideElement userId = $x(
             "//table[@class='tableUser table table-striped table-bordered table-hover']//td"
     );
+
     final SelenideElement carId = $x(
             "//table[@class='tableCars table table-striped table-bordered table-hover']//td"
     );
+
     final ElementsCollection cars = $$x(
             "//table[contains(@class, 'tableCars')]//tbody/tr"
     );
+
     final SelenideElement inputId = $x("//input[@type='number' and @id='user_input']");
     final SelenideElement readButton = $x("//button[@class='tableButton btn btn-primary']");
 
     public SellingCar readUserWithCars() {
         return new SellingCar(userId.getText(), carId.getText());
     }
+
     public List<Cars> getCarsIdList(SellingCar sellingCar) {
        return getCarsIdList(sellingCar.getUserId());
     }
