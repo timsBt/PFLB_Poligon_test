@@ -3,6 +3,7 @@ package adapters;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import models.UserDto;
+import models.userInfoModels.UserInfoDto;
 
 import static adapters.AuthAdapter.auth;
 
@@ -30,20 +31,18 @@ public class UserAdapter {
     }
 
     @Step("Чтение пользователя")
-    public static String readUser(String id) {
-        Response response = auth()
+    public static UserDto readUser(String id) {
+        return auth()
                 .when()
                 .get("/user/" + id)
                 .then()
                 .statusCode(200)
-                .extract()
-                .response();
-
-        return response.asString();
+                .log().body()
+                .extract().as(UserDto.class);
     }
 
     @Step("Редактирование пользователя")
-    public static void updateUser(String id, String firstName, String secondName, String age, String sex, String money) {
+    public static UserDto updateUser(String id, String firstName, String secondName, String age, String sex, String money) {
         UserDto userDto = UserDto.builder()
                 .id(Integer.parseInt(id))
                 .firstName(firstName)
@@ -52,7 +51,7 @@ public class UserAdapter {
                 .sex(sex)
                 .money(Double.parseDouble(money))
                 .build();
-        Response response = auth()
+        return auth()
                 .body(userDto)
                 // .log().all()
                 .when()
@@ -60,9 +59,7 @@ public class UserAdapter {
                 .then()
                 .statusCode(202)
                 .log().all()
-                .extract()
-                .response();
-        response.jsonPath().getString("id");
+                .extract().as(UserDto.class);
     }
 
     @Step("Удаление пользователя")
@@ -85,5 +82,16 @@ public class UserAdapter {
                 .statusCode(204)
                 .extract()
                 .response();
+    }
+
+    @Step("Информация о пользователе")
+    public static UserInfoDto getUserInfo(String id) {
+        return auth()
+                .when()
+                .get("/user/" + id + "/info")
+                .then()
+                .statusCode(200)
+                .log().body()
+                .extract().as(UserInfoDto.class);
     }
 }

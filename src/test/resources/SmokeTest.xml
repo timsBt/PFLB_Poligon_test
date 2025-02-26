@@ -21,7 +21,10 @@
         <classes>
             <class name="tests.uiTests.PlusMoneyTest"/>
             <class name="tests.uiTests.CreditTest"/>
+            <class name="tests.apiTests.AuthorizationApiTest"/>
             <class name="tests.apiTests.UserApiTest"/>
+            <class name="tests.apiTests.UserInfoTest"/>
+            <class name="tests.dbTests.UserDbTest"/>
         </classes>
     </test>
 </suite>
