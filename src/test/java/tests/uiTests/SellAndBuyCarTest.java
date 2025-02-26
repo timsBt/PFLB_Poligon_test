@@ -4,6 +4,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+import carsData.SellingCar;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -25,11 +26,11 @@ public class SellAndBuyCarTest extends BaseTest {
     @Feature("Взаимодействие с пользователем")
     @Story("Проверка на продажу машины по userID и CarID")
     public void sellCarTest() {
-        //      final SellingCar car = readUserWithCarsPage.readUserWithCars();
+        final SellingCar car = readUserWithCarsPage.readUserWithCars();
         mainPage.toggleNavigationClick("Cars")
                         .selectDropDownMenu("Buy or sell car");
-        //       sellAndBuyCarPage.sellCar(car.getUserId(), car.getCarId())
-        //               .carCreateStatus();
+        sellAndBuyCarPage.sellCar(car.getUserId(), car.getCarId())
+                .carCreateStatus();
         sellAndBuyCarPage.saleStatus.shouldHave(exactText("Status: Successfully pushed, code: 200"));
     }
 
@@ -39,11 +40,11 @@ public class SellAndBuyCarTest extends BaseTest {
     @Feature("Взаимодействие с пользователем")
     @Story("Проверка на покупку машины по userID и CarID")
     public void buyCarTest() {
-        //   final SellingCar car = readUserWithCarsPage.readUserWithCars();
+        final SellingCar car = readUserWithCarsPage.readUserWithCars();
         mainPage.toggleNavigationClick("Cars")
                 .selectDropDownMenu("Buy or sell car");
-        //     sellAndBuyCarPage.buyCar(car.getUserId(), car.getCarId())
-        //             .carCreateStatus();
+        sellAndBuyCarPage.buyCar(car.getUserId(), car.getCarId())
+                .carCreateStatus();
         sellAndBuyCarPage.saleStatus.shouldHave(exactText("Status: Successfully pushed, code: 200"));
     }
 }
