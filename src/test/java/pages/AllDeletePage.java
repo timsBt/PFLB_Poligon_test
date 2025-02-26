@@ -4,8 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.switchTo;
+import static com.codeborne.selenide.Selenide.*;
 import static java.time.Duration.ofSeconds;
 
 public class AllDeletePage {
@@ -14,7 +13,8 @@ public class AllDeletePage {
     public SelenideElement deleteUserField = $x("(//button[@value = 'user']/ancestor::div//input[@id =" +
             " 'house_input'])[1]");
     public SelenideElement notPushedStatus = $x("//button[text()= 'Status: not pushed']");
-    public SelenideElement deleteStatus = $x("//button[text()= 'Status: 204']");
+    public SelenideElement deleteStatus = $x("(//button[@value = 'user']/ancestor::div//button[@class = " +
+            "'status btn btn-secondary'])[1]");
     public SelenideElement deleteCarButton = $x("//button[@value = 'car']");
     public SelenideElement deleteCarField = $x("(//button[@value = 'car']/ancestor::div//input[@id =" +
             " 'house_input'])[2]");
@@ -24,15 +24,16 @@ public class AllDeletePage {
             " 'house_input'])[3]");
     public SelenideElement deleteHouseStatus = $x("(//button[@value = 'house']/ancestor::div//button[@class" +
             " = 'status btn btn-secondary'])[3]");
+    public SelenideElement allDeleteNavigation = $x("//a[text() = 'All DELETE']");
 
     @Step("Удаление User {userId}")
     public void deleteUserId(String userId) {
-        MainPage mainPage = new MainPage();
-        mainPage.toggleNavigationClick("All DELETE");
+        allDeleteNavigation.click();
         switchTo().window(1);
         deleteUserField.shouldBe(visible, ofSeconds(10)).click();
         deleteUserField.setValue(userId);
         deleteUserButton.shouldBe(visible, ofSeconds(10)).click();
+        sleep(2000);
     }
 
     @Step("Удаление Car {carId}")

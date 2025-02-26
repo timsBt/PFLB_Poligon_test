@@ -1,10 +1,9 @@
 package tests.apiTests;
 
-import dto.PersonDto;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import models.userModels.UserDto;
+import models.userModels.UserInfoDto;
 import org.testng.annotations.Test;
 import service.OperationWithCar;
 import service.RestService;
@@ -18,8 +17,8 @@ public class GetCarsListFromUserApiTest extends BaseClassApiTest {
     @Story("GET /cars?userId={userId}")
     public void getCarsListApiTest() {
         RestService restService = new RestService();
-        PersonDto getListCars = restService.getUserWithCars("1");
+        UserInfoDto getListCars = restService.getUserWithCars("1");
         checkUserCars(getListCars, 2);
-        UserDto sellCar =  restService.buyOrSellCar("1", "1", OperationWithCar.BUY, token);
+        UserInfoDto sellCar =  restService.buyOrSellCar("1", "1", OperationWithCar.BUY, token);
     }
 }

@@ -48,7 +48,7 @@ public class UserInfoTest {
         // Заменить значения после того как будут реализованны методы по добавлению дома и машины пользователю
 
         UserInfoDto userInfoDto = getUserInfo("2754");
-        softAssert.assertEquals(String.valueOf(userInfoDto.getMoney()), "198770", "Значение money не совпадает");
+        softAssert.assertEquals(String.valueOf(userInfoDto.getMoney()), "198770.0", "Значение money не совпадает");
         softAssert.assertEquals(String.valueOf(userInfoDto.getHouse()), "9", "Значение house не совпадает");
         for (CarDto car : userInfoDto.cars) {
             softAssert.assertEquals(String.valueOf(car.getId()), "349", "Значение money не совпадает");

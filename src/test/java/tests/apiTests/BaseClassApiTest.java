@@ -1,9 +1,8 @@
 package tests.apiTests;
 
 import adapters.AuthAdapter;
-import dto.PersonDto;
+import models.userModels.UserInfoDto;
 import io.qameta.allure.Step;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 
 import static org.testng.Assert.assertTrue;
@@ -17,7 +16,7 @@ public class BaseClassApiTest {
     }
 
     @Step("Проверка количества машин у {userId}")
-    public void checkUserCars(final PersonDto person, final int expectedQuantityCar) {
+    public void checkUserCars(final UserInfoDto person, final int expectedQuantityCar) {
         final int actualQuantityCar = person.getCars().size();
         assertTrue(actualQuantityCar == expectedQuantityCar);
     }

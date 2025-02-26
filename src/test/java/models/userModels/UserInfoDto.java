@@ -18,7 +18,7 @@ public class UserInfoDto {
     public String secondName;
     public int age;
     public String sex;
-    public int money;
+    public double money;
     public int house;
     public ArrayList<CarDto> cars;
 }
