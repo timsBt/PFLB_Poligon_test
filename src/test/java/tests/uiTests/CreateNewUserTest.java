@@ -67,7 +67,7 @@ public class CreateNewUserTest extends BaseTest {
     }
 
     @Test(testName = "Проверка удаления пользователя с корректным ID",
-            description = "Проверка удаления пользователя с корректным ID", enabled = false)
+            description = "Проверка удаления пользователя с корректным ID")
     @Description("Проверка удаления пользователя с корректным ID")
     @Feature("Взаимодействие с пользователем")
     @Story("Проверка на удаление пользователя")
