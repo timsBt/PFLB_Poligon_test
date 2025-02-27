@@ -1,4 +1,4 @@
-package carsData;
+package models.carsData;
 
 import lombok.Data;
 

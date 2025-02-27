@@ -72,13 +72,13 @@ public class CreateNewUserTest extends BaseTest {
     @Feature("Взаимодействие с пользователем")
     @Story("Проверка на удаление пользователя")
     public void deleteUserTest() {
-        String user = createUserPage.createNewUser(
+        userId = createUserPage.createNewUser(
                 getProperty("firstName"),
                 getProperty("lastName"),
                 getProperty("age"),
                 getProperty("sex"),
                 getProperty("money"));
-        allDeletePage.deleteUserId(user);
+        allDeletePage.deleteUserId(userId);
         allDeletePage.deleteUserStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: 204"));
     }
 
@@ -88,6 +88,7 @@ public class CreateNewUserTest extends BaseTest {
     @Feature("Взаимодействие с пользователем")
     @Story("Проверка на удаление пользователя")
     public void deleteNonExistUserTest() {
+        userId = getProperty("notExistentID");
         allDeletePage.deleteUserId(getProperty("notExistentID"));
         allDeletePage.notPushedStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: not pushed"));
     }
@@ -100,7 +101,7 @@ public class CreateNewUserTest extends BaseTest {
     @Story("Проверка на отсутствие результата создания пользователя")
     public void checkNotCreatedUserTest(String firstName, String lastName, String age, String sex, String money,
                                         String actualResults) {
-        createUserPage.createNewUser(firstName, lastName, age, sex, money);
+        userId = createUserPage.createNewUser(firstName, lastName, age, sex, money);
         createUserPage.invalidStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text(actualResults));
     }
 
@@ -126,7 +127,7 @@ public class CreateNewUserTest extends BaseTest {
 
     @AfterMethod
     public void deleteUser() {
-        if (userId != null && !userId.isEmpty()) {
+        if (userId != null && !userId.isEmpty() && !userId.equals(getProperty("notExistentID"))) {
             allDeletePage.deleteUserId(userId);
         }
     }

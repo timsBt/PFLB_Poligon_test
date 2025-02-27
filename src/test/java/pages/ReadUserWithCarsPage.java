@@ -1,9 +1,9 @@
 package pages;
 
-import carsData.Cars;
-import carsData.SellingCar;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import models.carsData.Cars;
+import models.carsData.SellingCar;
 
 import java.util.List;
 import java.util.stream.Collectors;

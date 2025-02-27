@@ -1,4 +1,4 @@
-package carsData;
+package models.carsData;
 
 public class Cars {
     private String id;

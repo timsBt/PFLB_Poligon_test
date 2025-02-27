@@ -13,7 +13,7 @@ public class AllDeletePage {
     public SelenideElement deleteUserField = $x("(//button[@value = 'user']/ancestor::div//input[@id =" +
             " 'house_input'])[1]");
     public SelenideElement notPushedStatus = $x("//button[text()= 'Status: not pushed']");
-    public SelenideElement deleteUserStatus = $x("(//button[@value = 'car']/ancestor::div//button[@class" +
+    public SelenideElement deleteUserStatus = $x("(//button[@value = 'user']/ancestor::div//button[@class" +
             " = 'status btn btn-secondary'])[1]");
     public SelenideElement deleteCarButton = $x("//button[@value = 'car']");
     public SelenideElement deleteCarField = $x("(//button[@value = 'car']/ancestor::div//input[@id =" +
@@ -30,22 +30,22 @@ public class AllDeletePage {
     public void deleteUserId(String userId) {
         MainPage mainPage = new MainPage();
         mainPage.toggleNavigationClick("All DELETE");
+        sleep(3000);
         switchTo().window(1);
         deleteUserField.shouldBe(visible, ofSeconds(10)).click();
         deleteUserField.setValue(userId);
         deleteUserButton.shouldBe(visible, ofSeconds(10)).click();
-        sleep(2000);
     }
 
     @Step("Удаление Car {carId}")
     public void deleteCarId(String carId) {
         MainPage mainPage = new MainPage();
         mainPage.toggleNavigationClick("All DELETE");
+        sleep(3000);
         switchTo().window(1);
         deleteCarField.shouldBe(visible, ofSeconds(10)).click();
         deleteCarField.setValue(carId);
         deleteCarButton.shouldBe(visible, ofSeconds(10)).click();
-        sleep(2000);
     }
 
     @Step("Удаление House {houseId}")

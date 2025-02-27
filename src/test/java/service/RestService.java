@@ -3,7 +3,8 @@ package service;
 import com.google.gson.Gson;
 import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
-import models.userModels.UserInfoDto;
+import models.userModels.PersonDto;
+import models.userModels.UserDto;
 import utils.PropertyReader;
 
 import static io.restassured.RestAssured.given;
@@ -11,7 +12,7 @@ import static io.restassured.RestAssured.given;
 public class RestService {
 
     @Step("Получение списка машин у {userId}")
-    public UserInfoDto getUserWithCars(String personId) {
+    public PersonDto getUserWithCars(String personId) {
         String response = given()
                 .baseUri(PropertyReader.getProperty("urlApi"))
                 .contentType(ContentType.JSON)
@@ -24,11 +25,11 @@ public class RestService {
                 .extract().asString();
 
         Gson gson = new Gson();
-        return gson.fromJson(response, UserInfoDto.class);
+        return gson.fromJson(response, PersonDto.class);
     }
 
     @Step("Покупка или продажа машины по {userId} and {carId}")
-    public UserInfoDto buyOrSellCar(
+    public UserDto buyOrSellCar(
             final String userId,
             final String carId,
             final OperationWithCar operationWithCar,
@@ -49,6 +50,6 @@ public class RestService {
                 .extract().asString();
 
         Gson gson = new Gson();
-        return gson.fromJson(response, UserInfoDto.class);
+        return gson.fromJson(response, UserDto.class);
     }
 }
