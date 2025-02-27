@@ -55,7 +55,7 @@ public class UserInfoTest {
             softAssert.assertEquals(car.getEngineType(), "Gasoline", "Значение EngineType не совпадает");
             softAssert.assertEquals(car.getMark(), "VedroS", "Значение Mark не совпадает");
             softAssert.assertEquals(car.getModel(), "Gaykamy", "Значение Model не совпадает");
-            softAssert.assertEquals(String.valueOf(car.getPrice()), "1000", "Значение Price не совпадает");
+            softAssert.assertEquals(String.valueOf(car.getPrice()), "1000.0", "Значение Price не совпадает");
         }
         softAssert.assertAll();
         deleteUser(userId);

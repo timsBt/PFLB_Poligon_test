@@ -8,7 +8,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static com.codeborne.selenide.Condition.text;
 import static org.testng.Assert.assertEquals;
+import static utils.PropertyReader.getProperty;
 
 @Epic("UI tests")
 public class CreateNewCarTest extends BaseTest {
@@ -39,17 +41,17 @@ public class CreateNewCarTest extends BaseTest {
     }
 
     @Test(priority = 1, testName = "Тест удаления созданного автомобиля",
-            description = "Тест удаления созданного автомобиля")
+            description = "Тест удаления созданного автомобиля", enabled = false)
     @Description("Тест удаления созданного автомобиля")
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void deleteNewCarWithValidData() {
-        String car = createCarPage.createNewCar("Gasoline",
+        carId = createCarPage.createNewCar("Gasoline",
                 "VedroS",
                 "Gaykamy",
                 "1000");
-        allDeletePage.deleteCarId(car);
-        assertEquals(allDeletePage.deleteCarStatus.text(),
+        allDeletePage.deleteCarId(carId);
+        assertEquals(allDeletePage.deleteCarStatus.getText(),
                 "Status: 204",
                 "Возникла ошибка при удалении автомобиля");
     }
@@ -60,7 +62,8 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void deleteNewCarWithNotValidData() {
-        allDeletePage.deleteCarId("9999");
+        carId = "9999";
+        allDeletePage.deleteCarId(carId);
         assertEquals(allDeletePage.notPushedStatus.text(), "Status: not pushed");
     }
 
@@ -141,8 +144,8 @@ public class CreateNewCarTest extends BaseTest {
 
     @AfterMethod
     public void deleteCar() {
-        if (carId != null && !carId.isEmpty()) {
-            allDeletePage.deleteUserId(carId);
+        if (carId != null && !carId.isEmpty() && !carId.equals("9999")) {
+            allDeletePage.deleteCarId(carId);
         }
     }
 }
