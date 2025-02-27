@@ -21,7 +21,7 @@ public class CreateCarPage {
     public SelenideElement carId = $x("//button[@class='newId btn btn-secondary']");
     public SelenideElement carStatus = $x("//button[@class='status btn btn-secondary']");
 
-    @Step("Создание нового Автомобиля и получение его ID")
+    @Step("Создание нового Автомобиля с полями: {engineType}, {mark}, {model}, {price}")
     public String createNewCar(String engineType, String mark, String model, String price) {
         carEngineTypeSend.setValue(engineType);
         carMarkSend.setValue(mark);

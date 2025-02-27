@@ -12,7 +12,7 @@ import static utils.PropertyReader.getProperty;
 @Epic("UI tests")
 public class CreditTest extends BaseTest {
 
-    String userId = "";
+    String userId;
 
     @BeforeMethod
     public void openCredit() {

@@ -33,7 +33,7 @@ public class CheckInCheckOutPage {
        return this;
    }
 
-    @Step("Заселение пользователя в дом")
+    @Step("Заселение пользователя {user} в дом {house}")
     public CheckInCheckOutPage addUserToHouse(String user, String house) {
        userField.sendKeys(user);
        houseField.sendKeys(house);
@@ -42,7 +42,7 @@ public class CheckInCheckOutPage {
         return this;
     }
 
-    @Step("Выселение пользователя из дома")
+    @Step("Выселение пользователя {user} из дома {house}")
     public CheckInCheckOutPage evictUserFromHouse(String user, String house) {
         userField.sendKeys(user);
         houseField.sendKeys(house);

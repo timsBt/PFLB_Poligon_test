@@ -13,7 +13,7 @@ public class ReadAll {
 
     public SelenideElement sortButton = $x("//button[@class = 'btn btn-secondary'][2]");
 
-    @Step("Поля пользователя в таблице")
+    @Step("Поля пользователя {userId} в таблице")
     public ElementsCollection getFieldsUserOnTableList(String userId) {
         return $$x(String.format(userOnTable, userId));
     }

@@ -1,15 +1,15 @@
 package tests.uiTests;
 
-import carsData.Cars;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+import models.carsData.Cars;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class GetCarsListFromUserTest extends BaseTest{
+public class GetCarsListFromUserTest extends BaseTest {
 
     @BeforeMethod
     public void openCreateUserPage() {

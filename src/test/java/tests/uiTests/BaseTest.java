@@ -1,13 +1,15 @@
 package tests.uiTests;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 import pages.*;
 
 import java.time.Duration;
 
+import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static utils.PropertyReader.getProperty;
@@ -28,8 +30,14 @@ public class BaseTest {
     public static String login = System.getProperty("login", getProperty("login"));
     public static String password = System.getProperty("password", getProperty("password"));
 
+    @Parameters({"browser"})
     @BeforeMethod
-    public void setUp() {
+    public void setUp(@Optional("Chrome") String browser) {
+        if (browser.equalsIgnoreCase("Chrome")) {
+            Configuration.browser = "Chrome";
+        } else if (browser.equalsIgnoreCase("Edge")) {
+            Configuration.browser = "Edge";
+        }
         Configuration.headless = true;
         Configuration.timeout = 10000;
         open(url);
@@ -49,6 +57,8 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
-        Selenide.closeWebDriver();
+        if (getWebDriver() != null) {
+            closeWebDriver();
+        }
     }
 }

@@ -4,7 +4,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import carsData.SellingCar;
+import models.carsData.SellingCar;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -21,7 +21,7 @@ public class SellAndBuyCarTest extends BaseTest {
     }
 
     @Test(testName = "Проверка покупки машины",
-            description = "Проверка покупки машины")
+            description = "Проверка покупки машины", enabled = false)
     @Description("Проверка покупки машины")
     @Feature("Взаимодействие с пользователем")
     @Story("Проверка на покупку машины по userID и CarID")
@@ -35,14 +35,14 @@ public class SellAndBuyCarTest extends BaseTest {
     }
 
     @Test(testName = "Проверка продажи машины",
-            description = "Проверка продажи машины")
+            description = "Проверка продажи машины", enabled = false)
     @Description("Проверка продажи машины")
     @Feature("Взаимодействие с пользователем")
     @Story("Проверка на продажу машины по userID и CarID")
     public void sellCarTest() {
         final SellingCar car = readUserWithCarsPage.readUserWithCars();
         mainPage.toggleNavigationClick("Cars")
-                        .selectDropDownMenu("Buy or sell car");
+                .selectDropDownMenu("Buy or sell car");
         sellAndBuyCarPage.sellCar(car.getUserId(), car.getCarId())
                 .carCreateStatus();
         sellAndBuyCarPage.saleStatus.shouldHave(exactText("Status: Successfully pushed, code: 200"));

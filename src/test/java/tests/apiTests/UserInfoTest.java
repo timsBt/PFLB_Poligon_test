@@ -5,8 +5,8 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import models.userInfoModels.CarDto;
-import models.userInfoModels.UserInfoDto;
+import models.carModels.CarDto;
+import models.userModels.UserInfoDto;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -48,14 +48,14 @@ public class UserInfoTest {
         // Заменить значения после того как будут реализованны методы по добавлению дома и машины пользователю
 
         UserInfoDto userInfoDto = getUserInfo("2754");
-        softAssert.assertEquals(String.valueOf(userInfoDto.getMoney()), "198770", "Значение money не совпадает");
+        softAssert.assertEquals(String.valueOf(userInfoDto.getMoney()), "198770.0", "Значение money не совпадает");
         softAssert.assertEquals(String.valueOf(userInfoDto.getHouse()), "9", "Значение house не совпадает");
         for (CarDto car : userInfoDto.cars) {
             softAssert.assertEquals(String.valueOf(car.getId()), "349", "Значение money не совпадает");
             softAssert.assertEquals(car.getEngineType(), "Gasoline", "Значение EngineType не совпадает");
             softAssert.assertEquals(car.getMark(), "VedroS", "Значение Mark не совпадает");
             softAssert.assertEquals(car.getModel(), "Gaykamy", "Значение Model не совпадает");
-            softAssert.assertEquals(String.valueOf(car.getPrice()), "1000", "Значение Price не совпадает");
+            softAssert.assertEquals(String.valueOf(car.getPrice()), "1000.0", "Значение Price не совпадает");
         }
         softAssert.assertAll();
         deleteUser(userId);

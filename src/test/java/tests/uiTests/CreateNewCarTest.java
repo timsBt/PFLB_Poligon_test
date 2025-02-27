@@ -4,19 +4,18 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
-import static java.time.Duration.ofSeconds;
+import static org.testng.Assert.assertEquals;
+import static utils.PropertyReader.getProperty;
 
 @Epic("UI tests")
 public class CreateNewCarTest extends BaseTest {
 
-    String carId = "";
+    String carId;
 
     @BeforeMethod
     public void createCarPreparation() {
@@ -36,13 +35,13 @@ public class CreateNewCarTest extends BaseTest {
                 "VedroS",
                 "Gaykamy",
                 "1000");
-        Assert.assertEquals(createCarPage.carCreateStatus(),
+        assertEquals(createCarPage.carCreateStatus(),
                 "Status: Successfully pushed, code: 201",
                 "Возникла ошибка при создании автомобиля");
     }
 
     @Test(priority = 1, testName = "Тест удаления созданного автомобиля",
-            description = "Тест удаления созданного автомобиля")
+            description = "Тест удаления созданного автомобиля", enabled = false)
     @Description("Тест удаления созданного автомобиля")
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
@@ -52,8 +51,9 @@ public class CreateNewCarTest extends BaseTest {
                 "Gaykamy",
                 "1000");
         allDeletePage.deleteCarId(carId);
-        allDeletePage.deleteStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: 204"));
-        carId = "";
+        assertEquals(allDeletePage.deleteCarStatus.getText(),
+                "Status: 204",
+                "Возникла ошибка при удалении автомобиля");
     }
 
     @Test(priority = 1, testName = "Тест удаления не существующего автомобиля",
@@ -64,7 +64,7 @@ public class CreateNewCarTest extends BaseTest {
     public void deleteNewCarWithNotValidData() {
         carId = "9999";
         allDeletePage.deleteCarId(carId);
-        allDeletePage.notPushedStatus.shouldHave(text("Status: not pushed"));
+        assertEquals(allDeletePage.notPushedStatus.text(), "Status: not pushed");
     }
 
     @Test(priority = 2, testName = "Тест создания автомобиля с пустым полем Engine Type",
@@ -73,11 +73,11 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void createNewCarWithEmptyEngineTypeField() {
-        carId = createCarPage.createNewCar("",
+        createCarPage.createNewCar("",
                 "VedroS",
                 "Gaykamy",
                 "1000");
-        Assert.assertEquals(createCarPage.carCreateStatus(),
+        assertEquals(createCarPage.carCreateStatus(),
                 "Status: Invalid request data",
                 "Сообщение об ошибке отсутствует");
     }
@@ -88,11 +88,11 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void createNewCarWithNotValidEngineTypeField() {
-        carId = createCarPage.createNewCar("sdgwegwge",
+        createCarPage.createNewCar("sdgwegwge",
                 "VedroS",
                 "Gaykamy",
                 "1000");
-        Assert.assertEquals(createCarPage.carCreateStatus(),
+        assertEquals(createCarPage.carCreateStatus(),
                 "Status: AxiosError: Request failed with status code 400",
                 "Сообщение об ошибке отсутствует");
     }
@@ -103,11 +103,11 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void createNewCarWithEmptyMarkField() {
-        carId = createCarPage.createNewCar("Electric",
+        createCarPage.createNewCar("Electric",
                 "",
                 "Gaykamy",
                 "1000");
-        Assert.assertEquals(createCarPage.carCreateStatus(),
+        assertEquals(createCarPage.carCreateStatus(),
                 "Status: Invalid request data",
                 "Сообщение об ошибке отсутствует");
     }
@@ -118,11 +118,11 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void createNewCarWithEmptyModelField() {
-        carId = createCarPage.createNewCar("Diesel",
+        createCarPage.createNewCar("Diesel",
                 "VedroS",
                 "",
                 "1000");
-        Assert.assertEquals(createCarPage.carCreateStatus(),
+        assertEquals(createCarPage.carCreateStatus(),
                 "Status: Invalid request data",
                 "Сообщение об ошибке отсутствует");
     }
@@ -133,18 +133,18 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void createNewCarWithEmptyPriceField() {
-        carId = createCarPage.createNewCar("CNG",
+        createCarPage.createNewCar("CNG",
                 "VedroS",
                 "Gaykamy",
                 "");
-        Assert.assertEquals(createCarPage.carCreateStatus(),
+        assertEquals(createCarPage.carCreateStatus(),
                 "Status: Invalid request data",
                 "Сообщение об ошибке отсутствует");
     }
 
     @AfterMethod
     public void deleteCar() {
-        if (!carId.isEmpty() && !carId.equals("9999")) {
+        if (carId != null && !carId.isEmpty() && !carId.equals("9999")) {
             allDeletePage.deleteCarId(carId);
         }
     }

@@ -18,7 +18,7 @@ import static utils.PropertyReader.getProperty;
 @Epic("UI tests")
 public class CreateNewUserTest extends BaseTest {
 
-    String userId = "";
+    String userId;
 
     @BeforeMethod
     public void openCreateUserPage() {
@@ -67,7 +67,7 @@ public class CreateNewUserTest extends BaseTest {
     }
 
     @Test(testName = "Проверка удаления пользователя с корректным ID",
-            description = "Проверка удаления пользователя с корректным ID", enabled = false)
+            description = "Проверка удаления пользователя с корректным ID")
     @Description("Проверка удаления пользователя с корректным ID")
     @Feature("Взаимодействие с пользователем")
     @Story("Проверка на удаление пользователя")
@@ -79,8 +79,7 @@ public class CreateNewUserTest extends BaseTest {
                 getProperty("sex"),
                 getProperty("money"));
         allDeletePage.deleteUserId(userId);
-        allDeletePage.deleteStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: 204"));
-        userId = "";
+        allDeletePage.deleteUserStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: 204"));
     }
 
     @Test(testName = "Проверка удаления пользователя с Некорректным ID",
@@ -90,7 +89,7 @@ public class CreateNewUserTest extends BaseTest {
     @Story("Проверка на удаление пользователя")
     public void deleteNonExistUserTest() {
         userId = getProperty("notExistentID");
-        allDeletePage.deleteUserId(userId);
+        allDeletePage.deleteUserId(getProperty("notExistentID"));
         allDeletePage.notPushedStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: not pushed"));
     }
 
@@ -100,7 +99,8 @@ public class CreateNewUserTest extends BaseTest {
     @Description("Проверка отсутствия создания пользователя с Некорректными данными")
     @Feature("Взаимодействие с пользователем")
     @Story("Проверка на отсутствие результата создания пользователя")
-    public void checkNotCreatedUserTest(String firstName, String lastName, String age, String sex, String money, String actualResults) {
+    public void checkNotCreatedUserTest(String firstName, String lastName, String age, String sex, String money,
+                                        String actualResults) {
         userId = createUserPage.createNewUser(firstName, lastName, age, sex, money);
         createUserPage.invalidStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text(actualResults));
     }
@@ -127,7 +127,7 @@ public class CreateNewUserTest extends BaseTest {
 
     @AfterMethod
     public void deleteUser() {
-        if (!userId.isEmpty() && !userId.equals(getProperty("notExistentID"))) {
+        if (userId != null && !userId.isEmpty() && !userId.equals(getProperty("notExistentID"))) {
             allDeletePage.deleteUserId(userId);
         }
     }

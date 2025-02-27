@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2" name="PFLB_Poligon CrossBrowser" parallel="tests">
+    <listeners>
+        <listener class-name="utils.AnnotationTransformerUtils"/>
+    </listeners>
+    <test name="Chrome">
+        <classes>
+            <class name="tests.uiTests.LoginTest"/>
+            <class name="tests.uiTests.CheckInCheckOutTest"/>
+            <class name="tests.uiTests.CreateNewUserTest"/>
+            <class name="tests.uiTests.CreateNewCarTest"/>
+            <class name="tests.uiTests.CreateNewHouseTest"/>
+            <class name="tests.uiTests.PlusMoneyTest"/>
+            <class name="tests.uiTests.CreditTest"/>
+            <class name="tests.uiTests.SellAndBuyCarTest"/>
+            <class name="tests.apiTests.AuthorizationApiTest"/>
+            <class name="tests.apiTests.UserApiTest"/>
+            <class name="tests.apiTests.UserInfoTest"/>
+            <class name="tests.dbTests.UserDbTest"/>
+            <parameter name="browser" value="Chrome"/>
+        </classes>
+    </test> <!-- Test -->
+    <test name="Edge">
+        <classes>
+            <class name="tests.uiTests.LoginTest"/>
+            <class name="tests.uiTests.CheckInCheckOutTest"/>
+            <class name="tests.uiTests.CreateNewUserTest"/>
+            <class name="tests.uiTests.CreateNewCarTest"/>
+            <class name="tests.uiTests.CreateNewHouseTest"/>
+            <class name="tests.uiTests.PlusMoneyTest"/>
+            <class name="tests.uiTests.CreditTest"/>
+            <class name="tests.uiTests.SellAndBuyCarTest"/>
+            <class name="tests.apiTests.AuthorizationApiTest"/>
+            <class name="tests.apiTests.UserApiTest"/>
+            <class name="tests.apiTests.UserInfoTest"/>
+            <class name="tests.dbTests.UserDbTest"/>
+            <parameter name="browser" value="Edge"/>
+        </classes>
+    </test> <!-- Test -->
+</suite>
