@@ -49,7 +49,7 @@ public class CreateNewCarTest extends BaseTest {
                 "Gaykamy",
                 "1000");
         allDeletePage.deleteCarId(car);
-        assertEquals(allDeletePage.deleteStatus.text(),
+        assertEquals(allDeletePage.deleteCarStatus.text(),
                 "Status: 204",
                 "Возникла ошибка при удалении автомобиля");
     }

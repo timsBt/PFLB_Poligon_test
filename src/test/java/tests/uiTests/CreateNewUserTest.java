@@ -79,7 +79,7 @@ public class CreateNewUserTest extends BaseTest {
                 getProperty("sex"),
                 getProperty("money"));
         allDeletePage.deleteUserId(user);
-        allDeletePage.deleteStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: 204"));
+        allDeletePage.deleteUserStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: 204"));
     }
 
     @Test(testName = "Проверка удаления пользователя с Некорректным ID",
