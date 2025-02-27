@@ -14,5 +14,5 @@ public class CarDto {
     public String engineType;
     public String mark;
     public String model;
-    public double price;
+    public String price;
 }

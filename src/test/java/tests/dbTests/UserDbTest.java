@@ -1,6 +1,5 @@
 package tests.dbTests;
 
-import adapters.UserAdapter;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -13,6 +12,7 @@ import org.testng.asserts.SoftAssert;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static adapters.UserAdapter.createUser;
 import static adapters.UserAdapter.deleteUser;
 import static db.DbConnect.closeConnect;
 import static db.DbConnect.executeSqlQuery;
@@ -27,7 +27,7 @@ public class UserDbTest {
 
     @BeforeMethod
     public static void setUpCreateUser() {
-        userId = UserAdapter.createUser(
+        userId = createUser(
                 getProperty("firstName"),
                 getProperty("lastName"),
                 getProperty("age"),
