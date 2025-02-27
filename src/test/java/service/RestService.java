@@ -1,7 +1,7 @@
 package service;
 
 import com.google.gson.Gson;
-import dto.PersonDto;
+import models.PersonDto;
 import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
 import models.UserDto;
