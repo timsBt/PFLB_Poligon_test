@@ -22,7 +22,7 @@ public class BaseTest {
     ReadAll readAll;
     CreateHousePage createHousePage;
     SellAndBuyCarPage sellAndBuyCarPage;
-    protected ReadUserWithCarsPage readUserWithCarsPage;
+    ReadUserWithCarsPage readUserWithCarsPage;
 
     public static String url = System.getProperty("url", getProperty("url"));
     public static String login = System.getProperty("login", getProperty("login"));

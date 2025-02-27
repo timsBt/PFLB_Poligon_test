@@ -1,6 +1,6 @@
 package tests.apiTests;
 
-import dto.PersonDto;
+import models.PersonDto;
 import io.qameta.allure.Description;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
