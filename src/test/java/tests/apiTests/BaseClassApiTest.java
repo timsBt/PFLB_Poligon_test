@@ -1,9 +1,8 @@
 package tests.apiTests;
 
 import adapters.AuthAdapter;
-import dto.PersonDto;
+import models.PersonDto;
 import io.qameta.allure.Step;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 
 import static org.testng.Assert.assertTrue;
