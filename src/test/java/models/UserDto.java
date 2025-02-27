@@ -3,8 +3,12 @@ package models;
 import lombok.Builder;
 import lombok.Data;
 
+import lombok.*;
+
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserDto {
     public int id;
     public String firstName;
