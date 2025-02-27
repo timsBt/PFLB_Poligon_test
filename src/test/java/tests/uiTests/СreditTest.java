@@ -1,6 +1,7 @@
 package tests.uiTests;
 
 import com.codeborne.selenide.Selenide;
+import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -14,9 +15,11 @@ import static utils.PropertyReader.getProperty;
 @Epic("UI tests")
 public class СreditTest extends BaseTest {
 
-    String userId = "";
+    String userId;
 
     @BeforeMethod
+    @Description("Открытие формы авторизации, ввод логина и пароля, создание пользователя, " +
+            "переход на станицу Issue a loan")
     public void openCredit() {
         mainPage.authorization()
                 .toggleNavigationClick("Users")
@@ -47,7 +50,9 @@ public class СreditTest extends BaseTest {
         plusMoneyPage.enterUserId(userId).enterAmount("-1000").submit()
                 .verifySuccessMessage("Status: Incorrect input data");
     }
+
     @AfterMethod
+    @Description("Удаление пользователя")
     public void deleteUser() {
         allDeletePage.deleteUserId(userId);
         allDeletePage.deleteUserStatus.shouldHave(text("Status: 204"));

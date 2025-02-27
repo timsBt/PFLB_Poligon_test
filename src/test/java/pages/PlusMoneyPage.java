@@ -11,18 +11,18 @@ import static com.codeborne.selenide.Selenide.$x;
 import static org.openqa.selenium.By.id;
 
 public class PlusMoneyPage {
-    SelenideElement button = $("button[class='tableButton btn btn-primary']");
-    SelenideElement inputUserId = $(id("id_send"));
-    SelenideElement inputAmount = $(id("money_send"));
-    SelenideElement massage = $("button[class='status btn btn-secondary']");
+    final private SelenideElement button = $("button[class='tableButton btn btn-primary']");
+    final private SelenideElement inputUserId = $(id("id_send"));
+    final private SelenideElement inputAmount = $(id("money_send"));
+    final private SelenideElement massage = $("button[class='status btn btn-secondary']");
 
-    @Step("Ввод пользователя")
+    @Step("Ввод пользователя {userId}")
     public PlusMoneyPage enterUserId(String userId) {
         inputUserId.setValue(userId);
         return this;
     }
 
-    @Step("Ввод суммы")
+    @Step("Ввод суммы {amount}")
     public PlusMoneyPage enterAmount(String amount) {
         inputAmount.setValue(amount);
         return this;
@@ -34,7 +34,7 @@ public class PlusMoneyPage {
         return this;
     }
 
-    @Step("Вывод сообщения")
+    @Step("Вывод сообщения {expectedMessage}")
     public PlusMoneyPage verifySuccessMessage(String expectedMessage) {
         massage.shouldHave(text(expectedMessage), Duration.ofSeconds(20000));
         return this;
