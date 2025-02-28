@@ -21,12 +21,12 @@ import static utils.PropertyReader.getProperty;
 @Epic("DB tests")
 public class UserDbTest {
 
-    public static String userId;
+    private String userId;
     SoftAssert softAssert = new SoftAssert();
     String sqlQuery = "SELECT * FROM person WHERE id = '";
 
     @BeforeMethod
-    public static void setUpCreateUser() {
+    public void setUpCreateUser() {
         userId = createUser(
                 getProperty("firstName"),
                 getProperty("lastName"),

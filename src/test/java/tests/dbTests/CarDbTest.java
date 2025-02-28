@@ -24,8 +24,8 @@ import static utils.PropertyReader.getProperty;
 @Epic("DB tests")
 public class CarDbTest {
 
-    String carId;
-    String userId;
+    private String carId;
+    private String userId;
     RestService restService = new RestService();
     SoftAssert softAssert = new SoftAssert();
     String sqlQuery = "SELECT * FROM car WHERE id = '";
