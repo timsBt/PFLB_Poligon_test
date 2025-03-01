@@ -36,7 +36,7 @@ public class PlusMoneyPage {
 
     @Step("Вывод сообщения {expectedMessage}")
     public PlusMoneyPage verifySuccessMessage(String expectedMessage) {
-        massage.shouldHave(text(expectedMessage), Duration.ofSeconds(20000));
+        massage.shouldHave(text(expectedMessage), Duration.ofSeconds(121));
         return this;
     }
 
