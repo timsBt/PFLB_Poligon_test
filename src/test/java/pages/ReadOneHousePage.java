@@ -27,4 +27,5 @@ public class ReadOneHousePage {
     public String getStatusReadHouse() {
         return READ_HOUSE_STATUS.getText();
     }
+
 }

@@ -56,7 +56,7 @@ public class CreateNewHouseTest extends BaseTest{
         createHousePage.getCreateHouseStatus().shouldHave(exactText("Status: Successfully pushed, code: 201"));
     }
 
-    @Test(testName = "Проверка округления дробного кол-ва этажей при создании", enabled = false,
+    @Test(testName = "Проверка округления дробного кол-ва этажей при создании",
             description = "Проверка создания дома с дробным количеством этажей - округление этажности до целого в меньшую сторону")
     @Description("Проверка создания дома с дробным количеством этажей - округление до целого в меньшую сторону")
     @Feature("Действия с домами")

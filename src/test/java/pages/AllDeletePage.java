@@ -53,4 +53,5 @@ public class AllDeletePage {
     public void checkStatus(String objectName, String actualResult) {
         $x(String.format(DELETE_STATUS, objectName)).shouldBe(visible, ofSeconds(10)).shouldHave(text(actualResult));
     }
+
 }
