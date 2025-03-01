@@ -3,18 +3,18 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static java.time.Duration.ofSeconds;
 
 public class AllDeletePage {
 
-    public SelenideElement deleteUserButton = $x("//button[@value = 'user']");
-    public SelenideElement deleteUserField = $x("(//button[@value = 'user']/ancestor::div//input[@id =" +
-            " 'house_input'])[1]");
-    public SelenideElement notPushedStatus = $x("//button[text()= 'Status: not pushed']");
-    public SelenideElement deleteUserStatus = $x("(//button[@value = 'user']/ancestor::div//button[@class" +
-            " = 'status btn btn-secondary'])[1]");
+    private static final SelenideElement DELETE_USER_BUTTON = $x("//button[@value = 'user']");
+    private static final SelenideElement DELETE_USER_FIELD = $x("(//button[@value = 'user']/ancestor::" +
+            "div//input[@id = 'house_input'])[1]");
+    private static final SelenideElement DELETE_USER_STATUS = $x("(//button[@value = 'user']/ancestor::" +
+            "div//button[@class = 'status btn btn-secondary'])[1]");
     public SelenideElement deleteCarButton = $x("//button[@value = 'car']");
     public SelenideElement deleteCarField = $x("(//button[@value = 'car']/ancestor::div//input[@id =" +
             " 'house_input'])[3]");
@@ -33,22 +33,18 @@ public class AllDeletePage {
         sleep(2000);
         switchTo().window(1);
         sleep(2000);
-        deleteUserField.shouldBe(visible, ofSeconds(10)).click();
-        deleteUserField.setValue(userId);
-        sleep(2000);
-        deleteUserButton.shouldBe(visible, ofSeconds(10)).click();
+        DELETE_USER_FIELD.shouldBe(visible, ofSeconds(10)).setValue(userId);
+        DELETE_USER_BUTTON.shouldBe(visible, ofSeconds(10)).click();
     }
 
     @Step("Удаление Car {carId}")
     public void deleteCarId(String carId) {
         MainPage mainPage = new MainPage();
         mainPage.toggleNavigationClick("All DELETE");
-        sleep(3000);
+        sleep(2000);
         switchTo().window(1);
         sleep(2000);
-        deleteCarField.shouldBe(visible, ofSeconds(10)).click();
-        deleteCarField.setValue(carId);
-        sleep(2000);
+        deleteCarField.shouldBe(visible, ofSeconds(10)).setValue(carId);
         deleteCarButton.shouldBe(visible, ofSeconds(10)).click();
     }
 
@@ -59,5 +55,10 @@ public class AllDeletePage {
         switchTo().window(1);
         deleteHouseField.shouldBe(visible, ofSeconds(10)).setValue(houseId);
         deleteHouseButton.shouldBe(visible, ofSeconds(10)).click();
+    }
+
+    @Step("Проверка статуса: {actualResult}")
+    public void checkUserStatus(String actualResult) {
+        DELETE_USER_STATUS.shouldBe(visible, ofSeconds(10)).shouldHave(text(actualResult));
     }
 }

@@ -3,7 +3,8 @@ name: PFLB_Poligon_test
 on:
   push:
     branches: ["master"]
-
+  pull_request:
+    branches: ["master"]
 
 jobs:
   build:
