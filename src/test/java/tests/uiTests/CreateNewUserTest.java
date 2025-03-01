@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.sleep;
 import static java.time.Duration.ofSeconds;
 import static utils.PropertyReader.getProperty;
 
@@ -39,7 +40,7 @@ public class CreateNewUserTest extends BaseTest {
                 getProperty("age"),
                 getProperty("sex"),
                 getProperty("money"));
-        createUserPage.successStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: Successfully pushed, code: 201"));
+        createUserPage.status.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: Successfully pushed, code: 201"));
     }
 
     @Test(testName = "Проверка отображения созданного пользователя в таблице Read all",
@@ -79,6 +80,7 @@ public class CreateNewUserTest extends BaseTest {
                 getProperty("sex"),
                 getProperty("money"));
         allDeletePage.deleteUserId(userId);
+        sleep(2000);
         allDeletePage.deleteUserStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: 204"));
     }
 
@@ -102,7 +104,7 @@ public class CreateNewUserTest extends BaseTest {
     public void checkNotCreatedUserTest(String firstName, String lastName, String age, String sex, String money,
                                         String actualResults) {
         userId = createUserPage.createNewUser(firstName, lastName, age, sex, money);
-        createUserPage.invalidStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text(actualResults));
+        createUserPage.status.shouldBe(visible, ofSeconds(10)).shouldHave(text(actualResults));
     }
 
     @DataProvider(name = "CreateUserFalseData")
