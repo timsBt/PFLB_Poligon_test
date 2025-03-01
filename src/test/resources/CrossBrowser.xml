@@ -11,6 +11,8 @@
             <class name="tests.uiTests.CreateNewUserTest"/>
             <class name="tests.uiTests.CreateNewCarTest"/>
             <class name="tests.uiTests.CreateNewHouseTest"/>
+            <class name="tests.uiTests.PlusMoneyTest"/>
+            <class name="tests.uiTests.CreditTest"/>
             <class name="tests.uiTests.SellAndBuyCarTest"/>
             <class name="tests.apiTests.AuthorizationApiTest"/>
             <class name="tests.apiTests.UserApiTest"/>
@@ -26,6 +28,8 @@
             <class name="tests.uiTests.CreateNewUserTest"/>
             <class name="tests.uiTests.CreateNewCarTest"/>
             <class name="tests.uiTests.CreateNewHouseTest"/>
+            <class name="tests.uiTests.PlusMoneyTest"/>
+            <class name="tests.uiTests.CreditTest"/>
             <class name="tests.uiTests.SellAndBuyCarTest"/>
             <class name="tests.apiTests.AuthorizationApiTest"/>
             <class name="tests.apiTests.UserApiTest"/>
