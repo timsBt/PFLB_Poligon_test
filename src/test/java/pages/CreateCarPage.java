@@ -7,8 +7,7 @@ import io.qameta.allure.Step;
 import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 import static org.openqa.selenium.By.id;
 
 public class CreateCarPage {
@@ -23,6 +22,7 @@ public class CreateCarPage {
 
     @Step("Создание нового Автомобиля с полями: {engineType}, {mark}, {model}, {price}")
     public String createNewCar(String engineType, String mark, String model, String price) {
+        sleep(2000);
         carEngineTypeSend.setValue(engineType);
         carMarkSend.setValue(mark);
         carModelSend.setValue(model);

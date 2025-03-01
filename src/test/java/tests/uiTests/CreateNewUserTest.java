@@ -57,7 +57,8 @@ public class CreateNewUserTest extends BaseTest {
                 getProperty("money"));
         mainPage.toggleNavigationClick("Users")
                 .selectDropDownMenu("Read all");
-        readAll.sortButton.doubleClick();
+        readAll.sortButton.shouldBe(visible, ofSeconds(10)).doubleClick();
+        sleep(2000);
         readAll.getFieldsUserOnTableList(userId).shouldHave(texts(
                 userId,
                 getProperty("firstName"),
