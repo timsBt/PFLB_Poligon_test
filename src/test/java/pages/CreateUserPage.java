@@ -18,7 +18,7 @@ public class CreateUserPage {
     private static final SelenideElement PUSH_TO_API = $x("//div//button[@class = 'tableButton btn btn-primary']");
     private static final SelenideElement USER_ID = $x("//div//button[@class='newId btn btn-secondary']");
     private static final SelenideElement STATUS = $x("//button[@class = 'status btn btn-secondary']");
-    private static final String sexSend = "//input[@value = '%s']";
+    private static final String SEX_SEND = "//input[@value = '%s']";
 
     @Step("Создание нового юзера c полями: {firstName}, {lastName}, {age}, {sex}, {money}")
     public String createNewUser(String firstName, String lastName, String age, String sex, String money) {
@@ -26,7 +26,7 @@ public class CreateUserPage {
         LAST_NAME_SEND.setValue(lastName);
         AGE_SEND.setValue(age);
         if (!sex.isEmpty()) {
-            $x(String.format(sexSend, sex)).click();
+            $x(String.format(SEX_SEND, sex)).click();
         }
         MONEY_SEND.setValue(money);
         PUSH_TO_API.shouldBe(visible, ofSeconds(10)).click();
