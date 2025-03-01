@@ -33,9 +33,7 @@ public class AllDeletePage {
         sleep(2000);
         switchTo().window(1);
         sleep(2000);
-        DELETE_USER_FIELD.shouldBe(visible, ofSeconds(10)).click();
-        DELETE_USER_FIELD.setValue(userId);
-        sleep(2000);
+        DELETE_USER_FIELD.shouldBe(visible, ofSeconds(10)).setValue(userId);
         DELETE_USER_BUTTON.shouldBe(visible, ofSeconds(10)).click();
     }
 
@@ -46,9 +44,7 @@ public class AllDeletePage {
         sleep(3000);
         switchTo().window(1);
         sleep(2000);
-        deleteCarField.shouldBe(visible, ofSeconds(10)).click();
-        deleteCarField.setValue(carId);
-        sleep(2000);
+        deleteCarField.shouldBe(visible, ofSeconds(10)).setValue(carId);
         deleteCarButton.shouldBe(visible, ofSeconds(10)).click();
     }
 

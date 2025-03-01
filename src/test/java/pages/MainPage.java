@@ -4,8 +4,10 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static java.time.Duration.ofSeconds;
 
 public class MainPage {
 
@@ -25,13 +27,13 @@ public class MainPage {
 
     @Step("Клик по элементу в навигационной панели'")
     public MainPage toggleNavigationClick(String toggle) {
-        $x(String.format(TOOGLE_NAVIGATION, toggle)).click();
+        $x(String.format(TOOGLE_NAVIGATION, toggle)).shouldBe(visible, ofSeconds(10)).click();
         return this;
     }
 
     @Step("Клик по элементу в выпадающем списке")
     public void selectDropDownMenu(String item) {
-        $x(String.format(DROP_DOWN_MENU, item)).click();
+        $x(String.format(DROP_DOWN_MENU, item)).shouldBe(visible, ofSeconds(10)).click();
     }
 
     @Step("Авторизация")

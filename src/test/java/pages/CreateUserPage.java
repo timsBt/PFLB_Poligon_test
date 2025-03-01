@@ -3,8 +3,6 @@ package pages;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
-import java.time.Duration;
-
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
@@ -24,17 +22,16 @@ public class CreateUserPage {
 
     @Step("Создание нового юзера c полями: {firstName}, {lastName}, {age}, {sex}, {money}")
     public String createNewUser(String firstName, String lastName, String age, String sex, String money) {
-        sleep(2000);
-        FIRST_NAME_SEND.setValue(firstName);
+        FIRST_NAME_SEND.shouldBe(visible, ofSeconds(10)).setValue(firstName);
         LAST_NAME_SEND.setValue(lastName);
         AGE_SEND.setValue(age);
         if (!sex.isEmpty()) {
             $x(String.format(sexSend, sex)).click();
         }
         MONEY_SEND.setValue(money);
-        PUSH_TO_API.click();
-        sleep(3000);
-        return USER_ID.shouldBe(visible, Duration.ofSeconds(10)).text().replace("New user ID: ", "");
+        PUSH_TO_API.shouldBe(visible, ofSeconds(10)).click();
+        sleep(2000);
+        return USER_ID.shouldBe(visible, ofSeconds(10)).text().replace("New user ID: ", "");
     }
 
     @Step("Проверка статуса: {actualResult}")
