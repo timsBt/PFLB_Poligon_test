@@ -11,10 +11,10 @@ import static com.codeborne.selenide.Selenide.$x;
 import static org.openqa.selenium.By.id;
 
 public class PlusMoneyPage {
-    final private SelenideElement button = $("button[class='tableButton btn btn-primary']");
-    final private SelenideElement inputUserId = $(id("id_send"));
-    final private SelenideElement inputAmount = $(id("money_send"));
-    final private SelenideElement massage = $("button[class='status btn btn-secondary']");
+    private static final SelenideElement button = $("button[class='tableButton btn btn-primary']");
+    private static final SelenideElement inputUserId = $(id("id_send"));
+    private static final SelenideElement inputAmount = $(id("money_send"));
+    private static final SelenideElement massage = $("button[class='status btn btn-secondary']");
 
     @Step("Ввод пользователя {userId}")
     public PlusMoneyPage enterUserId(String userId) {
