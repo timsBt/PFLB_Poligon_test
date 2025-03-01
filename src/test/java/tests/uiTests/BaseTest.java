@@ -25,6 +25,7 @@ public class BaseTest {
     CreateHousePage createHousePage;
     SellAndBuyCarPage sellAndBuyCarPage;
     ReadUserWithCarsPage readUserWithCarsPage;
+    ReadOneHousePage readOneHousePage;
 
     public static String url = System.getProperty("url", getProperty("url"));
     public static String login = System.getProperty("login", getProperty("login"));
@@ -54,6 +55,7 @@ public class BaseTest {
         createCarPage = new CreateCarPage();
         sellAndBuyCarPage = new SellAndBuyCarPage();
         readUserWithCarsPage = new ReadUserWithCarsPage();
+        readOneHousePage = new ReadOneHousePage();
     }
 
     @AfterMethod(alwaysRun = true)

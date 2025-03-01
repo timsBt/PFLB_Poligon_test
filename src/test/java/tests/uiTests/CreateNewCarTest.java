@@ -51,9 +51,7 @@ public class CreateNewCarTest extends BaseTest {
                 "1000");
         allDeletePage.deleteCarId(carId);
         sleep(2000);
-        assertEquals(allDeletePage.deleteCarStatus.getText(),
-                "Status: 204",
-                "Возникла ошибка при удалении автомобиля");
+        allDeletePage.checkStatus("car", "Status: 204");
     }
 
     @Test(priority = 1, testName = "Тест удаления не существующего автомобиля",
@@ -64,7 +62,7 @@ public class CreateNewCarTest extends BaseTest {
     public void deleteNewCarWithNotValidData() {
         carId = "9999";
         allDeletePage.deleteCarId(carId);
-        assertEquals(allDeletePage.deleteCarStatus.text(), "Status: not pushed");
+        allDeletePage.checkStatus("car", "Status: not pushed");
     }
 
     @Test(priority = 2, testName = "Тест создания автомобиля с пустым полем Engine Type",
