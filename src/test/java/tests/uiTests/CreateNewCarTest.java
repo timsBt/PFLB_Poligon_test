@@ -8,10 +8,8 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.sleep;
 import static org.testng.Assert.assertEquals;
-import static utils.PropertyReader.getProperty;
 
 @Epic("UI tests")
 public class CreateNewCarTest extends BaseTest {
@@ -66,7 +64,7 @@ public class CreateNewCarTest extends BaseTest {
     public void deleteNewCarWithNotValidData() {
         carId = "9999";
         allDeletePage.deleteCarId(carId);
-        assertEquals(allDeletePage.notPushedStatus.text(), "Status: not pushed");
+        assertEquals(allDeletePage.deleteCarStatus.text(), "Status: not pushed");
     }
 
     @Test(priority = 2, testName = "Тест создания автомобиля с пустым полем Engine Type",

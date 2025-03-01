@@ -10,16 +10,13 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.CollectionCondition.texts;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.sleep;
-import static java.time.Duration.ofSeconds;
 import static utils.PropertyReader.getProperty;
 
 @Epic("UI tests")
 public class CreateNewUserTest extends BaseTest {
 
-    String userId;
+    private String userId;
 
     @BeforeMethod
     public void openCreateUserPage() {
@@ -40,7 +37,7 @@ public class CreateNewUserTest extends BaseTest {
                 getProperty("age"),
                 getProperty("sex"),
                 getProperty("money"));
-        createUserPage.status.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: Successfully pushed, code: 201"));
+        createUserPage.checkStatus("Status: Successfully pushed, code: 201");
     }
 
     @Test(testName = "Проверка отображения созданного пользователя в таблице Read all",
@@ -57,7 +54,7 @@ public class CreateNewUserTest extends BaseTest {
                 getProperty("money"));
         mainPage.toggleNavigationClick("Users")
                 .selectDropDownMenu("Read all");
-        readAll.sortButton.shouldBe(visible, ofSeconds(10)).doubleClick();
+        readAll.clickOnSortButton();
         sleep(2000);
         readAll.getFieldsUserOnTableList(userId).shouldHave(texts(
                 userId,
@@ -82,7 +79,7 @@ public class CreateNewUserTest extends BaseTest {
                 getProperty("money"));
         allDeletePage.deleteUserId(userId);
         sleep(2000);
-        allDeletePage.deleteUserStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: 204"));
+        allDeletePage.checkUserStatus("Status: 204");
     }
 
     @Test(testName = "Проверка удаления пользователя с Некорректным ID",
@@ -93,7 +90,7 @@ public class CreateNewUserTest extends BaseTest {
     public void deleteNonExistUserTest() {
         userId = getProperty("notExistentID");
         allDeletePage.deleteUserId(getProperty("notExistentID"));
-        allDeletePage.notPushedStatus.shouldBe(visible, ofSeconds(10)).shouldHave(text("Status: not pushed"));
+        allDeletePage.checkUserStatus("Status: not pushed");
     }
 
     @Test(testName = "Проверка отсутствия создания пользователя с Некорректными данными",
@@ -105,7 +102,7 @@ public class CreateNewUserTest extends BaseTest {
     public void checkNotCreatedUserTest(String firstName, String lastName, String age, String sex, String money,
                                         String actualResults) {
         userId = createUserPage.createNewUser(firstName, lastName, age, sex, money);
-        createUserPage.status.shouldBe(visible, ofSeconds(10)).shouldHave(text(actualResults));
+        createUserPage.checkStatus(actualResults);
     }
 
     @DataProvider(name = "CreateUserFalseData")
