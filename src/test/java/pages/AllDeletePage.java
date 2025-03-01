@@ -41,7 +41,7 @@ public class AllDeletePage {
     public void deleteCarId(String carId) {
         MainPage mainPage = new MainPage();
         mainPage.toggleNavigationClick("All DELETE");
-        sleep(3000);
+        sleep(2000);
         switchTo().window(1);
         sleep(2000);
         deleteCarField.shouldBe(visible, ofSeconds(10)).setValue(carId);
