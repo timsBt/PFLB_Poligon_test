@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class MainPage {
 
@@ -55,7 +56,6 @@ public class MainPage {
         if (!expectText.equals($x(String.format(RED_TEXT, expectText)).getText())) {
             throw new AssertionError("Expected: " + expectText + ", but got: " + $x(String.format(RED_TEXT, expectText)).getText());
         }
-
         return this;
     }
 
@@ -73,7 +73,7 @@ public class MainPage {
         String str = Selenide.$x(String.format(RED_TEXT, string)).getText();
         if (!str.isEmpty()) {
             checkRedText(str);
-        } else Selenide.closeWebDriver();
+        } else closeWebDriver();
         return this;
     }
 }
