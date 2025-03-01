@@ -37,4 +37,4 @@ jobs:
           URL_API: ${{ secrets.URL_API }}
           HOST_TOKEN: ${{ secrets.HOST_TOKEN }}
         run: mvn clean -DsuiteXmlFile='src/test/resources/SmokeTest.xml' test -Durl=$URL -Dlogin=$LOGIN -Dpassword=$PASSWORD
-          -DdbLogin=$DB_LOGIN -DdbPass=$DB_PASS -DdbUrl=$DB_URL -DurlApi=$URL_API -DhostToken=$HOST_TOKEN
+          -DdbLogin=$DB_LOGIN -DdbPass=$DB_PASS -DdbUrl=$DB_URL -DurlApi=$URL_API -DhostToken=$HOST_TOKEN -Dselenide.timeout=10000
