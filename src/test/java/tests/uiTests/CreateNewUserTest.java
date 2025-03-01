@@ -78,7 +78,7 @@ public class CreateNewUserTest extends BaseTest {
                 getProperty("money"));
         allDeletePage.deleteUserId(userId);
         sleep(2000);
-        allDeletePage.checkUserStatus("Status: 204");
+        allDeletePage.checkStatus("user", "Status: 204");
     }
 
     @Test(testName = "Проверка удаления пользователя с Некорректным ID",
@@ -89,7 +89,7 @@ public class CreateNewUserTest extends BaseTest {
     public void deleteNonExistUserTest() {
         userId = getProperty("notExistentID");
         allDeletePage.deleteUserId(getProperty("notExistentID"));
-        allDeletePage.checkUserStatus("Status: not pushed");
+        allDeletePage.checkStatus("user", "Status: not pushed");
     }
 
     @Test(testName = "Проверка отсутствия создания пользователя с Некорректными данными",

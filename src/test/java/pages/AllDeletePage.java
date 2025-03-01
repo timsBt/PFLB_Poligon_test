@@ -13,20 +13,12 @@ import static java.time.Duration.ofSeconds;
 public class AllDeletePage {
 
     private static final SelenideElement DELETE_USER_BUTTON = $x("//button[@value = 'user']");
-    private static final SelenideElement DELETE_USER_FIELD = $x("(//button[@value = 'user']/ancestor::" +
-            "div//input[@id = 'house_input'])[1]");
-    private static final SelenideElement DELETE_USER_STATUS = $x("(//button[@value = 'user']/ancestor::" +
-            "div//button[@class = 'status btn btn-secondary'])[1]");
-    public SelenideElement deleteCarButton = $x("//button[@value = 'car']");
-    public SelenideElement deleteCarField = $x("(//button[@value = 'car']/ancestor::div//input[@id =" +
-            " 'house_input'])[3]");
-    public SelenideElement deleteCarStatus = $x("(//button[@value = 'car']/ancestor::div//button[@class" +
-            " = 'status btn btn-secondary'])[3]");
-    public SelenideElement deleteHouseButton = $x("//button[@value = 'house']");
-    public SelenideElement deleteHouseField = $x("(//button[@value = 'house']/ancestor::div//input[@id =" +
-            " 'house_input'])[2]");
-    public SelenideElement deleteHouseStatus = $x("(//button[@value = 'house']/ancestor::div//button[@class" +
-            " = 'status btn btn-secondary'])[2]");
+    private static final SelenideElement DELETE_USER_FIELD = $x("//button[@value = 'user']/following-sibling::button/input");
+    private static final SelenideElement DELETE_CAR_BUTTON = $x("//button[@value = 'car']");
+    private static final SelenideElement DELETE_CAR_FIELD = $x("//button[@value = 'car']/following-sibling::button/input");
+    private static final SelenideElement DELETE_HOUSE_BUTTON = $x("//button[@value = 'house']");
+    private static final SelenideElement DELETE_HOUSE_FIELD = $x("//button[@value = 'house']/following-sibling::button/input");
+    private static final String DELETE_STATUS = "//button[@value = '%s']/following-sibling::button[contains(@class,'status')]";
 
     @Step("Удаление User по ID: {userId}")
     public void deleteUserId(String userId) {
@@ -48,8 +40,8 @@ public class AllDeletePage {
         sleep(2000);
         switchTo().window(1);
         sleep(2000);
-        deleteCarField.shouldBe(visible, ofSeconds(10)).setValue(carId);
-        deleteCarButton.shouldBe(visible, ofSeconds(10)).click();
+        DELETE_CAR_FIELD.shouldBe(visible, ofSeconds(10)).setValue(carId);
+        DELETE_CAR_BUTTON.shouldBe(visible, ofSeconds(10)).click();
     }
 
     @Step("Удаление House по ID: {houseId}")
@@ -58,12 +50,13 @@ public class AllDeletePage {
         MainPage mainPage = new MainPage();
         mainPage.toggleNavigationClick("All DELETE");
         switchTo().window(1);
-        deleteHouseField.shouldBe(visible, ofSeconds(10)).setValue(houseId);
-        deleteHouseButton.shouldBe(visible, ofSeconds(10)).click();
+        DELETE_HOUSE_FIELD.shouldBe(visible, ofSeconds(10)).setValue(houseId);
+        DELETE_HOUSE_BUTTON.shouldBe(visible, ofSeconds(10)).click();
     }
 
-    @Step("Проверка статуса: {actualResult}")
-    public void checkUserStatus(String actualResult) {
-        DELETE_USER_STATUS.shouldBe(visible, ofSeconds(10)).shouldHave(text(actualResult));
+    @Step("Проверка статуса удаления объекта {objectName}: {actualResult}")
+    public void checkStatus(String objectName, String actualResult) {
+        $x(String.format(DELETE_STATUS, objectName)).shouldBe(visible, ofSeconds(10)).shouldHave(text(actualResult));
     }
+
 }
