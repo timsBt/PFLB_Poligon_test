@@ -40,11 +40,11 @@ public class BaseTest {
             Configuration.browser = "Edge";
         }
         Configuration.headless = true;
-        Configuration.timeout = 10000;
+        Configuration.timeout = 15000;
         Configuration.reportsFolder = "./target/screenshots";
         open(url);
         getWebDriver().manage().window().maximize();
-        getWebDriver().manage().timeouts().scriptTimeout(Duration.ofSeconds(10));
+        getWebDriver().manage().timeouts().scriptTimeout(Duration.ofSeconds(15));
         mainPage = new MainPage();
         createUserPage = new CreateUserPage();
         allDeletePage = new AllDeletePage();

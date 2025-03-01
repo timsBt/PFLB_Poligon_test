@@ -20,11 +20,13 @@ public class CreateUserPage {
     private static final SelenideElement PUSH_TO_API = $x("//div//button[@class = 'tableButton btn btn-primary']");
     private static final SelenideElement USER_ID = $x("//div//button[@class='newId btn btn-secondary']");
     private static final SelenideElement STATUS = $x("//button[@class = 'status btn btn-secondary']");
+    private static final SelenideElement FIRST_NAME_TEXT = $x("//th[contains(text(), 'First')]");
     private static final String SEX_SEND = "//input[@value = '%s']";
 
     @Step("Создание нового юзера c данными: {firstName}, {lastName}, {age}, {sex}, {money}")
     public String createNewUser(String firstName, String lastName, String age, String sex, String money) {
         log.info("Создание нового юзера c данными: '{}', '{}', '{}', '{}', '{}'", firstName, lastName, age, sex, money);
+        FIRST_NAME_TEXT.shouldBe(visible, ofSeconds(10));
         FIRST_NAME_SEND.shouldBe(visible, ofSeconds(10)).setValue(firstName);
         LAST_NAME_SEND.setValue(lastName);
         AGE_SEND.setValue(age);

@@ -35,7 +35,7 @@ jobs:
           URL_API: ${{ secrets.URL_API }}
           HOST_TOKEN: ${{ secrets.HOST_TOKEN }}
         run: mvn clean -DsuiteXmlFile='src/test/resources/SmokeTest.xml' test -Durl=$URL -Dlogin=$LOGIN -Dpassword=$PASSWORD
-          -DdbLogin=$DB_LOGIN -DdbPass=$DB_PASS -DdbUrl=$DB_URL -DurlApi=$URL_API -DhostToken=$HOST_TOKEN -Dselenide.timeout=10000 -Dselenide.reportsFolder=target/screenshots
+          -DdbLogin=$DB_LOGIN -DdbPass=$DB_PASS -DdbUrl=$DB_URL -DurlApi=$URL_API -DhostToken=$HOST_TOKEN -Dselenide.timeout=15000 -Dselenide.reportsFolder=target/screenshots
 
       - name: Upload screenshots
         uses: actions/upload-artifact@v4

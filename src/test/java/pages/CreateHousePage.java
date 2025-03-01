@@ -39,7 +39,7 @@ public class CreateHousePage {
 
     @Step("Получение статуса операции по созданию дома")
     public SelenideElement getCreateHouseStatus() {
+        log.info("Получение статуса операции по созданию дома");
         return CREATE_HOUSE_STATUS;
     }
-
 }
