@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.sleep;
 import static org.testng.Assert.assertEquals;
 import static utils.PropertyReader.getProperty;
 
@@ -41,7 +42,7 @@ public class CreateNewCarTest extends BaseTest {
     }
 
     @Test(priority = 1, testName = "Тест удаления созданного автомобиля",
-            description = "Тест удаления созданного автомобиля", enabled = false)
+            description = "Тест удаления созданного автомобиля")
     @Description("Тест удаления созданного автомобиля")
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
@@ -51,6 +52,7 @@ public class CreateNewCarTest extends BaseTest {
                 "Gaykamy",
                 "1000");
         allDeletePage.deleteCarId(carId);
+        sleep(2000);
         assertEquals(allDeletePage.deleteCarStatus.getText(),
                 "Status: 204",
                 "Возникла ошибка при удалении автомобиля");
