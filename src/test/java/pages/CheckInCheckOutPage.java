@@ -5,6 +5,7 @@ import io.qameta.allure.Step;
 import tests.uiTests.BaseTest;
 
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.sleep;
 
 public class CheckInCheckOutPage {
 
@@ -24,6 +25,7 @@ public class CheckInCheckOutPage {
    public CheckInCheckOutPage goToLink() {
         dropDownUser.click();
         checkInCheckOutLink.click();
+       sleep(2000);
        return this;
    }
 
@@ -35,6 +37,7 @@ public class CheckInCheckOutPage {
 
     @Step("Заселение пользователя {user} в дом {house}")
     public CheckInCheckOutPage addUserToHouse(String user, String house) {
+       sleep(2000);
        userField.sendKeys(user);
        houseField.sendKeys(house);
        settleCheckBox.click();
@@ -44,6 +47,7 @@ public class CheckInCheckOutPage {
 
     @Step("Выселение пользователя {user} из дома {house}")
     public CheckInCheckOutPage evictUserFromHouse(String user, String house) {
+        sleep(2000);
         userField.sendKeys(user);
         houseField.sendKeys(house);
         evictCheckBox.click();

@@ -15,10 +15,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Set up JDK 21
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: '21'
+          java-version: '17'
           distribution: 'temurin'
           cache: maven
       - name: Setup browser Chrome
@@ -37,4 +37,11 @@ jobs:
           URL_API: ${{ secrets.URL_API }}
           HOST_TOKEN: ${{ secrets.HOST_TOKEN }}
         run: mvn clean -DsuiteXmlFile='src/test/resources/SmokeTest.xml' test -Durl=$URL -Dlogin=$LOGIN -Dpassword=$PASSWORD
-          -DdbLogin=$DB_LOGIN -DdbPass=$DB_PASS -DdbUrl=$DB_URL -DurlApi=$URL_API -DhostToken=$HOST_TOKEN
+          -DdbLogin=$DB_LOGIN -DdbPass=$DB_PASS -DdbUrl=$DB_URL -DurlApi=$URL_API -DhostToken=$HOST_TOKEN -Dselenide.timeout=10000 -Dselenide.reportsFolder=target/screenshots
+
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: selenide-screenshots
+          path: target/screenshots

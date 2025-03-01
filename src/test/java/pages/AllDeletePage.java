@@ -30,10 +30,12 @@ public class AllDeletePage {
     public void deleteUserId(String userId) {
         MainPage mainPage = new MainPage();
         mainPage.toggleNavigationClick("All DELETE");
-        sleep(3000);
+        sleep(2000);
         switchTo().window(1);
+        sleep(2000);
         deleteUserField.shouldBe(visible, ofSeconds(10)).click();
         deleteUserField.setValue(userId);
+        sleep(2000);
         deleteUserButton.shouldBe(visible, ofSeconds(10)).click();
     }
 
@@ -43,8 +45,10 @@ public class AllDeletePage {
         mainPage.toggleNavigationClick("All DELETE");
         sleep(3000);
         switchTo().window(1);
+        sleep(2000);
         deleteCarField.shouldBe(visible, ofSeconds(10)).click();
         deleteCarField.setValue(carId);
+        sleep(2000);
         deleteCarButton.shouldBe(visible, ofSeconds(10)).click();
     }
 

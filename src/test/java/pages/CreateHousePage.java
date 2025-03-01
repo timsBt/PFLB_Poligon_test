@@ -4,8 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 import static org.openqa.selenium.By.id;
 
 public class CreateHousePage {
@@ -23,6 +22,7 @@ public class CreateHousePage {
     @Step("Создание нового дома с полями: {floor}, {price}, {parkingFirst}, {parkingSecond}, {parkingThird}, {parkingFourth}")
     public String createNewHouse(String floor, String price, String parkingFirst,
                                  String parkingSecond, String parkingThird, String parkingFourth) {
+        sleep(2000);
         floorSend.setValue(floor);
         priceSend.setValue(price);
         parkingFirstSend.setValue(parkingFirst);

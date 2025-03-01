@@ -40,6 +40,7 @@ public class BaseTest {
         }
         Configuration.headless = true;
         Configuration.timeout = 10000;
+        Configuration.reportsFolder = "./target/screenshots";
         open(url);
         getWebDriver().manage().window().maximize();
         getWebDriver().manage().timeouts().scriptTimeout(Duration.ofSeconds(10));
