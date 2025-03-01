@@ -73,7 +73,7 @@ public class LoginTest extends BaseTest {
     @Feature("Авторизация")
     @Story("Предоставление прав для работы с проектом")
     public void incorrectPasswordAndEmail() {
-        mainPage.authorizationWithValidateAlert(password, password+password);
+        mainPage.authorizationWithValidateAlert(password, password+password+password);
         checkText("Incorrect input data", Selenide.switchTo().alert().getText());
         Selenide.switchTo().alert().accept();
         mainPage.checkResult("incorrect Email");
