@@ -2,7 +2,7 @@ name: PFLB_Poligon_test
 
 on:
   push:
-    branches: ["master"]
+    branches: ["master", "actions"]
   pull_request:
     branches: ["master"]
   schedule:
