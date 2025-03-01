@@ -2,11 +2,14 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
+import static java.time.Duration.ofSeconds;
 import static org.openqa.selenium.By.id;
 
+@Log4j2
 public class CreateHousePage {
 
     public SelenideElement floorSend = $(id("floor_send"));
@@ -19,11 +22,12 @@ public class CreateHousePage {
     public SelenideElement createHouseStatus = $($x("//button[@class='status btn btn-secondary']"));
     public SelenideElement newHouseId = $($x("//button[@class='newId btn btn-secondary']"));
 
-    @Step("Создание нового дома с полями: {floor}, {price}, {parkingFirst}, {parkingSecond}, {parkingThird}, {parkingFourth}")
+    @Step("Создание нового дома с данными: {floor}, {price}, {parkingFirst}, {parkingSecond}, {parkingThird}, {parkingFourth}")
     public String createNewHouse(String floor, String price, String parkingFirst,
                                  String parkingSecond, String parkingThird, String parkingFourth) {
-        sleep(2000);
-        floorSend.setValue(floor);
+        log.info("Создание нового дома с данными: '{}', '{}', '{}', '{}', '{}', '{}'", floor, price,
+                parkingFirst, parkingSecond, parkingThird, parkingFourth);
+        floorSend.shouldBe(visible, ofSeconds(10)).setValue(floor);
         priceSend.setValue(price);
         parkingFirstSend.setValue(parkingFirst);
         parkingSecondSend.setValue(parkingSecond);

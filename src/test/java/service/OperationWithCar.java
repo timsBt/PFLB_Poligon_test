@@ -1,7 +1,5 @@
 package service;
 
-import lombok.Data;
-
 public enum OperationWithCar {
     SELL("sellCar"),
     BUY("buyCar");

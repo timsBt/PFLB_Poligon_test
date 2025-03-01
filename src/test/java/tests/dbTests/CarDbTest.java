@@ -28,7 +28,6 @@ public class CarDbTest {
     private String userId;
     RestService restService = new RestService();
     SoftAssert softAssert = new SoftAssert();
-    String sqlQuery = "SELECT * FROM car WHERE id = '";
 
     @BeforeMethod
     public void createCarAndUser() {
@@ -52,6 +51,7 @@ public class CarDbTest {
     @Feature("Проверка Car в БД")
     @Story("Проверка сохранения Car в БД")
     public void checkUserDBTest() throws SQLException {
+        String sqlQuery = "SELECT * FROM car WHERE id = '";
         ResultSet rs = executeSqlQuery(sqlQuery + carId + "'");
         while (rs.next()) {
             softAssert.assertEquals(rs.getString("id"), carId);

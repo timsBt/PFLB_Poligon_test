@@ -23,7 +23,6 @@ public class UserDbTest {
 
     private String userId;
     SoftAssert softAssert = new SoftAssert();
-    String sqlQuery = "SELECT * FROM person WHERE id = '";
 
     @BeforeMethod
     public void setUpCreateUser() {
@@ -41,6 +40,7 @@ public class UserDbTest {
     @Feature("Проверка Пользователя в БД")
     @Story("Проверка сохранения пользователя в БД")
     public void checkUserDBTest() throws SQLException {
+        String sqlQuery = "SELECT * FROM person WHERE id = '";
         ResultSet rs = executeSqlQuery(sqlQuery + userId + "'");
         while (rs.next()) {
             softAssert.assertEquals(rs.getString("id"), userId);

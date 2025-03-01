@@ -2,12 +2,14 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static java.time.Duration.ofSeconds;
 
+@Log4j2
 public class AllDeletePage {
 
     private static final SelenideElement DELETE_USER_BUTTON = $x("//button[@value = 'user']");
@@ -26,8 +28,9 @@ public class AllDeletePage {
     public SelenideElement deleteHouseStatus = $x("(//button[@value = 'house']/ancestor::div//button[@class" +
             " = 'status btn btn-secondary'])[2]");
 
-    @Step("Удаление User {userId}")
+    @Step("Удаление User по ID: {userId}")
     public void deleteUserId(String userId) {
+        log.info("Удаление User по ID: '{}'", userId);
         MainPage mainPage = new MainPage();
         mainPage.toggleNavigationClick("All DELETE");
         sleep(2000);
@@ -37,8 +40,9 @@ public class AllDeletePage {
         DELETE_USER_BUTTON.shouldBe(visible, ofSeconds(10)).click();
     }
 
-    @Step("Удаление Car {carId}")
+    @Step("Удаление Car по ID: {carId}")
     public void deleteCarId(String carId) {
+        log.info("Удаление Car по ID: '{}'", carId);
         MainPage mainPage = new MainPage();
         mainPage.toggleNavigationClick("All DELETE");
         sleep(2000);
@@ -48,8 +52,9 @@ public class AllDeletePage {
         deleteCarButton.shouldBe(visible, ofSeconds(10)).click();
     }
 
-    @Step("Удаление House {houseId}")
+    @Step("Удаление House по ID: {houseId}")
     public void deleteHouseId(String houseId) {
+        log.info("Удаление House по ID: '{}'", houseId);
         MainPage mainPage = new MainPage();
         mainPage.toggleNavigationClick("All DELETE");
         switchTo().window(1);

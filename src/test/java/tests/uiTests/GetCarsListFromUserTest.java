@@ -1,6 +1,7 @@
 package tests.uiTests;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import models.carsData.Cars;
@@ -9,6 +10,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+@Epic("UI tests")
 public class GetCarsListFromUserTest extends BaseTest {
 
     @BeforeMethod
