@@ -9,16 +9,13 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.exactText;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.sleep;
 
 @Epic("UI tests")
 public class CreateNewHouseTest extends BaseTest{
 
-    String houseId;
-    String floorCountHouseOnTable = "//div/table/tbody/tr/td[1][text()='%s']/../td[2]";
+    private String houseId;
 
     @BeforeMethod
     public void openPageCreateHouse() {
@@ -40,7 +37,7 @@ public class CreateNewHouseTest extends BaseTest{
                 "4",
                 "10",
                 "11");
-        createHousePage.createHouseStatus.shouldHave(exactText("Status: Successfully pushed, code: 201"));
+        createHousePage.getCreateHouseStatus().shouldHave(exactText("Status: Successfully pushed, code: 201"));
     }
 
     @Test(testName = "Проверка создания дома без паркинга",
@@ -56,7 +53,7 @@ public class CreateNewHouseTest extends BaseTest{
                 "",
                 "",
                 "");
-        createHousePage.createHouseStatus.shouldHave(exactText("Status: Successfully pushed, code: 201"));
+        createHousePage.getCreateHouseStatus().shouldHave(exactText("Status: Successfully pushed, code: 201"));
     }
 
     @Test(testName = "Проверка округления дробного кол-ва этажей при создании", enabled = false,
@@ -73,9 +70,13 @@ public class CreateNewHouseTest extends BaseTest{
                 "",
                 "");
         mainPage.toggleNavigationClick("Houses")
-                .selectDropDownMenu("Read all");
-        sleep(2000);
-        $x(String.format(floorCountHouseOnTable,houseId)).shouldHave(exactText("5"));
+                .selectDropDownMenu("Read one by ID");
+        readOneHousePage.getFieldsValuesOfHouse(houseId).shouldHave(texts(
+                houseId,
+                "5",
+                "100",
+                "",
+                ""));
     }
 
     @Test(testName = "Проверка отказа создания дома с невалидными данными",
@@ -94,7 +95,7 @@ public class CreateNewHouseTest extends BaseTest{
                 parkingSecond,
                 parkingThird,
                 parkingFourth);
-        createHousePage.createHouseStatus.shouldHave(exactText(createStatus));
+        createHousePage.getCreateHouseStatus().shouldHave(exactText(createStatus));
     }
 
     @DataProvider(name = "createHouseData")
@@ -108,11 +109,51 @@ public class CreateNewHouseTest extends BaseTest{
         };
     }
 
+    @Test(testName = "Проверка получения данных о доме по ID",
+            description = "Проверка получения данных о доме по ID")
+    @Description("Проверка получения данных о доме по ID")
+    @Feature("Действия с домами")
+    @Story("Получение данных о доме")
+    public void checkHouseById() {
+        houseId = createHousePage.createNewHouse(
+                "10",
+                "2000.25",
+                "1",
+                "2",
+                "3",
+                "5");
+        mainPage.toggleNavigationClick("Houses")
+                .selectDropDownMenu("Read one by ID");
+        readOneHousePage.getFieldsValuesOfHouse(houseId).shouldHave(texts(
+                houseId,
+                "10",
+                "2000.25",
+                "4",
+                ""));
+    }
+
+    @Test(testName = "Проверка удаления дома с корректным ID",
+            description = "Проверка удаления дома с корректным ID")
+    @Description("Проверка удаления дома с корректным ID")
+    @Feature("Действия с домами")
+    @Story("Удаление дома")
+    public void deleteHouseTest() {
+        houseId = createHousePage.createNewHouse(
+                "10",
+                "200",
+                "1",
+                "2",
+                "3",
+                "5");
+        allDeletePage.deleteHouseId(houseId);
+        allDeletePage.checkStatus("house", "Status: 204");
+    }
+
     @AfterMethod
     public void deleteHouse() {
         if (!houseId.isEmpty()) {
             allDeletePage.deleteHouseId(houseId);
-            allDeletePage.deleteHouseStatus.shouldHave(text("204"));
+            allDeletePage.checkStatus("house", "Status: 204");
         }
     }
 }
