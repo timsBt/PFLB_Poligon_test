@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.sleep;
 
 @Epic("UI tests")
 public class CreateNewHouseTest extends BaseTest{
@@ -59,8 +60,7 @@ public class CreateNewHouseTest extends BaseTest{
     }
 
     @Test(testName = "Проверка округления дробного кол-ва этажей при создании",
-            description = "Проверка создания дома с дробным количеством этажей - округление этажности до целого в меньшую сторону",
-            enabled = false)
+            description = "Проверка создания дома с дробным количеством этажей - округление этажности до целого в меньшую сторону")
     @Description("Проверка создания дома с дробным количеством этажей - округление до целого в меньшую сторону")
     @Feature("Действия с домами")
     @Story("Создание дома")
@@ -74,6 +74,7 @@ public class CreateNewHouseTest extends BaseTest{
                 "");
         mainPage.toggleNavigationClick("Houses")
                 .selectDropDownMenu("Read all");
+        sleep(2000);
         $x(String.format(floorCountHouseOnTable,houseId)).shouldHave(exactText("5"));
     }
 
