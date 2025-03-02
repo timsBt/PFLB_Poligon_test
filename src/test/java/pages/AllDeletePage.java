@@ -48,9 +48,12 @@ public class AllDeletePage {
     @Step("Удаление House по ID: {houseId}")
     public void deleteHouseId(String houseId) {
         TOGGLE_NAVIGATION_ALL_DELETE.shouldBe(visible, ofSeconds(10)).click();
+        sleep(2000);
         switchTo().window(1);
+        sleep(2000);
+        DELETE_HOUSE_BUTTON.shouldBe(visible, ofSeconds(10));
         DELETE_HOUSE_FIELD.shouldBe(visible, ofSeconds(10)).setValue(houseId);
-        DELETE_HOUSE_BUTTON.shouldBe(visible, ofSeconds(10)).click();
+        DELETE_HOUSE_BUTTON.click();
     }
 
     @Step("Проверка статуса удаления объекта '{objectName}': '{actualResult}'")
