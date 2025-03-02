@@ -24,10 +24,10 @@ import static utils.PropertyReader.getProperty;
 @Epic("DB tests")
 public class CarDbTest {
 
-    private String carId;
-    private String userId;
     RestService restService = new RestService();
     SoftAssert softAssert = new SoftAssert();
+    private String carId;
+    private String userId;
 
     @BeforeMethod
     public void createCarAndUser() {

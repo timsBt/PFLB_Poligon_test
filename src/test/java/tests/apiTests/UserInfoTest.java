@@ -22,11 +22,11 @@ import static utils.PropertyReader.getProperty;
 @Epic("Api tests")
 public class UserInfoTest {
 
-    private String userId;
-    private String carId;
     UserDto userDto;
     SoftAssert softAssert = new SoftAssert();
     RestService restService = new RestService();
+    private String userId;
+    private String carId;
 
     @BeforeMethod
     public void setUpCreateUser() {

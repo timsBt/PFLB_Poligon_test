@@ -17,6 +17,7 @@ import static utils.PropertyReader.getProperty;
 @Log4j2
 public class CreateCarPage {
 
+    private static final SelenideElement ENGINE_TYPE_TEXT = $x("//th[contains(text(), 'Engine')]");
     public SelenideElement carEngineTypeSend = $(id("car_engine_type_send"));
     public SelenideElement carMarkSend = $(id("car_mark_send"));
     public SelenideElement carModelSend = $(id("car_model_send"));
@@ -24,7 +25,6 @@ public class CreateCarPage {
     public SelenideElement pushToApi = $x("//button[@class = 'tableButton btn btn-primary']");
     public SelenideElement carId = $x("//button[contains(text(), 'New')]");
     public SelenideElement carStatus = $x("//button[@class='status btn btn-secondary']");
-    private static final SelenideElement ENGINE_TYPE_TEXT = $x("//th[contains(text(), 'Engine')]");
 
     @Step("Создание нового Автомобиля с данными: {engineType}, {mark}, {model}, {price}")
     public String createNewCar(String engineType, String mark, String model, String price) {

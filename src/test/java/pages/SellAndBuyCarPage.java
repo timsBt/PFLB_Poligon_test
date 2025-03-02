@@ -12,12 +12,12 @@ import static com.codeborne.selenide.Selenide.$x;
 
 @Log4j2
 public class SellAndBuyCarPage {
+    public final SelenideElement saleStatus = $x("//button[@class='status btn btn-secondary']");
     final SelenideElement userIdSend = $x("//input[@id='id_send']");
     final SelenideElement carIdSend = $x("//input[@id='car_send']");
     final SelenideElement sellButton = $x("//input[@value='sellCar']");
     final SelenideElement buyButton = $x("//input[@value='buyCar']");
     final SelenideElement pushToApi = $x("//button[@class='tableButton btn btn-primary']");
-    public final SelenideElement saleStatus = $x("//button[@class='status btn btn-secondary']");
 
     @Step("Продажа автомобиля '{carId}' пользователем '{userId}'")
     public SellAndBuyCarPage sellCar(String userId, String carId) {

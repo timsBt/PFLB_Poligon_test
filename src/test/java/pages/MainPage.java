@@ -83,7 +83,7 @@ public class MainPage {
     }
 
     @Step("Валидация текста: {messageText}")
-    public MainPage checkResult(String messageText){
+    public MainPage checkResult(String messageText) {
         log.info("Валидация текста: '{}'", messageText);
         String str = Selenide.$x(String.format(RED_TEXT, messageText)).getText();
         if (!str.isEmpty()) {

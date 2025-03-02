@@ -56,12 +56,12 @@ public class CreateNewUserTest extends BaseTest {
                 .selectDropDownMenu("Read all");
         readAll.clickOnSortButton()
                 .getFieldsUserOnTableList(userId).shouldHave(texts(
-                userId,
-                getProperty("firstName"),
-                getProperty("lastName"),
-                getProperty("age"),
-                getProperty("sex"),
-                getProperty("money")));
+                        userId,
+                        getProperty("firstName"),
+                        getProperty("lastName"),
+                        getProperty("age"),
+                        getProperty("sex"),
+                        getProperty("money")));
     }
 
     @Test(testName = "Проверка удаления пользователя с корректным ID",

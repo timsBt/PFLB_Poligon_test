@@ -14,8 +14,7 @@ import static com.codeborne.selenide.Selenide.sleep;
 @Log4j2
 public class CheckInCheckOutPage {
 
-    MainPage mainPage= new MainPage();
-
+    private static final SelenideElement USER_ID_TEXT = $x("//th[contains(text(), 'User')]");
     public SelenideElement dropDownUser = $x("//*[text()=\"Users\"]");
     public SelenideElement checkInCheckOutLink = $x("//*[text()=\"Settle to house\"]");
     public SelenideElement userField = $x("//*[@id=\"id_send\"]");
@@ -24,7 +23,7 @@ public class CheckInCheckOutPage {
     public SelenideElement evictCheckBox = $x("//*[@value=\"evict\"]");
     public SelenideElement pushToApi = $x("//*[@id=\"root\"]/div/section/div/div/button[1]");
     public SelenideElement checkText = $x("//*[@class=\"status btn btn-secondary\"]");
-    private static final SelenideElement USER_ID_TEXT = $x("//th[contains(text(), 'User')]");
+    MainPage mainPage = new MainPage();
 
     @Step("Вход с главной страницы на страницу заселение и выселения")
     public CheckInCheckOutPage goToLink() {
@@ -32,14 +31,14 @@ public class CheckInCheckOutPage {
         dropDownUser.shouldBe(visible, Duration.ofSeconds(10)).click();
         checkInCheckOutLink.click();
         return this;
-   }
+    }
 
     @Step("Авторизация под пользователем с достаточным количеством прав")
     public CheckInCheckOutPage auth() {
         log.info("Авторизация под пользователем с достаточным количеством прав");
         mainPage.authAndValidate(BaseTest.login, BaseTest.password, "Successful authorization");
         return this;
-   }
+    }
 
     @Step("Заселение пользователя '{user}' в дом '{house}'")
     public CheckInCheckOutPage addUserToHouse(String user, String house) {

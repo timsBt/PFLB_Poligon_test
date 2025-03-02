@@ -39,13 +39,13 @@ public class ReadUserWithCarsPage {
 
     @Step("")
     public List<Cars> getCarsIdList(SellingCar sellingCar) {
-        log.info("getCarsIdList '{}'" , sellingCar);
-       return getCarsIdList(sellingCar.getUserId());
+        log.info("getCarsIdList '{}'", sellingCar);
+        return getCarsIdList(sellingCar.getUserId());
     }
 
     @Step("")
     public List<Cars> getCarsIdList(String id) {
-        log.info("List getCarsIdList '{}'" , id);
+        log.info("List getCarsIdList '{}'", id);
         inputId.sendKeys(id);
         readButton.click();
 

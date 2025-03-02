@@ -21,8 +21,8 @@ import static utils.PropertyReader.getProperty;
 @Epic("DB tests")
 public class UserDbTest {
 
-    private String userId;
     SoftAssert softAssert = new SoftAssert();
+    private String userId;
 
     @BeforeMethod
     public void setUpCreateUser() {

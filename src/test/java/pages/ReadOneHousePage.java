@@ -25,10 +25,4 @@ public class ReadOneHousePage {
         READ_HOUSE_BUTTON.shouldBe(visible, ofSeconds(10)).click();
         return FIELDS_VALUES_OF_HOUSE;
     }
-
-    @Step ("Получение статуса операции по поиску дома")
-    public String getStatusReadHouse() {
-        log.info("Получение статуса операции по поиску дома");
-        return READ_HOUSE_STATUS.getText();
-    }
 }
