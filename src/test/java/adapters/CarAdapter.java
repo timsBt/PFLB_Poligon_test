@@ -3,8 +3,6 @@ package adapters;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import models.carModels.CarDto;
-import models.userModels.UserDto;
-import models.userModels.UserInfoDto;
 
 import static adapters.AuthAdapter.auth;
 
