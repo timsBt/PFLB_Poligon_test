@@ -9,6 +9,7 @@ import java.time.Duration;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.sleep;
 
 @Log4j2
 public class CheckInCheckOutPage {
@@ -43,6 +44,7 @@ public class CheckInCheckOutPage {
     @Step("Заселение пользователя '{user}' в дом '{house}'")
     public CheckInCheckOutPage addUserToHouse(String user, String house) {
         log.info("Заселение пользователя '{}' в дом '{}'", user, house);
+        sleep(2000);
         USER_ID_TEXT.shouldBe(visible, Duration.ofSeconds(10));
         userField.shouldBe(visible, Duration.ofSeconds(10)).sendKeys(user);
         houseField.sendKeys(house);
@@ -54,6 +56,7 @@ public class CheckInCheckOutPage {
     @Step("Выселение пользователя '{user}' из дома '{house}'")
     public CheckInCheckOutPage evictUserFromHouse(String user, String house) {
         log.info("Выселение пользователя '{}' в дом '{}'", user, house);
+        sleep(2000);
         USER_ID_TEXT.shouldBe(visible, Duration.ofSeconds(10));
         userField.shouldBe(visible, Duration.ofSeconds(10)).sendKeys(user);
         houseField.sendKeys(house);
