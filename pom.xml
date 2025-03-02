@@ -16,7 +16,7 @@
         <aspectj.version>1.9.20.1</aspectj.version>
         <selenide.version>7.7.0</selenide.version>
         <testng.version>7.10.2</testng.version>
-        <suiteXmlFileName>src/test/resources/SmokeTest.xml</suiteXmlFileName>
+        <suiteXmlFileName>src/test/resources/SmokeTest2.xml</suiteXmlFileName>
         <restAssured.version>5.5.0</restAssured.version>
         <lombok.version>1.18.36</lombok.version>
         <jackson.version>2.18.1</jackson.version>
