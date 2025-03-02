@@ -9,8 +9,7 @@ import java.util.stream.Stream;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.*;
 import static java.time.Duration.ofSeconds;
 import static org.openqa.selenium.By.id;
 
@@ -32,10 +31,9 @@ public class CreateUserPage {
         String user = null;
         try {
             log.info("Создание нового юзера c данными: '{}', '{}', '{}', '{}', '{}'", firstName, lastName, age, sex, money);
+            sleep(2000);
             FIRST_NAME_TEXT.shouldBe(visible, ofSeconds(10));
-            FIRST_NAME_SEND.shouldBe(visible, ofSeconds(10)).click();
             FIRST_NAME_SEND.shouldBe(visible, ofSeconds(10)).setValue(firstName);
-            LAST_NAME_SEND.click();
             LAST_NAME_SEND.setValue(lastName);
             AGE_SEND.setValue(age);
             if (!sex.isEmpty()) {
@@ -43,6 +41,7 @@ public class CreateUserPage {
             }
             MONEY_SEND.setValue(money);
             PUSH_TO_API.shouldBe(visible, ofSeconds(10)).click();
+            sleep(2000);
             user = USER_ID.shouldBe(visible, ofSeconds(10)).text().replace("New user ID: ", "");
             log.info("User создался, User = {}", user);
         } catch (ElementNotFound e) {

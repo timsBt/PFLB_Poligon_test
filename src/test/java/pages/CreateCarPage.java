@@ -31,14 +31,11 @@ public class CreateCarPage {
         String car = null;
         try {
             log.info("Создание нового автомобиля c данными: '{}', '{}', '{}', '{}'", engineType, mark, model, price);
+            sleep(2000);
             ENGINE_TYPE_TEXT.shouldBe(visible, Duration.ofSeconds(10));
-            carEngineTypeSend.shouldBe(visible, Duration.ofSeconds(10)).click();
-            carEngineTypeSend.setValue(engineType);
-            carMarkSend.click();
+            carEngineTypeSend.shouldBe(visible, Duration.ofSeconds(10)).setValue(engineType);
             carMarkSend.setValue(mark);
-            carModelSend.click();
             carModelSend.setValue(model);
-            carPriceSend.click();
             carPriceSend.setValue(price);
             pushToApi.shouldBe(visible, ofSeconds(10)).click();
             sleep(2000);
