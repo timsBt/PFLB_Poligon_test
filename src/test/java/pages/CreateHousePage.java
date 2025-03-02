@@ -35,11 +35,17 @@ public class CreateHousePage {
             log.info("Создание нового дома с данными: '{}', '{}', '{}', '{}', '{}', '{}'", floor, price,
                     parkingFirst, parkingSecond, parkingThird, parkingFourth);
             FLOORS_TEXT.shouldBe(visible, ofSeconds(10));
-            FLOOR_SEND.shouldBe(visible, ofSeconds(10)).setValue(floor);
+            FLOOR_SEND.shouldBe(visible, ofSeconds(10)).click();
+            FLOOR_SEND.setValue(floor);
+            PRICE_SEND.shouldBe(visible, ofSeconds(10)).click();
             PRICE_SEND.setValue(price);
+            PARKING_FIRST_SEND.click();
             PARKING_FIRST_SEND.setValue(parkingFirst);
+            PARKING_SECOND_SEND.click();
             PARKING_SECOND_SEND.setValue(parkingSecond);
+            PARKING_THIRD_SEND.click();
             PARKING_THIRD_SEND.setValue(parkingThird);
+            PARKING_FOURTH_SEND.click();
             PARKING_FOURTH_SEND.setValue(parkingFourth);
             BUTTON_PUSH_TO_API.click();
             house = NEW_HOUSE_ID.shouldBe(visible, ofSeconds(10)).text().replace("New house ID: ", "");

@@ -33,7 +33,9 @@ public class CreateUserPage {
         try {
             log.info("Создание нового юзера c данными: '{}', '{}', '{}', '{}', '{}'", firstName, lastName, age, sex, money);
             FIRST_NAME_TEXT.shouldBe(visible, ofSeconds(10));
+            FIRST_NAME_SEND.shouldBe(visible, ofSeconds(10)).click();
             FIRST_NAME_SEND.shouldBe(visible, ofSeconds(10)).setValue(firstName);
+            LAST_NAME_SEND.click();
             LAST_NAME_SEND.setValue(lastName);
             AGE_SEND.setValue(age);
             if (!sex.isEmpty()) {

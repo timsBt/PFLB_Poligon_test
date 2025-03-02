@@ -32,9 +32,13 @@ public class CreateCarPage {
         try {
             log.info("Создание нового автомобиля c данными: '{}', '{}', '{}', '{}'", engineType, mark, model, price);
             ENGINE_TYPE_TEXT.shouldBe(visible, Duration.ofSeconds(10));
-            carEngineTypeSend.shouldBe(visible, Duration.ofSeconds(10)).setValue(engineType);
+            carEngineTypeSend.shouldBe(visible, Duration.ofSeconds(10)).click();
+            carEngineTypeSend.setValue(engineType);
+            carMarkSend.click();
             carMarkSend.setValue(mark);
+            carModelSend.click();
             carModelSend.setValue(model);
+            carPriceSend.click();
             carPriceSend.setValue(price);
             pushToApi.shouldBe(visible, ofSeconds(10)).click();
             sleep(2000);
