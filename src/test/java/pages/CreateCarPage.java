@@ -51,9 +51,9 @@ public class CreateCarPage {
         return car;
     }
 
-    @Step("Получения сообщения о статусе создания автомобиля")
+    @Step("Получение сообщения о статусе создания автомобиля")
     public String carCreateStatus() {
-        log.info("Получения сообщения о статусе создания автомобиля");
+        log.info("Получение сообщения о статусе создания автомобиля");
         return carStatus.getText();
     }
 }

@@ -25,9 +25,9 @@ public class CheckInCheckOutPage {
     public SelenideElement checkText = $x("//*[@class=\"status btn btn-secondary\"]");
     MainPage mainPage = new MainPage();
 
-    @Step("Вход с главной страницы на страницу заселение и выселения")
+    @Step("Вход с главной страницы на страницу заселения и выселения")
     public CheckInCheckOutPage goToLink() {
-        log.info("Вход с главной страницы на страницу заселение и выселения");
+        log.info("Вход с главной страницы на страницу заселения и выселения");
         dropDownUser.shouldBe(visible, Duration.ofSeconds(10)).click();
         checkInCheckOutLink.click();
         return this;
