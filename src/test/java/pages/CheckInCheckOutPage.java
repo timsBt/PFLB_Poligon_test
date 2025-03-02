@@ -23,6 +23,7 @@ public class CheckInCheckOutPage {
     public SelenideElement evictCheckBox = $x("//*[@value=\"evict\"]");
     public SelenideElement pushToApi = $x("//*[@id=\"root\"]/div/section/div/div/button[1]");
     public SelenideElement checkText = $x("//*[@class=\"status btn btn-secondary\"]");
+    private static final SelenideElement USER_ID_TEXT = $x("//th[contains(text(), 'USER')]");
 
     @Step("Вход с главной страницы на страницу заселение и выселения")
     public CheckInCheckOutPage goToLink() {
@@ -42,6 +43,7 @@ public class CheckInCheckOutPage {
     @Step("Заселение пользователя '{user}' в дом '{house}'")
     public CheckInCheckOutPage addUserToHouse(String user, String house) {
         log.info("Заселение пользователя '{}' в дом '{}'", user, house);
+        USER_ID_TEXT.shouldBe(visible, Duration.ofSeconds(10));
         userField.shouldBe(visible, Duration.ofSeconds(10)).sendKeys(user);
         houseField.sendKeys(house);
         settleCheckBox.click();
@@ -52,6 +54,7 @@ public class CheckInCheckOutPage {
     @Step("Выселение пользователя '{user}' из дома '{house}'")
     public CheckInCheckOutPage evictUserFromHouse(String user, String house) {
         log.info("Выселение пользователя '{}' в дом '{}'", user, house);
+        USER_ID_TEXT.shouldBe(visible, Duration.ofSeconds(10));
         userField.shouldBe(visible, Duration.ofSeconds(10)).sendKeys(user);
         houseField.sendKeys(house);
         evictCheckBox.click();

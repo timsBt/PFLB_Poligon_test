@@ -5,6 +5,8 @@ import com.codeborne.selenide.ex.ElementNotFound;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 
+import java.util.stream.Stream;
+
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
@@ -40,9 +42,13 @@ public class CreateUserPage {
             MONEY_SEND.setValue(money);
             PUSH_TO_API.shouldBe(visible, ofSeconds(10)).click();
             user = USER_ID.shouldBe(visible, ofSeconds(10)).text().replace("New user ID: ", "");
-            log.info("User создался, User = " + user);
+            log.info("User создался, User = {}", user);
         } catch (ElementNotFound e) {
-            log.error("User НЕ создался, User = " + user);
+            if (Stream.of(firstName, lastName, age, sex, money).anyMatch(String::isEmpty)) {
+                log.info("User не создался потому что есть пустые поля, User = {}", user);
+            } else if (age.startsWith("-") || age.equals("0")) {
+                log.info("User не создался потому что поле 'age' не валидное, User = {}", user);
+            } else log.error("User НЕ создался, User = {}", user);
         }
         return user;
     }

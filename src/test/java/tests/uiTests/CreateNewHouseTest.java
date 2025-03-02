@@ -151,7 +151,7 @@ public class CreateNewHouseTest extends BaseTest{
 
     @AfterMethod
     public void deleteHouse() {
-        if (!houseId.isEmpty()) {
+        if (houseId != null && !houseId.isEmpty()) {
             allDeletePage.deleteHouseId(houseId);
             allDeletePage.checkStatus("house", "Status: 204");
         }
