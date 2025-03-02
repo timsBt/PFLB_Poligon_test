@@ -23,7 +23,7 @@ public class CheckInCheckOutPage {
     public SelenideElement evictCheckBox = $x("//*[@value=\"evict\"]");
     public SelenideElement pushToApi = $x("//*[@id=\"root\"]/div/section/div/div/button[1]");
     public SelenideElement checkText = $x("//*[@class=\"status btn btn-secondary\"]");
-    private static final SelenideElement USER_ID_TEXT = $x("//th[contains(text(), 'USER')]");
+    private static final SelenideElement USER_ID_TEXT = $x("//th[contains(text(), 'User')]");
 
     @Step("Вход с главной страницы на страницу заселение и выселения")
     public CheckInCheckOutPage goToLink() {

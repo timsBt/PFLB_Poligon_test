@@ -19,7 +19,7 @@ public class PlusMoneyPage {
     private static final SelenideElement INPUT_USER_ID = $(id("id_send"));
     private static final SelenideElement INPUT_AMOUNT = $(id("money_send"));
     private static final SelenideElement MESSAGE = $("button[class='status btn btn-secondary']");
-    private static final SelenideElement USER_ID_TEXT = $x("//th[contains(text(), 'USER')]");
+    private static final SelenideElement USER_ID_TEXT = $x("//th[contains(text(), 'User')]");
 
     @Step("Ввод пользователя: {userId}")
     public PlusMoneyPage enterUserId(String userId) {
