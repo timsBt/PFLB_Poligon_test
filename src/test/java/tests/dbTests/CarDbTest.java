@@ -24,11 +24,10 @@ import static utils.PropertyReader.getProperty;
 @Epic("DB tests")
 public class CarDbTest {
 
-    private String carId;
-    private String userId;
     RestService restService = new RestService();
     SoftAssert softAssert = new SoftAssert();
-    String sqlQuery = "SELECT * FROM car WHERE id = '";
+    private String carId;
+    private String userId;
 
     @BeforeMethod
     public void createCarAndUser() {
@@ -52,6 +51,7 @@ public class CarDbTest {
     @Feature("Проверка Car в БД")
     @Story("Проверка сохранения Car в БД")
     public void checkUserDBTest() throws SQLException {
+        String sqlQuery = "SELECT * FROM car WHERE id = '";
         ResultSet rs = executeSqlQuery(sqlQuery + carId + "'");
         while (rs.next()) {
             softAssert.assertEquals(rs.getString("id"), carId);

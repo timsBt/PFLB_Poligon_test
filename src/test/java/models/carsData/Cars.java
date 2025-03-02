@@ -1,11 +1,11 @@
 package models.carsData;
 
 public class Cars {
-    private String id;
-    private String engineType;
-    private String mark;
-    private String model;
-    private String price;
+    private final String id;
+    private final String engineType;
+    private final String mark;
+    private final String model;
+    private final String price;
 
     public Cars(String id, String engineType, String mark, String model, String price) {
         this.id = id;

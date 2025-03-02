@@ -22,11 +22,11 @@ import static utils.PropertyReader.getProperty;
 @Epic("Api tests")
 public class UserInfoTest {
 
-    String userId;
-    String carId;
     UserDto userDto;
     SoftAssert softAssert = new SoftAssert();
     RestService restService = new RestService();
+    private String userId;
+    private String carId;
 
     @BeforeMethod
     public void setUpCreateUser() {
@@ -42,21 +42,16 @@ public class UserInfoTest {
                 getProperty("model"),
                 getProperty("price"));
         userDto = restService.buyOrSellCar(userId, carId, BUY, getToken());
-
-//        Тут будет Метод добавления дома юзеру (а перед этим нужно сначало создать дом) и знать сколько денег потратится
-//        userInfoAdded.add(houseId);
-
     }
 
     @Test(testName = "Проверка информации по ID пользователя",
             description = "Проверка информации по ID пользователя")
     @Description("Проверка информации по ID пользователя")
     @Feature("Проверка Информации по пользователю")
-    @Story("Проверка денег, машины, дома у пользователя")
+    @Story("Проверка денег, и машины у пользователя")
     public void getUserInfoTest() {
         UserInfoDto userInfoDto = getUserInfo(userId);
         softAssert.assertEquals(String.valueOf(userInfoDto.getMoney()), "190000.0", "Значение money не совпадает");
-        //      softAssert.assertEquals(String.valueOf(userInfoDto.getHouse()), "9", "Значение house не совпадает");
         for (CarDto car : userInfoDto.cars) {
             softAssert.assertEquals(String.valueOf(car.getId()), carId, "Значение carId не совпадает");
             softAssert.assertEquals(car.getEngineType(), getProperty("engineType"), "Значение EngineType не совпадает");

@@ -1,6 +1,7 @@
 package tests.apiTests;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import models.userModels.PersonDto;
@@ -9,6 +10,7 @@ import org.testng.annotations.Test;
 import service.OperationWithCar;
 import service.RestService;
 
+@Epic("Api tests")
 public class GetCarsListFromUserApiTest extends BaseClassApiTest {
 
     @Test(testName = "API: Получение списка машин по userId",

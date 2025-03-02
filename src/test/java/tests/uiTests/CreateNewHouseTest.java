@@ -13,7 +13,7 @@ import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.exactText;
 
 @Epic("UI tests")
-public class CreateNewHouseTest extends BaseTest{
+public class CreateNewHouseTest extends BaseTest {
 
     private String houseId;
 
@@ -100,12 +100,12 @@ public class CreateNewHouseTest extends BaseTest{
 
     @DataProvider(name = "createHouseData")
     public Object[][] createHouseData() {
-        return new Object[][] {
-                {"","100","1","2","3","4","Status: Invalid input data"},
-                {"5","","1","2","3","4","Status: Invalid input data"},
-                {"-5","100","","","","","Status: Invalid input data"},
-                {"5","100","-5","","","","Status: Invalid input data"},
-                {"5","-10","","","","","Status: Invalid input data"}
+        return new Object[][]{
+                {"", "100", "1", "2", "3", "4", "Status: Invalid input data"},
+                {"5", "", "1", "2", "3", "4", "Status: Invalid input data"},
+                {"-5", "100", "", "", "", "", "Status: Invalid input data"},
+                {"5", "100", "-5", "", "", "", "Status: Invalid input data"},
+                {"5", "-10", "", "", "", "", "Status: Invalid input data"}
         };
     }
 
@@ -151,7 +151,7 @@ public class CreateNewHouseTest extends BaseTest{
 
     @AfterMethod
     public void deleteHouse() {
-        if (!houseId.isEmpty()) {
+        if (houseId != null && !houseId.isEmpty()) {
             allDeletePage.deleteHouseId(houseId);
             allDeletePage.checkStatus("house", "Status: 204");
         }

@@ -10,11 +10,12 @@ import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.sleep;
 import static org.testng.Assert.assertEquals;
+import static utils.PropertyReader.getProperty;
 
 @Epic("UI tests")
 public class CreateNewCarTest extends BaseTest {
 
-    String carId;
+    private String carId;
 
     @BeforeMethod
     public void createCarPreparation() {
@@ -71,7 +72,7 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void createNewCarWithEmptyEngineTypeField() {
-        createCarPage.createNewCar("",
+        carId = createCarPage.createNewCar("",
                 "VedroS",
                 "Gaykamy",
                 "1000");
@@ -86,7 +87,7 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void createNewCarWithNotValidEngineTypeField() {
-        createCarPage.createNewCar("sdgwegwge",
+        carId = createCarPage.createNewCar(getProperty("notExistentEngineType"),
                 "VedroS",
                 "Gaykamy",
                 "1000");
@@ -101,7 +102,7 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void createNewCarWithEmptyMarkField() {
-        createCarPage.createNewCar("Electric",
+        carId = createCarPage.createNewCar("Electric",
                 "",
                 "Gaykamy",
                 "1000");
@@ -116,7 +117,7 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void createNewCarWithEmptyModelField() {
-        createCarPage.createNewCar("Diesel",
+        carId = createCarPage.createNewCar("Diesel",
                 "VedroS",
                 "",
                 "1000");
@@ -131,7 +132,7 @@ public class CreateNewCarTest extends BaseTest {
     @Feature("Взаимодействие с автомобилем")
     @Story("Создание нового автомобиля")
     public void createNewCarWithEmptyPriceField() {
-        createCarPage.createNewCar("CNG",
+        carId = createCarPage.createNewCar("CNG",
                 "VedroS",
                 "Gaykamy",
                 "");

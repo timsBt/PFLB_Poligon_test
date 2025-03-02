@@ -9,7 +9,7 @@ import static adapters.AuthAdapter.auth;
 
 public class UserAdapter {
 
-    @Step("Создание пользователя")
+    @Step("Создание нового юзера c данными: {firstName}, {lastName}, {age}, {sex}, {money}")
     public static String createUser(String firstName, String secondName, String age, String sex, String money) {
         UserDto userDto = UserDto.builder()
                 .firstName(firstName)
@@ -30,7 +30,7 @@ public class UserAdapter {
         return String.valueOf(response.jsonPath().getInt("id"));
     }
 
-    @Step("Чтение пользователя")
+    @Step("Чтение пользователя по ID: {id}")
     public static UserDto readUser(String id) {
         return auth()
                 .when()
@@ -41,7 +41,7 @@ public class UserAdapter {
                 .extract().as(UserDto.class);
     }
 
-    @Step("Редактирование пользователя")
+    @Step("Редактирование пользователя по ID: {id}")
     public static UserDto updateUser(String id, String firstName, String secondName, String age, String sex, String money) {
         UserDto userDto = UserDto.builder()
                 .id(Integer.parseInt(id))
@@ -62,7 +62,7 @@ public class UserAdapter {
                 .extract().as(UserDto.class);
     }
 
-    @Step("Удаление пользователя")
+    @Step("Удаление пользователя по ID: {id}")
     public static void deleteUser(String userId) {
         auth()
                 .when()
@@ -73,7 +73,7 @@ public class UserAdapter {
                 .extract().response();
     }
 
-    @Step("Проверка, что пользователя не существует")
+    @Step("Проверка, что пользователя не существует по ID: {id}")
     public static void verifyEntityNotExists(String id) {
         Response response = auth()
                 .when()
@@ -84,7 +84,7 @@ public class UserAdapter {
                 .response();
     }
 
-    @Step("Информация о пользователе")
+    @Step("Информация о пользователе по ID: {id}")
     public static UserInfoDto getUserInfo(String id) {
         return auth()
                 .when()

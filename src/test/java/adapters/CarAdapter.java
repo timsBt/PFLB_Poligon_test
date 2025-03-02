@@ -8,7 +8,7 @@ import static adapters.AuthAdapter.auth;
 
 public class CarAdapter {
 
-    @Step("Создание машины")
+    @Step("Создание нового Автомобиля с данными: {engineType}, {mark}, {model}, {price}")
     public static String createCar(String engineType, String mark, String model, String price) {
         CarDto carDto = CarDto.builder()
                 .engineType(engineType)
@@ -28,7 +28,7 @@ public class CarAdapter {
         return String.valueOf(response.jsonPath().getInt("id"));
     }
 
-    @Step("Удаление машины")
+    @Step("Удаление машины по ID: {carId}")
     public static void deleteCar(String carId) {
         auth()
                 .when()

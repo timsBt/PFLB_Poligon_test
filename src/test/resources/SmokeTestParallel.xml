@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="PFLB Poligon SmokeTests">
+<suite thread-count="3" name="PFLB Poligon SmokeTests" parallel="tests">
     <listeners>
         <listener class-name="utils.AnnotationTransformerUtils"/>
     </listeners>
-    <test name="Tests">
+    <test name="Thread#1">
         <classes>
             <class name="tests.uiTests.LoginTest"/>
             <class name="tests.uiTests.CheckInCheckOutTest"/>
             <class name="tests.uiTests.CreateNewUserTest"/>
+        </classes>
+    </test>
+    <test name="Thread#2">
+        <classes>
             <class name="tests.uiTests.CreateNewCarTest"/>
             <class name="tests.uiTests.CreateNewHouseTest"/>
             <class name="tests.uiTests.SellAndBuyCarTest"/>
+        </classes>
+    </test>
+    <test name="Thread#3">
+        <classes>
             <class name="tests.uiTests.PlusMoneyTest"/>
             <class name="tests.uiTests.CreditTest"/>
             <class name="tests.apiTests.AuthorizationApiTest"/>

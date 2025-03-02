@@ -15,6 +15,9 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static utils.PropertyReader.getProperty;
 
 public class BaseTest {
+    public static String url = System.getProperty("url", getProperty("url"));
+    public static String login = System.getProperty("login", getProperty("login"));
+    public static String password = System.getProperty("password", getProperty("password"));
     MainPage mainPage;
     CreateUserPage createUserPage;
     AllDeletePage allDeletePage;
@@ -26,10 +29,6 @@ public class BaseTest {
     SellAndBuyCarPage sellAndBuyCarPage;
     ReadUserWithCarsPage readUserWithCarsPage;
     ReadOneHousePage readOneHousePage;
-
-    public static String url = System.getProperty("url", getProperty("url"));
-    public static String login = System.getProperty("login", getProperty("login"));
-    public static String password = System.getProperty("password", getProperty("password"));
 
     @Parameters({"browser"})
     @BeforeMethod

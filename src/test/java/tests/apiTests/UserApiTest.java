@@ -16,7 +16,7 @@ import static utils.PropertyReader.getProperty;
 @Epic("Api tests")
 public class UserApiTest {
 
-    public static String userId;
+    private static String userId;
     SoftAssert softAssert = new SoftAssert();
 
     @BeforeMethod
