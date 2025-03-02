@@ -7,19 +7,15 @@ import io.restassured.response.Response;
 import models.houseModels.HouseDto;
 import models.houseModels.ParkingPlaceDto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static adapters.AuthAdapter.auth;
 
 public class HouseAdapter {
 
-    @Step("Создание и получение id нового дома c данными {floorCount}, {price}")
-    public static String createHouse(double floorCount, double price) {
+    @Step("Создание и получение id нового дома c данными {floorCount}, {price}, {parkingPlaces}")
+    public static String createHouse(double floorCount, double price, List<ParkingPlaceDto> parkingPlaces) {
         Gson gson = new Gson();
-        List<ParkingPlaceDto> parkingPlaces = new ArrayList<>();
-        parkingPlaces.add(new ParkingPlaceDto(0,true,true,2));
-        parkingPlaces.add(new ParkingPlaceDto(0,false,true,1));
         HouseDto houseDto = HouseDto.builder()
                 .floorCount(floorCount)
                 .price(price)
@@ -59,14 +55,12 @@ public class HouseAdapter {
     }
 
     @Step("Редактирование дома c ID: '{houseId}'")
-    public static void updateHouse(String houseId,double floorCount, double price) {
+    public static void updateHouse(String houseId,double floorCount, double price,List<ParkingPlaceDto> parkingPlacesUpdate) {
         Gson gson = new Gson();
-        List<ParkingPlaceDto> parkingPlaces = new ArrayList<>();
-        parkingPlaces.add(new ParkingPlaceDto(0,true,true,5));
         HouseDto houseDto = HouseDto.builder()
                 .floorCount(floorCount)
                 .price(price)
-                .parkingPlaces(parkingPlaces)
+                .parkingPlaces(parkingPlacesUpdate)
                 .build();
         auth()
                 .body(gson.toJson(houseDto,HouseDto.class))
