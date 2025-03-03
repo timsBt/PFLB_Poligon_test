@@ -15,21 +15,21 @@ import static com.codeborne.selenide.Selenide.sleep;
 public class CheckInCheckOutPage {
 
     private static final SelenideElement USER_ID_TEXT = $x("//th[contains(text(), 'User')]");
-    public SelenideElement dropDownUser = $x("//*[text()=\"Users\"]");
-    public SelenideElement checkInCheckOutLink = $x("//*[text()=\"Settle to house\"]");
-    public SelenideElement userField = $x("//*[@id=\"id_send\"]");
-    public SelenideElement houseField = $x("//*[@id=\"house_send\"]");
-    public SelenideElement settleCheckBox = $x("//*[@value=\"settle\"]");
-    public SelenideElement evictCheckBox = $x("//*[@value=\"evict\"]");
-    public SelenideElement pushToApi = $x("//*[@id=\"root\"]/div/section/div/div/button[1]");
-    public SelenideElement checkText = $x("//*[@class=\"status btn btn-secondary\"]");
+    private static final SelenideElement DROP_DOWN_USER = $x("//*[text()=\"Users\"]");
+    private static final SelenideElement CHECKIN_CHECKOUT_LINK = $x("//*[text()=\"Settle to house\"]");
+    private static final SelenideElement USER_FIELD = $x("//*[@id=\"id_send\"]");
+    private static final SelenideElement HOUSE_FIELD = $x("//*[@id=\"house_send\"]");
+    private static final SelenideElement SETTLE_CHECK_BOX = $x("//*[@value=\"settle\"]");
+    private static final SelenideElement EVICT_CHECK_BOX = $x("//*[@value=\"evict\"]");
+    private static final SelenideElement PUSH_TO_API = $x("//*[@id=\"root\"]/div/section/div/div/button[1]");
+    private static final SelenideElement CHECK_TEXT = $x("//*[@class=\"status btn btn-secondary\"]");
     MainPage mainPage = new MainPage();
 
     @Step("Вход с главной страницы на страницу заселения и выселения")
     public CheckInCheckOutPage goToLink() {
         log.info("Вход с главной страницы на страницу заселения и выселения");
-        dropDownUser.shouldBe(visible, Duration.ofSeconds(10)).click();
-        checkInCheckOutLink.click();
+        DROP_DOWN_USER.shouldBe(visible, Duration.ofSeconds(10)).click();
+        CHECKIN_CHECKOUT_LINK.click();
         return this;
     }
 
@@ -45,10 +45,10 @@ public class CheckInCheckOutPage {
         log.info("Заселение пользователя '{}' в дом '{}'", user, house);
         sleep(2000);
         USER_ID_TEXT.shouldBe(visible, Duration.ofSeconds(10));
-        userField.shouldBe(visible, Duration.ofSeconds(10)).sendKeys(user);
-        houseField.sendKeys(house);
-        settleCheckBox.click();
-        pushToApi.click();
+        USER_FIELD.shouldBe(visible, Duration.ofSeconds(10)).sendKeys(user);
+        HOUSE_FIELD.sendKeys(house);
+        SETTLE_CHECK_BOX.click();
+        PUSH_TO_API.click();
         return this;
     }
 
@@ -57,10 +57,17 @@ public class CheckInCheckOutPage {
         log.info("Выселение пользователя '{}' в дом '{}'", user, house);
         sleep(2000);
         USER_ID_TEXT.shouldBe(visible, Duration.ofSeconds(10));
-        userField.shouldBe(visible, Duration.ofSeconds(10)).sendKeys(user);
-        houseField.sendKeys(house);
-        evictCheckBox.click();
-        pushToApi.click();
+        USER_FIELD.shouldBe(visible, Duration.ofSeconds(10)).sendKeys(user);
+        HOUSE_FIELD.sendKeys(house);
+        EVICT_CHECK_BOX.click();
+        PUSH_TO_API.click();
         return this;
+    }
+    @Step("Проверка ожидаемого текста '{expectedString}' и выведенного текста '{actualString}'")
+    public static void checkText( String expectedString) {
+        log.info("Проверка ожидаемого текста '{}' и выведенного текста '{}'", expectedString, CHECK_TEXT.shouldBe(visible).getText());
+        if (!CHECK_TEXT.shouldBe(visible).getText().equals(expectedString)) {
+            throw new AssertionError("Expected: " + expectedString + ", but got: " + CHECK_TEXT.shouldBe(visible).getText());
+        }
     }
 }
