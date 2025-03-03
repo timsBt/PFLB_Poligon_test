@@ -16,6 +16,7 @@
             <class name="tests.uiTests.SellAndBuyCarTest"/>
             <class name="tests.apiTests.AuthorizationApiTest"/>
             <class name="tests.apiTests.UserApiTest"/>
+            <class name="tests.apiTests.HouseApiTest"/>
             <class name="tests.apiTests.UserInfoTest"/>
             <class name="tests.dbTests.UserDbTest"/>
             <parameter name="browser" value="Chrome"/>
@@ -34,6 +35,7 @@
             <class name="tests.apiTests.AuthorizationApiTest"/>
             <class name="tests.apiTests.UserApiTest"/>
             <class name="tests.apiTests.UserInfoTest"/>
+            <class name="tests.apiTests.HouseApiTest"/>
             <class name="tests.dbTests.UserDbTest"/>
             <parameter name="browser" value="Edge"/>
         </classes>

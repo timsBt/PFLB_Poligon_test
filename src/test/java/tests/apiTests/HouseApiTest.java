@@ -34,9 +34,9 @@ public class HouseApiTest {
     @Feature("Действия с домами")
     @Story("Создание дома")
     public void createHouse() {
-        houseId = HouseAdapter.createHouse(2,500.12,parkingPlaces);
+        houseId = HouseAdapter.createHouse(2, 500.12, parkingPlaces);
         JsonPath houseDto = HouseAdapter.getHouseInfo(houseId,200);
-        softAssert.assertEquals(houseDto.getInt("id"),houseId,"Значения id совпадают");
+        softAssert.assertEquals(String.valueOf(houseDto.getInt("id")), houseId, "Значения id совпадают");
         softAssert.assertEquals(houseDto.getInt("floorCount"),2,"Значения floorCount совпадают");
         softAssert.assertEquals(houseDto.getDouble("price"),500.12,"Значения price совпадают");
         softAssert.assertAll();
@@ -48,7 +48,7 @@ public class HouseApiTest {
     @Feature("Действия с домами")
     @Story("Удаление дома")
     public void deleteHouse() {
-        houseId = HouseAdapter.createHouse(2,500.12,parkingPlaces);
+        houseId = HouseAdapter.createHouse(2, 500.12, parkingPlaces);
         HouseAdapter.deleteHouse(houseId);
         JsonPath houseDto = HouseAdapter.getHouseInfo(houseId,204);
     }
@@ -58,14 +58,14 @@ public class HouseApiTest {
     @Feature("Действия с домами")
     @Story("Изменение дома")
     public void updateHouse() {
-        houseId = HouseAdapter.createHouse(2,500.12,parkingPlaces);
+        houseId = HouseAdapter.createHouse(2, 500.12, parkingPlaces);
         List<ParkingPlaceDto> parkingPlacesUpdate = new ArrayList<>();
         parkingPlacesUpdate.add(new ParkingPlaceDto(0,true,true,5));
-        HouseAdapter.updateHouse(houseId,5,300,parkingPlacesUpdate);
+        HouseAdapter.updateHouse(houseId, 5, 300, parkingPlacesUpdate);
         JsonPath houseDto = HouseAdapter.getHouseInfo(houseId,200);
-        softAssert.assertEquals(houseDto.getInt("id"),houseId,"Значение id совпадает с новым");
+        softAssert.assertEquals(String.valueOf(houseDto.getInt("id")), houseId, "Значение id совпадает с новым");
         softAssert.assertEquals(houseDto.getInt("floorCount"),5,"Значение floorCount совпадает с новым");
-        softAssert.assertEquals(houseDto.getDouble("price"),300,"Значение price совпадает с новым");
+        softAssert.assertEquals(houseDto.getDouble("price"), 300.0, "Значение price совпадает с новым");
         softAssert.assertAll();
         HouseAdapter.deleteHouse(houseId);
     }
