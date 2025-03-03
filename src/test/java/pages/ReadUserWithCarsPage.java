@@ -33,13 +33,13 @@ public class ReadUserWithCarsPage {
 
     @Step("Чтение id {userId} и {carId} для покупки и продажи машины")
     public SellingCar readUserWithCars() {
-        log.info("readUserWithCars");
+        log.info("Чтение id {userId} и {carId} для покупки и продажи машины");
         return new SellingCar(userId.getText(), carId.getText());
     }
 
-    @Step("Проверка количества машин у {userId}")
+    @Step("Проверка количества машин у User по Id: {id}")
     public List<Cars> getCarsIdList(String id) {
-        log.info("List getCarsIdList '{}'", id);
+        log.info("Проверка количества машин у User по Id: '{}'", id);
         inputId.sendKeys(id);
         readButton.click();
 
@@ -57,7 +57,7 @@ public class ReadUserWithCarsPage {
 
     @Step("Получение данных {userId} из ячеек")
     private String getColumnText(ElementsCollection columns, int index) {
-        log.info("getColumnText '{}' по индексу '{}'", columns, index);
+        log.info("Получение данных {userId} из ячеек");
         return columns.size() > index ? columns.get(index).getText() : "";
     }
 }
