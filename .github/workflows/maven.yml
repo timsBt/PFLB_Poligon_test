@@ -47,18 +47,23 @@ jobs:
           name: selenide-screenshots
           path: target/screenshots
 
-      - name: Build test report
-        uses: simple-elf/allure-report-action@v1.7
+      - name: Copy History
+        uses: actions/checkout@v2
         if: always()
         with:
-          gh_pages: gh-pages
-          allure_history: allure-history
+          ref: gh-pages
+          path: gh-pages
+      - name: Build Report
+        uses: simple-elf/allure-report-action@v1.10
+        if: always()
+        with:
           allure_results: build/allure-results
-
-      - name: Publish test report
-        uses: peaceiris/actions-gh-pages@v3
+          allure_history: allure-history
+          keep_reports: 20
+      - name: Publish Report
         if: always()
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: allure-history
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: allure-history
