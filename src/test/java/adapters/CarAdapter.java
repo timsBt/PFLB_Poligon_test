@@ -14,7 +14,7 @@ public class CarAdapter {
                 .engineType(engineType)
                 .mark(mark)
                 .model(model)
-                .price(price)
+                .price(Double.parseDouble(price))
                 .build();
         Response response = auth()
                 .body(carDto)
