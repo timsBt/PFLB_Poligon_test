@@ -14,7 +14,6 @@ import static utils.PropertyReader.getProperty;
 
 @Epic("UI tests")
 public class CreateNewCarTest extends BaseTest {
-
     private String carId;
 
     @BeforeMethod
