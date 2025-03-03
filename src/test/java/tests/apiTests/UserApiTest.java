@@ -5,7 +5,7 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import models.UserDto;
+import models.userModels.UserDto;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -16,7 +16,7 @@ import static utils.PropertyReader.getProperty;
 @Epic("Api tests")
 public class UserApiTest {
 
-    public static String userId;
+    private static String userId;
     SoftAssert softAssert = new SoftAssert();
 
     @BeforeMethod

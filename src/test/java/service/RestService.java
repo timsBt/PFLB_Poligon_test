@@ -1,12 +1,12 @@
 package service;
 
 import com.google.gson.Gson;
-import models.PersonDto;
 import io.qameta.allure.Step;
 import io.restassured.http.ContentType;
-import models.UserDto;
-import utils.PropertyReader;
+import models.userModels.PersonDto;
+import models.userModels.UserDto;
 
+import static adapters.AuthAdapter.urlApi;
 import static io.restassured.RestAssured.given;
 
 public class RestService {
@@ -14,7 +14,7 @@ public class RestService {
     @Step("Получение списка машин у {userId}")
     public PersonDto getUserWithCars(String personId) {
         String response = given()
-                .baseUri(PropertyReader.getProperty("urlApi"))
+                .baseUri(urlApi)
                 .contentType(ContentType.JSON)
                 .when()
                 .get(String.format("/user/%s/info", personId))
@@ -36,7 +36,7 @@ public class RestService {
             final String token
     ) {
         String response = given()
-                .baseUri(PropertyReader.getProperty("urlApi"))
+                .baseUri(urlApi)
                 .contentType(ContentType.JSON)
                 .header("Authorization", token)
                 .body("")

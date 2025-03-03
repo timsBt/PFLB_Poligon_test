@@ -1,14 +1,16 @@
 package tests.apiTests;
 
-import models.PersonDto;
 import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import models.UserDto;
+import models.userModels.PersonDto;
+import models.userModels.UserDto;
 import org.testng.annotations.Test;
 import service.OperationWithCar;
 import service.RestService;
 
+@Epic("Api tests")
 public class GetCarsListFromUserApiTest extends BaseClassApiTest {
 
     @Test(testName = "API: Получение списка машин по userId",
@@ -20,6 +22,6 @@ public class GetCarsListFromUserApiTest extends BaseClassApiTest {
         RestService restService = new RestService();
         PersonDto getListCars = restService.getUserWithCars("1");
         checkUserCars(getListCars, 2);
-        UserDto sellCar =  restService.buyOrSellCar("1", "1", OperationWithCar.BUY, token);
+        UserDto sellCar = restService.buyOrSellCar("1", "1", OperationWithCar.BUY, token);
     }
 }

@@ -51,15 +51,10 @@ public class LoginTest extends BaseTest {
     @Feature("Авторизация")
     @Story("Предоставление прав для работы с проектом")
     public void incorrectLogin() {
-        mainPage.emailField.setValue("u");
-        mainPage.passwordField.setValue("user");
-        mainPage.goButton.click();
+        mainPage.authorizationWithValidateAlert("u", "user");
         checkText("Incorrect input data", Selenide.switchTo().alert().getText());
         Selenide.switchTo().alert().accept();
-        String str = Selenide.$x(String.format(mainPage.redText, "incorrect Email")).getText();
-        if (!str.isEmpty()) {
-            mainPage.checkRedText(str);
-        } else Selenide.closeWebDriver();
+        mainPage.checkResult("incorrect Email");
     }
 
     @Test(priority = 6, testName = "Тест авторизации с паролем вне формата")
@@ -67,15 +62,10 @@ public class LoginTest extends BaseTest {
     @Feature("Авторизация")
     @Story("Предоставление прав для работы с проектом")
     public void incorrectPassword() {
-        mainPage.emailField.setValue(login);
-        mainPage.passwordField.setValue("u");
-        mainPage.goButton.click();
+        mainPage.authorizationWithValidateAlert(login, "u");
         checkText("Incorrect input data", Selenide.switchTo().alert().getText());
         Selenide.switchTo().alert().accept();
-        String str = Selenide.$x(String.format(mainPage.redText, "password length must be more than 3 symbols and less than 8 symbols")).getText();
-        if (!str.isEmpty()) {
-            mainPage.checkRedText(str);
-        } else Selenide.closeWebDriver();
+        mainPage.checkResult("password length must be more than 3 symbols and less than 8 symbols");
     }
 
     @Test(priority = 7, testName = "Тест авторизации с почтой и паролем вне формата")
@@ -83,18 +73,10 @@ public class LoginTest extends BaseTest {
     @Feature("Авторизация")
     @Story("Предоставление прав для работы с проектом")
     public void incorrectPasswordAndEmail() {
-        mainPage.emailField.setValue(password);
-        mainPage.passwordField.setValue(password + password + password);
-        mainPage.goButton.click();
+        mainPage.authorizationWithValidateAlert(password, password + password + password);
         checkText("Incorrect input data", Selenide.switchTo().alert().getText());
         Selenide.switchTo().alert().accept();
-        String str = Selenide.$x(String.format(mainPage.redText, "incorrect Email")).getText();
-        if (!str.isEmpty()) {
-            mainPage.checkRedText(str);
-        }
-        String str2 = Selenide.$x(String.format(mainPage.redText, "password length must be more than 3 symbols and less than 8 symbols")).getText();
-        if (!str2.isEmpty()) {
-            mainPage.checkRedText(str2);
-        }
+        mainPage.checkResult("incorrect Email");
+        mainPage.checkResult("password length must be more than 3 symbols and less than 8 symbols");
     }
 }

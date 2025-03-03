@@ -1,6 +1,5 @@
 package tests.dbTests;
 
-import adapters.UserAdapter;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -13,20 +12,21 @@ import org.testng.asserts.SoftAssert;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static adapters.UserAdapter.createUser;
 import static adapters.UserAdapter.deleteUser;
-import static utils.DbConnect.executeSqlQuery;
+import static db.DbConnect.closeConnect;
+import static db.DbConnect.executeSqlQuery;
 import static utils.PropertyReader.getProperty;
 
 @Epic("DB tests")
 public class UserDbTest {
 
-    public static String userId;
     SoftAssert softAssert = new SoftAssert();
-    String sqlQuery = "SELECT * FROM person WHERE id = '";
+    private String userId;
 
     @BeforeMethod
-    public static void setUpCreateUser() {
-        userId = UserAdapter.createUser(
+    public void setUpCreateUser() {
+        userId = createUser(
                 getProperty("firstName"),
                 getProperty("lastName"),
                 getProperty("age"),
@@ -40,6 +40,7 @@ public class UserDbTest {
     @Feature("Проверка Пользователя в БД")
     @Story("Проверка сохранения пользователя в БД")
     public void checkUserDBTest() throws SQLException {
+        String sqlQuery = "SELECT * FROM person WHERE id = '";
         ResultSet rs = executeSqlQuery(sqlQuery + userId + "'");
         while (rs.next()) {
             softAssert.assertEquals(rs.getString("id"), userId);
@@ -53,7 +54,8 @@ public class UserDbTest {
     }
 
     @AfterMethod
-    public void deleteUserTearDown() {
+    public void deleteUserTearDown() throws SQLException {
         deleteUser(userId);
+        closeConnect();
     }
 }
