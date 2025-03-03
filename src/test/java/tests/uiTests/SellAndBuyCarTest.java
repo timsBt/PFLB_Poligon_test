@@ -4,20 +4,23 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import models.carsData.SellingCar;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Condition.exactText;
+import static org.testng.Assert.assertEquals;
+import static utils.PropertyReader.getProperty;
 
 @Epic("UI tests")
 public class SellAndBuyCarTest extends BaseTest {
+    private String userId;
+    private String carId;
 
     @BeforeMethod
     public void openCreateUserPage() {
         mainPage.authorization(login, password)
                 .toggleNavigationClick("Users")
-                .selectDropDownMenu("Read user with cars");
+                .selectDropDownMenu("Create new");
     }
 
     @Test(testName = "Проверка покупки машины",
@@ -26,25 +29,33 @@ public class SellAndBuyCarTest extends BaseTest {
     @Feature("Взаимодействие с пользователем")
     @Story("Проверка на покупку машины по userID и CarID")
     public void buyCarTest() {
-        readUserWithCarsPage.getCarsIdList("2");
-        final SellingCar car = readUserWithCarsPage.readUserWithCars();
+        // Создаем пользователя
+        userId = createUserPage.createNewUser(
+                getProperty("firstName"),
+                getProperty("lastName"),
+                getProperty("age"),
+                getProperty("sex"),
+                getProperty("money"));
+        createUserPage.checkStatus("Status: Successfully pushed, code: 201");
+        mainPage.toggleNavigationClick("Cars")
+                .selectDropDownMenu("Create new");
+        // Создаем машину
+        carId = createCarPage.createNewCar(
+                "Gasoline",
+                "VedroS",
+                "Gaykamy",
+                "1000");
+        assertEquals(createCarPage.carCreateStatus(),
+                "Status: Successfully pushed, code: 201",
+                "Ошибка при создании автомобиля");
+        // Покупаем машину
         mainPage.toggleNavigationClick("Cars")
                 .selectDropDownMenu("Buy or sell car");
-        sellAndBuyCarPage.buyCar(car.getUserId(), car.getCarId())
+        sellAndBuyCarPage.buyCar(userId, carId)
                 .carCreateStatus();
         sellAndBuyCarPage.saleStatus.shouldHave(exactText("Status: Successfully pushed, code: 200"));
-    }
-
-    @Test(testName = "Проверка продажи машины",
-            description = "Проверка продажи машины")
-    @Description("Проверка продажи машины")
-    @Feature("Взаимодействие с пользователем")
-    @Story("Проверка на продажу машины по userID и CarID")
-    public void sellCarTest() {
-        final SellingCar car = readUserWithCarsPage.readUserWithCars();
-        mainPage.toggleNavigationClick("Cars")
-                .selectDropDownMenu("Buy or sell car");
-        sellAndBuyCarPage.sellCar(car.getUserId(), car.getCarId())
+        // Продаем машину
+        sellAndBuyCarPage.sellCar(userId, carId)
                 .carCreateStatus();
         sellAndBuyCarPage.saleStatus.shouldHave(exactText("Status: Successfully pushed, code: 200"));
     }
