@@ -1,6 +1,9 @@
 package tests.uiTests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
+import io.qameta.allure.testng.AllureTestNg;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Optional;
@@ -38,6 +41,10 @@ public class BaseTest {
         } else if (browser.equalsIgnoreCase("Edge")) {
             Configuration.browser = "Edge";
         }
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
+                .screenshots(false)
+                .savePageSource(true)
+        );
         Configuration.headless = true;
         Configuration.timeout = 10000;
         Configuration.reportsFolder = "./target/screenshots";
