@@ -47,9 +47,10 @@ jobs:
           name: selenide-screenshots
           path: target/screenshots
 
-      - name: Generate Allure report
-        run: mvn allure-report
-      - name: Publish Allure report
-        uses: qameta/allure-github-action@v4
+      - name: Build and generate Allure results
+        run: mvn clean test allure:report
+
+      - name: Upload Allure report
+        uses: rahulshetty/allure-report-action@v4
         with:
-          allure-results: target/allure-results
+          allure_results: ./target/allure-results
