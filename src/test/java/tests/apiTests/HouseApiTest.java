@@ -39,6 +39,7 @@ public class HouseApiTest {
         softAssert.assertEquals(houseDto.getInt("id"),houseId,"Значения id совпадают");
         softAssert.assertEquals(houseDto.getInt("floorCount"),2,"Значения floorCount совпадают");
         softAssert.assertEquals(houseDto.getDouble("price"),500.12,"Значения price совпадают");
+        softAssert.assertAll();
         HouseAdapter.deleteHouse(houseId);
     }
 
@@ -65,6 +66,7 @@ public class HouseApiTest {
         softAssert.assertEquals(houseDto.getInt("id"),houseId,"Значение id совпадает с новым");
         softAssert.assertEquals(houseDto.getInt("floorCount"),5,"Значение floorCount совпадает с новым");
         softAssert.assertEquals(houseDto.getDouble("price"),300,"Значение price совпадает с новым");
+        softAssert.assertAll();
         HouseAdapter.deleteHouse(houseId);
     }
 }
