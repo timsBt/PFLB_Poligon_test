@@ -6,10 +6,10 @@ on:
   pull_request:
     branches: ["master"]
   schedule:
-      - cron: '0 18 * * *'
+      - cron: '0 12 * * *'
 
 jobs:
-  generate-report:
+  build:
 
     runs-on: ubuntu-latest
 
@@ -46,7 +46,9 @@ jobs:
           name: selenide-screenshots
           path: target/screenshots
 
-      - name: Upload Allure report
-        uses: rahulshetty/allure-report-action@v1
+      - name: Generate Allure report
+        run: mvn allure-report
+      - name: Publish Allure report
+        uses: qameta/allure-github-action@v3
         with:
-          allure_results: ./target/allure-results
+          allure-results: target/allure-results
