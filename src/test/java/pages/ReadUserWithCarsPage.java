@@ -31,19 +31,13 @@ public class ReadUserWithCarsPage {
     final SelenideElement inputId = $x("//input[@type='number' and @id='user_input']");
     final SelenideElement readButton = $x("//button[@class='tableButton btn btn-primary']");
 
-    @Step("")
+    @Step("Чтение id {userId} и {carId} для покупки и продажи машины")
     public SellingCar readUserWithCars() {
         log.info("readUserWithCars");
         return new SellingCar(userId.getText(), carId.getText());
     }
 
-    @Step("")
-    public List<Cars> getCarsIdList(SellingCar sellingCar) {
-        log.info("getCarsIdList '{}'", sellingCar);
-        return getCarsIdList(sellingCar.getUserId());
-    }
-
-    @Step("")
+    @Step("Проверка количества машин у {userId}")
     public List<Cars> getCarsIdList(String id) {
         log.info("List getCarsIdList '{}'", id);
         inputId.sendKeys(id);
@@ -61,7 +55,7 @@ public class ReadUserWithCarsPage {
         }).collect(Collectors.toList());
     }
 
-    @Step("")
+    @Step("Получение данных {userId} из ячеек")
     private String getColumnText(ElementsCollection columns, int index) {
         log.info("getColumnText '{}' по индексу '{}'", columns, index);
         return columns.size() > index ? columns.get(index).getText() : "";
