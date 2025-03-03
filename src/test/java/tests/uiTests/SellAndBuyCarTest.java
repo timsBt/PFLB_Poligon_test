@@ -26,6 +26,7 @@ public class SellAndBuyCarTest extends BaseTest {
     @Feature("Взаимодействие с пользователем")
     @Story("Проверка на покупку машины по userID и CarID")
     public void buyCarTest() {
+        readUserWithCarsPage.getCarsIdList("2");
         final SellingCar car = readUserWithCarsPage.readUserWithCars();
         mainPage.toggleNavigationClick("Cars")
                 .selectDropDownMenu("Buy or sell car");
