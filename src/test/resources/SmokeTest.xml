@@ -14,10 +14,12 @@
             <class name="tests.uiTests.SellAndBuyCarTest"/>
             <class name="tests.uiTests.PlusMoneyTest"/>
             <class name="tests.uiTests.CreditTest"/>
+            <class name="tests.uiTests.GetCarsListFromUserTest"/>
             <class name="tests.apiTests.AuthorizationApiTest"/>
             <class name="tests.apiTests.UserApiTest"/>
-            <class name="tests.apiTests.UserInfoTest"/>
+            <class name="tests.apiTests.UserInfoApiTest"/>
             <class name="tests.apiTests.HouseApiTest"/>
+            <class name="tests.apiTests.CarApiTest"/>
             <class name="tests.dbTests.UserDbTest"/>
             <class name="tests.dbTests.CarDbTest"/>
         </classes>

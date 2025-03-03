@@ -20,7 +20,7 @@ import static service.OperationWithCar.BUY;
 import static utils.PropertyReader.getProperty;
 
 @Epic("Api tests")
-public class UserInfoTest {
+public class UserInfoApiTest {
 
     UserDto userDto;
     SoftAssert softAssert = new SoftAssert();
