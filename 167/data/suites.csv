@@ -1,0 +1,8 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","939","correctLogin","PFLB Poligon SmokeTests","Mon Mar 03 22:28:47 GMT 2025","passed","Mon Mar 03 22:28:48 GMT 2025","tests.uiTests.LoginTest","Tests","tests.uiTests.LoginTest","correctLogin"
+"","397","incorrectPasswordAndEmail","PFLB Poligon SmokeTests","Mon Mar 03 22:29:02 GMT 2025","passed","Mon Mar 03 22:29:03 GMT 2025","tests.uiTests.LoginTest","Tests","tests.uiTests.LoginTest","incorrectPasswordAndEmail"
+"","731","fieldPasswordWrongLogin","PFLB Poligon SmokeTests","Mon Mar 03 22:28:52 GMT 2025","passed","Mon Mar 03 22:28:53 GMT 2025","tests.uiTests.LoginTest","Tests","tests.uiTests.LoginTest","fieldPasswordWrongLogin"
+"","253","fieldsEmptyLogin","PFLB Poligon SmokeTests","Mon Mar 03 22:28:50 GMT 2025","passed","Mon Mar 03 22:28:50 GMT 2025","tests.uiTests.LoginTest","Tests","tests.uiTests.LoginTest","fieldsEmptyLogin"
+"","365","incorrectLogin","PFLB Poligon SmokeTests","Mon Mar 03 22:28:57 GMT 2025","passed","Mon Mar 03 22:28:58 GMT 2025","tests.uiTests.LoginTest","Tests","tests.uiTests.LoginTest","incorrectLogin"
+"","296","fieldPasswordEmptyLogin","PFLB Poligon SmokeTests","Mon Mar 03 22:28:55 GMT 2025","passed","Mon Mar 03 22:28:55 GMT 2025","tests.uiTests.LoginTest","Tests","tests.uiTests.LoginTest","fieldPasswordEmptyLogin"
+"","369","incorrectPassword","PFLB Poligon SmokeTests","Mon Mar 03 22:29:00 GMT 2025","passed","Mon Mar 03 22:29:00 GMT 2025","tests.uiTests.LoginTest","Tests","tests.uiTests.LoginTest","incorrectPassword"
