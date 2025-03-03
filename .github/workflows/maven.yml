@@ -2,14 +2,14 @@ name: PFLB_Poligon_test
 
 on:
   push:
-    branches: ["master"]
+    branches: ["master", "feature/AllureReportOnGitHubActions"]
   pull_request:
     branches: ["master"]
   schedule:
       - cron: '0 18 * * *'
 
 jobs:
-  build:
+  generate-report:
 
     runs-on: ubuntu-latest
 
@@ -36,7 +36,7 @@ jobs:
           DB_URL: ${{ secrets.DB_URL }}
           URL_API: ${{ secrets.URL_API }}
           HOST_TOKEN: ${{ secrets.HOST_TOKEN }}
-        run: mvn clean test -Durl=$URL -Dlogin=$LOGIN -Dpassword=$PASSWORD
+        run: mvn clean test allure:report -Durl=$URL -Dlogin=$LOGIN -Dpassword=$PASSWORD
           -DdbLogin=$DB_LOGIN -DdbPass=$DB_PASS -DdbUrl=$DB_URL -DurlApi=$URL_API -DhostToken=$HOST_TOKEN -Dselenide.timeout=10000 -Dselenide.reportsFolder=target/screenshots
 
       - name: Upload screenshots
@@ -45,3 +45,8 @@ jobs:
         with:
           name: selenide-screenshots
           path: target/screenshots
+
+      - name: Upload Allure report
+        uses: rahulshetty/allure-report-action@v1
+        with:
+          allure_results: ./target/allure-results
