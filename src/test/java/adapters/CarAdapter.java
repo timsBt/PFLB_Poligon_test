@@ -14,7 +14,7 @@ public class CarAdapter {
                 .engineType(engineType)
                 .mark(mark)
                 .model(model)
-                .price(price)
+                .price(Double.parseDouble(price))
                 .build();
         Response response = auth()
                 .body(carDto)
@@ -28,6 +28,37 @@ public class CarAdapter {
         return String.valueOf(response.jsonPath().getInt("id"));
     }
 
+    @Step("Чтение автомобиля по ID: {id}")
+    public static CarDto readCar(String id) {
+        return auth()
+                .when()
+                .get("/car/" + id)
+                .then()
+                .statusCode(200)
+                .log().body()
+                .extract().as(CarDto.class);
+    }
+
+    @Step("Редактирование автомобиля по ID: {id}")
+    public static CarDto updateCar(String id, String engineType, String mark, String model, String price) {
+        CarDto carDto = CarDto.builder()
+                .id(Integer.parseInt(id))
+                .engineType(engineType)
+                .mark(mark)
+                .model(model)
+                .price(Double.parseDouble(price))
+                .build();
+        return auth()
+                .body(carDto)
+                // .log().all()
+                .when()
+                .put("/car/" + id)
+                .then()
+                .statusCode(202)
+                .log().all()
+                .extract().as(CarDto.class);
+    }
+
     @Step("Удаление машины по ID: {carId}")
     public static void deleteCar(String carId) {
         auth()
@@ -38,5 +69,15 @@ public class CarAdapter {
                 .statusCode(204)
                 .extract().response();
     }
-}
 
+    @Step("Проверка, что автомобиля не существует по ID: {id}")
+    public static void verifyCarEntityNotExists(String id) {
+        Response response = auth()
+                .when()
+                .get("/car/" + id)
+                .then()
+                .statusCode(204)
+                .extract()
+                .response();
+    }
+}
