@@ -18,13 +18,13 @@ import static utils.PropertyReader.getProperty;
 public class CreateCarPage {
 
     private static final SelenideElement ENGINE_TYPE_TEXT = $x("//th[contains(text(), 'Engine')]");
-    public SelenideElement carEngineTypeSend = $(id("car_engine_type_send"));
-    public SelenideElement carMarkSend = $(id("car_mark_send"));
-    public SelenideElement carModelSend = $(id("car_model_send"));
-    public SelenideElement carPriceSend = $(id("car_price_send"));
-    public SelenideElement pushToApi = $x("//button[@class = 'tableButton btn btn-primary']");
-    public SelenideElement carId = $x("//button[contains(text(), 'New')]");
-    public SelenideElement carStatus = $x("//button[@class='status btn btn-secondary']");
+    private static final SelenideElement carEngineTypeSend = $(id("car_engine_type_send"));
+    private static final SelenideElement carMarkSend = $(id("car_mark_send"));
+    private static final SelenideElement carModelSend = $(id("car_model_send"));
+    private static final SelenideElement carPriceSend = $(id("car_price_send"));
+    private static final SelenideElement pushToApi = $x("//button[@class = 'tableButton btn btn-primary']");
+    private static final SelenideElement carId = $x("//button[contains(text(), 'New')]");
+    private static final SelenideElement carStatus = $x("//button[@class='status btn btn-secondary']");
 
     @Step("Создание нового Автомобиля с данными: {engineType}, {mark}, {model}, {price}")
     public String createNewCar(String engineType, String mark, String model, String price) {
