@@ -47,16 +47,26 @@ jobs:
           name: selenide-screenshots
           path: target/screenshots
 
-      - name: Build and generate Allure results
-        run: mvn clean test allure:report
-
-      - name: Upload Allure results
-        uses: actions/upload-artifact@v4
+      - name: Load test report history
+        uses: actions/checkout@v3
+        if: always()
+        continue-on-error: true
         with:
-          name: allure-results
-          path: ./target/allure-results
+          ref: gh-pages
+          path: gh-pages
 
-      - name: Publish Allure report
-        uses: azure-pipelines/allure@v1
+      - name: Build test report
+        uses: simple-elf/allure-report-action@v1.7
+        if: always()
         with:
-          results-path: ./target/allure-results
+          gh_pages: gh-pages
+          allure_history: allure-history
+          allure_results: build/allure-results
+
+      - name: Publish test report
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history
