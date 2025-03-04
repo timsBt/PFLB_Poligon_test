@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: ["master"]
   schedule:
-      - cron: '0 18 * * *'
+      - cron: '0 12 * * *'
 
 jobs:
   build:
@@ -21,11 +21,6 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-      - name: Setup browser Chrome
-        uses: abhi1693/setup-browser@v0.3.4
-        with:
-          browser: chrome
-          version: latest
       - name: Run SmokeTest
         env:
           URL: ${{ secrets.URL }}
@@ -37,7 +32,8 @@ jobs:
           URL_API: ${{ secrets.URL_API }}
           HOST_TOKEN: ${{ secrets.HOST_TOKEN }}
         run: mvn clean test -Durl=$URL -Dlogin=$LOGIN -Dpassword=$PASSWORD
-          -DdbLogin=$DB_LOGIN -DdbPass=$DB_PASS -DdbUrl=$DB_URL -DurlApi=$URL_API -DhostToken=$HOST_TOKEN -Dselenide.timeout=10000 -Dselenide.reportsFolder=target/screenshots
+          -DdbLogin=$DB_LOGIN -DdbPass=$DB_PASS -DdbUrl=$DB_URL -DurlApi=$URL_API -DhostToken=$HOST_TOKEN
+          -Dselenide.timeout=10000 -Dselenide.reportsFolder=target/screenshots
 
       - name: Upload screenshots
         uses: actions/upload-artifact@v4
@@ -45,3 +41,27 @@ jobs:
         with:
           name: selenide-screenshots
           path: target/screenshots
+
+      - name: Load test report history
+        uses: actions/checkout@v3
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Build test report
+        uses: simple-elf/allure-report-action@v1.7
+        if: always()
+        with:
+          gh_pages: gh-pages
+          allure_history: allure-history
+          allure_results: target/allure-results
+
+      - name: Publish test report
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: allure-history

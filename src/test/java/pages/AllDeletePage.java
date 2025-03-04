@@ -47,6 +47,7 @@ public class AllDeletePage {
 
     @Step("Удаление House по ID: {houseId}")
     public void deleteHouseId(String houseId) {
+        log.info("Удаление House по ID: '{}'", houseId);
         TOGGLE_NAVIGATION_ALL_DELETE.shouldBe(visible, ofSeconds(10)).click();
         sleep(2000);
         switchTo().window(1);
