@@ -20,6 +20,7 @@
             <class name="tests.apiTests.UserInfoApiTest"/>
             <class name="tests.apiTests.HouseApiTest"/>
             <class name="tests.apiTests.CarApiTest"/>
+            <class name="tests.apiTests.GetCarsListFromUserApiTest"/>
             <class name="tests.dbTests.UserDbTest"/>
             <class name="tests.dbTests.CarDbTest"/>
         </classes>
