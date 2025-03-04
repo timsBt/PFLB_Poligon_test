@@ -8,7 +8,7 @@ import jdk.jfr.Description;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Condition.visible;
-import static pages.MainPage.checkText;
+import static pages.CheckInCheckOutPage.checkText;
 
 @Epic("UI tests")
 public class CheckInCheckOutTest extends BaseTest {
@@ -20,7 +20,7 @@ public class CheckInCheckOutTest extends BaseTest {
     public void settleUser() {
         checkInCheckOutPage.auth().goToLink().addUserToHouse("1", "1");
         Selenide.sleep(3000);
-        checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(), "Status: Successfully pushed, code: 200");
+        checkText("Status: Successfully pushed, code: 200");
     }
 
     @Test(priority = 2, testName = "Выселение пользователя из дома")
@@ -30,7 +30,7 @@ public class CheckInCheckOutTest extends BaseTest {
     public void evictUser() {
         checkInCheckOutPage.auth().goToLink().evictUserFromHouse("1", "1");
         Selenide.sleep(3000);
-        checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(), "Status: Successfully pushed, code: 200");
+        checkText("Status: Successfully pushed, code: 200");
     }
 
     @Test(priority = 3, testName = "Заселение пользователя с пустым полем пользователь")
@@ -40,7 +40,7 @@ public class CheckInCheckOutTest extends BaseTest {
     public void incorrectSettleUserTest() {
         checkInCheckOutPage.auth().goToLink().addUserToHouse("", "1");
         Selenide.sleep(3000);
-        checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(), "Status: Incorrect input data");
+        checkText("Status: Incorrect input data");
     }
 
     @Test(priority = 4, testName = "Заселение пользователя с пустым полем дом")
@@ -50,7 +50,7 @@ public class CheckInCheckOutTest extends BaseTest {
     public void incorrectSettleHouseTest() {
         checkInCheckOutPage.auth().goToLink().addUserToHouse("1", "");
         Selenide.sleep(3000);
-        checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(), "Status: Incorrect input data");
+        checkText("Status: Incorrect input data");
     }
 
     @Test(priority = 5, testName = "Выселение пользователя с пустым полем пользователь")
@@ -60,7 +60,7 @@ public class CheckInCheckOutTest extends BaseTest {
     public void incorrectEvictUserTest() {
         checkInCheckOutPage.auth().goToLink().evictUserFromHouse("", "1");
         Selenide.sleep(3000);
-        checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(), "Status: Incorrect input data");
+        checkText("Status: Incorrect input data");
     }
 
     @Test(priority = 6, testName = "Выселение пользователя с пустым полем дом")
@@ -70,6 +70,6 @@ public class CheckInCheckOutTest extends BaseTest {
     public void incorrectEvictHouseTest() {
         checkInCheckOutPage.auth().goToLink().evictUserFromHouse("1", "");
         Selenide.sleep(3000);
-        checkText(checkInCheckOutPage.checkText.shouldBe(visible).getText(), "Status: Incorrect input data");
+        checkText("Status: Incorrect input data");
     }
 }

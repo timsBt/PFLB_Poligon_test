@@ -20,7 +20,7 @@ import static service.OperationWithCar.BUY;
 import static utils.PropertyReader.getProperty;
 
 @Epic("Api tests")
-public class UserInfoTest {
+public class UserInfoApiTest {
 
     UserDto userDto;
     SoftAssert softAssert = new SoftAssert();
@@ -57,7 +57,7 @@ public class UserInfoTest {
             softAssert.assertEquals(car.getEngineType(), getProperty("engineType"), "Значение EngineType не совпадает");
             softAssert.assertEquals(car.getMark(), getProperty("mark"), "Значение Mark не совпадает");
             softAssert.assertEquals(car.getModel(), getProperty("model"), "Значение Model не совпадает");
-            softAssert.assertEquals(String.valueOf(car.getPrice()), getProperty("price"), "Значение Price не совпадает");
+            softAssert.assertEquals(car.getPrice(), Double.parseDouble(getProperty("price")), "Значение Price не совпадает");
         }
         softAssert.assertAll();
     }
